@@ -1,6 +1,7 @@
 "use client"
 import HeroSction from "./components/HomeComponents/HeroSction";
 import FeatureBar from "./components/HomeComponents/FeatureBar";
+import Image from "next/image";
 import {
   CheckCircle2, ArrowRight, ChevronRight, Star, Feather,
   Headset, Settings2, UserCog, Car, Shield, Cog,
@@ -44,9 +45,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
         className="w-full flex items-center justify-between text-left gap-4"
       >
         <span className="font-bold text-[#1b2a52] text-sm md:text-base">{question}</span>
-        {open
-          ? <ChevronUp className="w-5 h-5 text-[#F27A22] shrink-0" />
-          : <ChevronDown className="w-5 h-5 text-[#F27A22] shrink-0" />}
+        {open ? <ChevronUp className="w-5 h-5 text-[#F27A22] shrink-0" /> : <ChevronDown className="w-5 h-5 text-gray-400 shrink-0" />}
       </button>
       <AnimatePresence>
         {open && (
@@ -54,7 +53,8 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
             initial={{ height: 0, opacity: 0, marginTop: 0 }}
             animate={{ height: "auto", opacity: 1, marginTop: 12 }}
             exit={{ height: 0, opacity: 0, marginTop: 0 }}
-            className="text-gray-500 text-sm leading-relaxed overflow-hidden"
+            transition={{ duration: 0.25 }}
+            className="overflow-hidden text-gray-500 text-sm leading-relaxed pr-8"
           >
             {answer}
           </motion.p>
@@ -104,10 +104,10 @@ export default function Home() {
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeRight}
           >
-            <p className="text-gray-700 text-base leading-relaxed mb-4">
-              We are leading <span className="font-black text-[#F27A22]">manufacturers of FRP</span> in{" "}
-              <span className="font-black text-[#1b2a52]">Hyderabad – India.</span>
-            </p>
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight text-[#1b2a52] leading-tight mb-4">
+              We are leading <span className="text-[#F27A22]">manufacturers of FRP</span> in{" "}
+              <span className="text-[#1b2a52]">Hyderabad – India.</span>
+            </h2>
             <p className="text-gray-500 text-sm leading-relaxed mb-8">
               Venkateshwara Fibreglass Products is a unit set up for manufacturing FRP composites for Automobiles
               and other Engineering Industrial applications. The unit has been promoted by dedicated, young and
@@ -208,13 +208,13 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeUp}
-            className="text-center mb-12"
+            className="text-center mb-14"
           >
-            <h2 className="text-3xl md:text-[38px] font-black text-[#1b2a52]">
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-[#1b2a52]">
               Our <span className="italic text-[#F27A22]">Products</span>{" "}
               <span className="text-[#F27A22]">——</span>
             </h2>
-            <p className="text-gray-500 text-sm mt-3 max-w-xl mx-auto">
+            <p className="text-gray-500 text-base md:text-lg leading-relaxed mt-4 max-w-2xl mx-auto">
               Precision moulded FRP components that set new benchmarks in durability and finish.
             </p>
           </motion.div>
@@ -245,22 +245,12 @@ export default function Home() {
                     className="w-full h-full object-cover" 
                   />
                 </div>
-                <div className="p-5">
-                  <h3 className="text-lg font-black text-[#1b2a52] mb-1">{title}</h3>
-                  <p className="text-[#F27A22] text-xs font-semibold">{desc}</p>
+                <div className="p-6">
+                  <h3 className="text-xl md:text-[22px] font-black text-[#1b2a52] mb-2 leading-tight">{title}</h3>
+                  <p className="text-[#F27A22] text-sm md:text-[15px] font-semibold leading-relaxed">{desc}</p>
                 </div>
               </motion.div>
             ))}
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="flex justify-center mt-10 gap-3"
-          >
-            <button className="border border-gray-300 text-gray-500 px-5 py-2 rounded text-sm hover:border-[#F27A22] hover:text-[#F27A22] transition-colors">← Prev</button>
-            <button className="border border-gray-300 text-gray-500 px-5 py-2 rounded text-sm hover:border-[#F27A22] hover:text-[#F27A22] transition-colors">Next →</button>
           </motion.div>
         </div>
       </section>
@@ -618,16 +608,27 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             variants={staggerContainer}
-            className="flex flex-wrap justify-center items-center gap-8 md:gap-16"
+            className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8"
           >
-            {["TATA MOTORS", "DRDO", "ASHOK LEYLAND", "MAHINDRA", "LARSEN & TOUBRO"].map((brand) => (
-              <motion.span 
-                key={brand} 
+            {[
+              { src: "/clients/ashokleyland.png", alt: "Ashok Leyland" },
+              { src: "/clients/mungi.png", alt: "Mungi" },
+              { src: "/clients/navistar.png", alt: "Mahindra Navistar" },
+              { src: "/clients/rise.png", alt: "Mahindra Rise" },
+            ].map(({ src, alt }) => (
+              <motion.div 
+                key={alt} 
                 variants={fadeUp}
-                className="text-lg md:text-xl font-black text-[#b0b4bf] uppercase tracking-wider hover:text-[#1b2a52] transition-colors cursor-default"
+                className="group flex items-center justify-center rounded-2xl border border-gray-200 bg-white px-6 py-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
               >
-                {brand}
-              </motion.span>
+                <Image
+                  src={src}
+                  alt={alt}
+                  width={180}
+                  height={72}
+                  className="h-10 md:h-14 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                />
+              </motion.div>
             ))}
           </motion.div>
         </div>

@@ -4,7 +4,7 @@ import React from 'react'
 export default function HeroSection() {
   return (
     // 1. Changed height from 80vh to a fixed min-height closer to Figma's 521px
-    <section className="relative min-h-[550px] w-full flex items-center">
+    <section className="relative min-h-137.5 w-full flex items-center">
 
       {/* Background Image */}
       <div
