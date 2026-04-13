@@ -3,13 +3,13 @@ import { motion } from "framer-motion";
 
 const clients = [
   { src: "/clients/ashokleyland.png", alt: "Ashok Leyland" },
-  { src: "/clients/mungi.png",        alt: "Mungi" },
-  { src: "/clients/navistar.png",     alt: "Mahindra Navistar" },
-  { src: "/clients/rise.png",         alt: "Mahindra Rise" },
+  { src: "/clients/mungi.png", alt: "Mungi" },
+  { src: "/clients/navistar.png", alt: "Mahindra Navistar" },
+  { src: "/clients/rise.png", alt: "Mahindra Rise" },
   { src: "/clients/ashokleyland.png", alt: "Ashok Leyland" },
-  { src: "/clients/mungi.png",        alt: "Mungi" },
-  { src: "/clients/navistar.png",     alt: "Mahindra Navistar" },
-  { src: "/clients/rise.png",         alt: "Mahindra Rise" },
+  { src: "/clients/mungi.png", alt: "Mungi" },
+  { src: "/clients/navistar.png", alt: "Mahindra Navistar" },
+  { src: "/clients/rise.png", alt: "Mahindra Rise" },
 ];
 
 export default function ClientsCarousel() {
@@ -17,7 +17,7 @@ export default function ClientsCarousel() {
     <section className="w-full bg-gray-50 py-20 overflow-hidden relative border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-6 md:px-12 text-center mb-12">
         <h2 className="text-3xl font-black text-[#1b2a52] mb-2">
-          Our <span className="italic text-[#F27A22]">Clients</span>
+          Our <span className=" text-[#F27A22]">Clients</span>
         </h2>
         <div className="w-16 h-1 bg-[#F27A22] mx-auto rounded-full" />
       </div>
@@ -44,7 +44,7 @@ export default function ClientsCarousel() {
             </div>
           ))}
         </motion.div>
-        
+
         <motion.div
           className="flex items-center gap-6 md:gap-10 pr-6 md:pr-10 w-max"
           animate={{ x: ["0%", "-100%"] }}
