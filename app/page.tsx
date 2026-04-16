@@ -98,7 +98,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function Home() {
-  const [hoveredStep, setHoveredStep] = useState(null);
+  const [hoveredStep, setHoveredStep] = useState<number | null>(null);
   const industries = [
     {
       icon: Car,
