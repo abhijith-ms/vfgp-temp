@@ -34,7 +34,7 @@ export default function ClientsCarousel() {
           {clients.map(({ src, alt }, idx) => (
             <div
               key={`track1-${idx}`}
-              className="w-44 md:w-56 h-28 shrink-0 flex items-center justify-center rounded-2xl bg-white px-6 py-5 cursor-pointer border border-gray-100 shadow-sm transition-all duration-300 hover:border-orange-200 hover:-translate-y-1 hover:shadow-md"
+              className="w-56 md:w-72 h-36 shrink-0 flex items-center justify-center px-6 py-5"
             >
               <img
                 src={src}
@@ -53,7 +53,7 @@ export default function ClientsCarousel() {
           {clients.map(({ src, alt }, idx) => (
             <div
               key={`track2-${idx}`}
-              className="w-44 md:w-56 h-28 shrink-0 flex items-center justify-center rounded-2xl bg-white px-6 py-5 cursor-pointer border border-gray-100 shadow-sm transition-all duration-300 hover:border-orange-200 hover:-translate-y-1 hover:shadow-md"
+              className="w-56 md:w-72 h-36 shrink-0 flex items-center justify-center px-6 py-5"
             >
               <img
                 src={src}
