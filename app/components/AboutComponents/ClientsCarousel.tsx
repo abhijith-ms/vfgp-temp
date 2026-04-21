@@ -34,7 +34,7 @@ export default function ClientsCarousel() {
           {clients.map(({ src, alt }, idx) => (
             <div
               key={`track1-${idx}`}
-              className="w-56 md:w-72 h-36 shrink-0 flex items-center justify-center px-6 py-5"
+              className="w-64 md:w-80 h-36 shrink-0 flex items-center justify-center px-4 py-3"
             >
               <img
                 src={src}
@@ -53,7 +53,7 @@ export default function ClientsCarousel() {
           {clients.map(({ src, alt }, idx) => (
             <div
               key={`track2-${idx}`}
-              className="w-56 md:w-72 h-36 shrink-0 flex items-center justify-center px-6 py-5"
+              className="w-64 md:w-80 h-36 shrink-0 flex items-center justify-center px-4 py-3"
             >
               <img
                 src={src}
