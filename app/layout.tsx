@@ -17,7 +17,7 @@ const monoFont = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Venkateshwara Fibreglass Products - FRP Manufacturing",
+  title: "VENKATESHWARA FIBREGLASS PRODUCTS - FRP Manufacturing",
   description:
     "Leading manufacturer of FRP composites for Automobile, Defence and Engineering industries with precision and durability.",
 };

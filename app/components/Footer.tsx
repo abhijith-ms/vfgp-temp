@@ -143,7 +143,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="border-t border-white/10 pt-6 md:pt-8 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
           <p className="text-white/80 text-[14px]">
-            © 2026 Venkateshwara Fibreglass Products. All Rights Reserved.
+            © 2026 VENKATESHWARA FIBREGLASS PRODUCTS. All Rights Reserved.
           </p>
           <div className="flex gap-4 md:gap-6">
             <Link

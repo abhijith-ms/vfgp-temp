@@ -54,7 +54,7 @@ export default function NavBar() {
             className="w-9 h-9 sm:w-11 sm:h-11 object-contain"
           />
           <h1 className="text-[13px] sm:text-[15px] md:text-[16px] leading-tight font-black uppercase text-[#1b2a52]">
-            Venkateshwara <br /> Fibreglass Products
+            VENKATESHWARA <br /> FIBREGLASS PRODUCTS
           </h1>
         </Link>
 

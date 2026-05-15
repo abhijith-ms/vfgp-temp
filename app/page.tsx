@@ -137,7 +137,7 @@ export default function Home() {
         "Our products are finished to Class A surface standards using vacuum infusion and controlled gel-coat techniques, ensuring smooth, paint-ready surfaces suitable for automotive exteriors.",
     },
     {
-      question: "Can Venkateshwara FRP handle large-scale production runs?",
+      question: "Can VENKATESHWARA FIBREGLASS PRODUCTS handle large-scale production runs?",
       answer:
         "Yes. Our automated production lines and vacuum resin infusion infrastructure are designed for both prototype and high-volume batch production to meet diverse client demands.",
     },
@@ -214,7 +214,7 @@ export default function Home() {
               <span className="text-[#1b2a52]">Hyderabad – India.</span>
             </h2>
             <p className="text-gray-500 text-base leading-relaxed mb-8">
-              Venkateshwara Fibreglass Products is a unit set up for
+              VENKATESHWARA FIBREGLASS PRODUCTS is a unit set up for
               manufacturing FRP composites for Automobiles and other Engineering
               Industrial applications. The unit has been promoted by dedicated,
               young and technically experienced first-generation entrepreneurs.
