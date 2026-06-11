@@ -33,7 +33,7 @@ export default function FeatureBar() {
 
   return (
     // The top and bottom borders match the dark blue framing from your mockup
-    <section className="w-full bg-white border-y-2 border-[#1b2a52] py-8">
+    <section className="w-full bg-white border-y-2 border-[#1b2a52] py-8 bg-frp-mesh">
       
       {/* Container aligned with your Hero section's max-width */}
       <div className="max-w-[1280px] mx-auto px-6 md:px-12">

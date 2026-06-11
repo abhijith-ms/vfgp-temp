@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#2A2E5B] pt-12 md:pt-20 pb-6 md:pb-8">
+    <footer className="w-full bg-[#2A2E5B] pt-12 md:pt-20 pb-6 md:pb-8 bg-blueprint-grid">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 lg:gap-8 mb-10 md:mb-16">
           {/* Company Info */}

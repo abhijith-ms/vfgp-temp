@@ -134,7 +134,7 @@ export default function ContactPage() {
         </div>
       </section>
       {/* SECTION DESKTOP */}
-      <section className="hidden md:block w-full   bg-grid-pattern  pt-8 pb-8 md:pb-20 relative z-10">
+      <section className="hidden md:block w-full   bg-fiber-weave  pt-8 pb-8 md:pb-20 relative z-10">
         {/* LEFT: INFO & MAP */}
         <div className=" px-12">
           <div className="bg-[#1b2a52] rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden">
@@ -287,7 +287,7 @@ export default function ContactPage() {
         </div>
       </section>
       {/* SECTION MOBILE*/}
-      <section className="max-w-7xl md:hidden  pt-12 pb-12 md:pb-20 relative z-10 bg-grid-pattern ">
+      <section className="max-w-7xl md:hidden  pt-12 pb-12 md:pb-20 relative z-10 bg-fiber-weave ">
         <div className="  grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* LEFT: INFO & MAP */}
           <div className="mx-0">

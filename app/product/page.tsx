@@ -195,7 +195,7 @@ export default function Page() {
       </section>
 
       {/* ─── SECTION 1: BUS BODY PARTS ────────────────────────────────── */}
-      <section id="bus" className="scroll-mt-20 w-full bg-white py-16 md:py-24">
+      <section id="bus" className="scroll-mt-20 w-full bg-white py-16 md:py-24 bg-fiber-weave">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           {/* Section Header */}
           <motion.div
@@ -322,7 +322,7 @@ export default function Page() {
       {/* ─── SECTION 2: LOAD TESTING BOX ──────────────────────────────── */}
       <section
         id="load"
-        className="scroll-mt-20 w-full bg-slate-50 py-16 md:py-24 border-t border-gray-100"
+        className="scroll-mt-20 w-full bg-slate-50 py-16 md:py-24 border-t border-gray-100 bg-composite-layers"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           {/* Section Header */}
@@ -398,7 +398,7 @@ export default function Page() {
       </section>
 
       {/* ─── CTA SECTION ──────────────────────────────────────────────── */}
-      <section className="w-full bg-[#DCE8F6] py-16 md:py-20">
+      <section className="w-full bg-[#DCE8F6] py-16 md:py-20 bg-frp-mesh">
         <motion.div
           initial="hidden"
           whileInView="visible"

@@ -238,7 +238,7 @@ export default function Home() {
       </div>
 
       {/* ── ABOUT / LEGACY ─────────────────────────────────────────────── */}
-      <section className="w-full  py-20 overflow-hidden bg-grid-pattern">
+      <section className="w-full  py-20 overflow-hidden bg-fiber-weave">
         <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Text */}
           <motion.div
@@ -319,7 +319,7 @@ export default function Home() {
       </section>
 
       {/* ── INDUSTRIES WE SERVE ─────────────────────────────────────────── */}
-      <section className="w-full py-12 md:py-20 bg-grid-pattern">
+      <section className="w-full py-12 md:py-20 bg-composite-layers">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           <motion.div
             initial="hidden"
@@ -378,7 +378,7 @@ export default function Home() {
       </section>
 
       {/* ── OUR PRODUCTS ────────────────────────────────────────────────── */}
-      <section className="w-full  py-13 md:py-20 bg-grid-pattern">
+      <section className="w-full  py-13 md:py-20 bg-fiber-weave">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           <motion.div
             initial="hidden"
@@ -438,7 +438,7 @@ export default function Home() {
       </section>
 
       {/* ── WHY CHOOSE US — DARK ────────────────────────────────────────── */}
-      <section className="w-full bg-[#111827] py-16 md:py-24 overflow-hidden">
+      <section className="w-full bg-[#111827] py-16 md:py-24 overflow-hidden bg-blueprint-grid">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-start">
           {/* Left: Text + Progress Bars */}
           <motion.div
@@ -533,7 +533,7 @@ export default function Home() {
       </section>
 
       {/* ── OUR UNIQUE PRODUCT ──────────────────────────────────────────── */}
-      <section className="w-full bg-grid-pattern py-16 md:py-20 border-b border-gray-100 overflow-hidden">
+      <section className="w-full bg-composite-layers py-16 md:py-20 border-b border-gray-100 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           <motion.div
             initial="hidden"
@@ -745,7 +745,7 @@ export default function Home() {
       </section>
 
       {/* ── FACTORY VIDEO GALLERY ────────────────────────────────────────── */}
-      <section className="w-full py-16 md:py-20 bg-grid-pattern">
+      <section className="w-full py-16 md:py-20 bg-frp-mesh">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           <motion.div
             initial="hidden"
@@ -884,7 +884,7 @@ export default function Home() {
       </section>
 
       {/* ── MANUFACTURING PROCESS ────────────────────────────────────────── */}
-      <section className="w-full py-16 md:py-20 border-t border-gray-100 bg-grid-pattern">
+      <section className="w-full py-16 md:py-20 border-t border-gray-100 bg-blueprint-grid-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 text-center">
           <motion.div
             initial="hidden"
@@ -996,7 +996,7 @@ export default function Home() {
       </section>
 
       {/* ── CTA ──────────────────────────────────────────────────────────── */}
-      <section className="w-full bg-[#DCE8F6] py-16 md:py-20">
+      <section className="w-full bg-[#DCE8F6] py-16 md:py-20 bg-frp-mesh">
         <motion.div
           initial="hidden"
           whileInView="visible"

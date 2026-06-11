@@ -141,7 +141,7 @@ export default function IndustryPage({
       </section>
 
       {/* ─── MAIN CONTENT SECTION ─────────────────────────────────────── */}
-      <section className="w-full py-16 md:py-24 bg-white">
+      <section className="w-full py-16 md:py-24 bg-white bg-fiber-weave">
         <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Content (Left Side - 8 Columns) */}
           <motion.div

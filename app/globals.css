@@ -3,14 +3,9 @@
 :root {
     --background: #ffffff;
     --foreground: #000000;
+    --navy: 27, 42, 82;
+    --orange: 242, 122, 34;
 }
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #000000;
-    --foreground: #ffffff;
-  }
-} */
 
 body {
     background: var(--background);
@@ -18,30 +13,231 @@ body {
     font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
-/* Subtle grid background pattern */
-.bg-grid-pattern {
+/* ═══════════════════════════════════════════════════════════════════════════
+   FRP INDUSTRY BACKGROUND PATTERNS
+   All patterns use pure CSS — zero external image assets.
+   Brand colors at very low opacity keep things subtle & professional.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── bg-fiber-weave ────────────────────────────────────────────────────────
+   Diagonal crosshatch resembling woven fiberglass roving cloth.
+   Two sets of diagonal lines at ±45° create a woven mat texture.
+   Used on: light content sections (About, Industries, Products, FAQ)
+   ──────────────────────────────────────────────────────────────────────── */
+.bg-fiber-weave {
     background-image:
-        linear-gradient(to right, rgba(27, 42, 82, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(27, 42, 82, 0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 14px,
+            rgba(var(--navy), 0.025) 14px,
+            rgba(var(--navy), 0.025) 15px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 14px,
+            rgba(var(--navy), 0.025) 14px,
+            rgba(var(--navy), 0.025) 15px
+        ),
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 28px,
+            rgba(var(--orange), 0.012) 28px,
+            rgba(var(--orange), 0.012) 29px
+        );
 }
 
-/* Gradient overlay for sections */
+/* ── bg-composite-layers ───────────────────────────────────────────────────
+   Horizontal layered bands with subtle gradient shifts, mimicking the
+   cross-section of resin-infused laminate layers / ply stacking.
+   Used on: alternating light sections for visual variety
+   ──────────────────────────────────────────────────────────────────────── */
+.bg-composite-layers {
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 60px,
+            rgba(var(--navy), 0.018) 60px,
+            rgba(var(--navy), 0.018) 61px
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 120px,
+            rgba(var(--orange), 0.01) 120px,
+            rgba(var(--orange), 0.01) 122px
+        ),
+        linear-gradient(
+            180deg,
+            rgba(var(--navy), 0.008) 0%,
+            transparent 15%,
+            transparent 85%,
+            rgba(var(--navy), 0.008) 100%
+        );
+}
+
+/* ── bg-blueprint-grid ─────────────────────────────────────────────────────
+   Technical blueprint / CAD-style grid with major + minor gridlines
+   and subtle crosshair markers at intersections.
+   Used on: dark engineering sections (Manufacturing Process, Why Choose Us)
+   ──────────────────────────────────────────────────────────────────────── */
+.bg-blueprint-grid {
+    background-image:
+        /* Major grid lines */
+        linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.04) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.04) 1px,
+            transparent 1px
+        ),
+        /* Minor grid lines */
+        linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.015) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.015) 1px,
+            transparent 1px
+        ),
+        /* Crosshair accents at major intersections */
+        radial-gradient(
+            circle 1.5px at center,
+            rgba(var(--orange), 0.06) 0%,
+            transparent 100%
+        );
+    background-size:
+        80px 80px,
+        80px 80px,
+        20px 20px,
+        20px 20px,
+        80px 80px;
+}
+
+/* Light variant for light-colored sections */
+.bg-blueprint-grid-light {
+    background-image:
+        linear-gradient(
+            to right,
+            rgba(var(--navy), 0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            to bottom,
+            rgba(var(--navy), 0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            to right,
+            rgba(var(--navy), 0.012) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            to bottom,
+            rgba(var(--navy), 0.012) 1px,
+            transparent 1px
+        ),
+        radial-gradient(
+            circle 1.5px at center,
+            rgba(var(--orange), 0.04) 0%,
+            transparent 100%
+        );
+    background-size:
+        80px 80px,
+        80px 80px,
+        20px 20px,
+        20px 20px,
+        80px 80px;
+}
+
+/* ── bg-frp-mesh ───────────────────────────────────────────────────────────
+   FRP grating / perforated mesh dot pattern at low opacity.
+   Evokes industrial FRP gratings, walkway panels, and profiles.
+   Used on: CTA sections, video gallery, feature bar, leadership
+   ──────────────────────────────────────────────────────────────────────── */
+.bg-frp-mesh {
+    background-image:
+        radial-gradient(
+            circle 1px at center,
+            rgba(var(--navy), 0.06) 0%,
+            rgba(var(--navy), 0.06) 50%,
+            transparent 50%
+        ),
+        radial-gradient(
+            circle 0.5px at center,
+            rgba(var(--orange), 0.03) 0%,
+            rgba(var(--orange), 0.03) 50%,
+            transparent 50%
+        );
+    background-size:
+        16px 16px,
+        32px 32px;
+    background-position:
+        0 0,
+        8px 8px;
+}
+
+/* ── bg-gradient-mesh (UPDATED) ────────────────────────────────────────────
+   Original radial gradient mesh — now layered with a faint diagonal
+   fiber strand accent for FRP character.
+   Used on: Clients carousel section
+   ──────────────────────────────────────────────────────────────────────── */
 .bg-gradient-mesh {
     background:
+        repeating-linear-gradient(
+            135deg,
+            transparent,
+            transparent 20px,
+            rgba(var(--navy), 0.012) 20px,
+            rgba(var(--navy), 0.012) 21px
+        ),
         radial-gradient(
             circle at 20% 50%,
-            rgba(242, 122, 34, 0.05) 0%,
+            rgba(var(--orange), 0.05) 0%,
             transparent 50%
         ),
         radial-gradient(
             circle at 80% 80%,
-            rgba(27, 42, 82, 0.05) 0%,
+            rgba(var(--navy), 0.05) 0%,
             transparent 50%
         ),
         radial-gradient(
             circle at 40% 20%,
-            rgba(242, 122, 34, 0.03) 0%,
+            rgba(var(--orange), 0.03) 0%,
             transparent 50%
+        );
+}
+
+/* ── Legacy alias — keep bg-grid-pattern pointing to fiber-weave ───────── */
+.bg-grid-pattern {
+    background-image:
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 14px,
+            rgba(var(--navy), 0.025) 14px,
+            rgba(var(--navy), 0.025) 15px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 14px,
+            rgba(var(--navy), 0.025) 14px,
+            rgba(var(--navy), 0.025) 15px
+        ),
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 28px,
+            rgba(var(--orange), 0.012) 28px,
+            rgba(var(--orange), 0.012) 29px
         );
 }

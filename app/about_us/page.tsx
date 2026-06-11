@@ -107,7 +107,7 @@ export default function Page() {
 
       {/* ─── TWO DECADES ──────────────────────────────────────── */}
       <section
-        className="w-full bg-white py-12 md:py-20 bg-grid-pattern"
+        className="w-full bg-white py-12 md:py-20 bg-fiber-weave"
         data-aos="fade-up"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
@@ -267,7 +267,7 @@ export default function Page() {
 
       {/* ─── CORE VALUES ──────────────────────────────────────── */}
       <section
-        className="w-full bg-white py-16 md:py-24 bg-grid-pattern"
+        className="w-full bg-white py-16 md:py-24 bg-composite-layers"
         data-aos="fade-up"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
@@ -359,7 +359,7 @@ export default function Page() {
       </section>
 
       {/* ─── LEADERSHIP TEAM ──────────────────────────────────── */}
-      <section className="w-full bg-[#DCE8F5] py-16 md:py-20" data-aos="fade-up">
+      <section className="w-full bg-[#DCE8F5] py-16 md:py-20 bg-frp-mesh" data-aos="fade-up">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           <div className="text-center mb-10 md:mb-16" data-aos="fade-down">
             <h2 className="text-2xl sm:text-4xl md:text-[42px] font-black text-[#1b2a52] mb-3 md:mb-4 leading-tight">
@@ -487,7 +487,7 @@ export default function Page() {
 
       {/* ─── CTA ──────────────────────────────────────────────── */}
       <section
-        className="w-full bg-[#DCE8F6] py-16 md:py-20"
+        className="w-full bg-[#DCE8F6] py-16 md:py-20 bg-frp-mesh"
         data-aos="fade-up"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 text-center">
