@@ -18,8 +18,10 @@ import {
   Phone,
   User,
   MessageSquare,
+  Play,
+  X,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 // ─── Animation Variants ───────────────────────────────────────────────────────
@@ -99,6 +101,43 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function Home() {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveVideo(null);
+      }
+    };
+    if (activeVideo) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeVideo]);
+
+  const factoryVideos = [
+    {
+      title: "Hand Lay-up & Manual Lamination",
+      desc: "Our skilled technicians performing manual lamination and lay-up, illustrating the dedicated hand craftsmanship required for molding durable composite structures.",
+      videoSrc: "/videos/1.mp4",
+      thumbnail: "/bus.png",
+      tag: "Hand Craftsmanship"
+    },
+    {
+      title: "Robotic Spraying & Oversight",
+      desc: "Industrial robotic arms applying paint and gel coats, combining automation with manual preparation and human quality checks.",
+      videoSrc: "/videos/2.mp4",
+      thumbnail: "/robot.png",
+      tag: "Robotic Automation"
+    },
+    {
+      title: "Manual Assembly & Final Detailing",
+      desc: "Our team manually assembling components, trimming edges, and carrying out visual inspection on the factory floor.",
+      videoSrc: "/videos/3.mp4",
+      thumbnail: "/bus2.png",
+      tag: "Manual Detailing"
+    }
+  ];
   const industries = [
     {
       icon: Car,
@@ -725,38 +764,53 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             variants={staggerContainer}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
           >
-            {["/bus.png", "/robot.png", "/bus2.png"].map((src, i) => (
+            {factoryVideos.map((video, i) => (
               <motion.div
                 key={i}
                 variants={fadeUp}
-                className="relative rounded-xl overflow-hidden group cursor-pointer border border-gray-200 bg-white"
+                onClick={() => setActiveVideo(video.videoSrc)}
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.25 }}
+                className="group relative rounded-2xl overflow-hidden border border-gray-200/80 bg-white shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col"
               >
-                <img
-                  src={src}
-                  alt={`Gallery ${i + 1}`}
-                  className="w-full h-50 object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors">
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className="w-14 h-14 bg-[#F27A22] rounded-full flex items-center justify-center shadow-lg"
-                  >
-                    <svg
-                      className="w-6 h-6 text-white ml-1"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
+                {/* Thumbnail / Image Container */}
+                <div className="relative h-56 w-full overflow-hidden bg-slate-900 shrink-0">
+                  <img
+                    src={video.thumbnail}
+                    alt={video.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                  {/* Backdrop Overlay */}
+                  <div className="absolute inset-0 bg-slate-950/30 group-hover:bg-slate-950/45 transition-colors duration-300" />
+                  
+                  {/* Play Button Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <motion.div
+                      whileHover={{ scale: 1.15 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-16 h-16 bg-[#F27A22] text-white rounded-full flex items-center justify-center shadow-lg shadow-orange-500/30 transition-transform duration-300"
                     >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </motion.div>
-                </div>
-                {i === 1 && (
-                  <div className="absolute top-3 left-3 bg-[#F27A22] text-white text-sm font-bold px-2 py-1 rounded uppercase tracking-wide">
-                    Painting Section
+                      <Play className="w-7 h-7 fill-white translate-x-0.5" />
+                    </motion.div>
                   </div>
-                )}
+                  
+                  {/* Tag Badge */}
+                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm text-[#1b2a52] text-xs font-extrabold px-3 py-1.5 rounded-full shadow-sm tracking-wider uppercase">
+                    {video.tag}
+                  </div>
+                </div>
+
+                {/* Card Content */}
+                <div className="p-6 flex flex-col flex-grow">
+                  <h3 className="text-lg md:text-xl font-black text-[#1b2a52] mb-2 leading-tight group-hover:text-[#F27A22] transition-colors duration-300">
+                    {video.title}
+                  </h3>
+                  <p className="text-gray-500 text-sm leading-relaxed flex-grow">
+                    {video.desc}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -969,6 +1023,46 @@ export default function Home() {
           </Link>
         </motion.div>
       </section>
+
+      {/* ── VIDEO LIGHTBOX MODAL ────────────────────────────────────────── */}
+      <AnimatePresence>
+        {activeVideo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+            onClick={() => setActiveVideo(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="relative w-full max-w-4xl bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setActiveVideo(null)}
+                className="absolute top-4 right-4 z-10 p-2.5 bg-black/60 hover:bg-black/90 text-white rounded-full transition-colors border border-slate-700 hover:border-slate-500"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              
+              {/* Video Player */}
+              <div className="aspect-video w-full bg-black flex items-center justify-center">
+                <video
+                  src={activeVideo}
+                  controls
+                  autoPlay
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
