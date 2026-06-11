@@ -112,10 +112,10 @@ export default function Page() {
         data-aos="fade-up"
       >
         {/* Faint product profiles watermark */}
-        <FRPProfileSVG className="absolute left-4 bottom-4 w-72 h-72 opacity-[0.02] text-[#1b2a52] pointer-events-none rotate-6" />
+        <FRPProfileSVG className="absolute left-4 bottom-4 w-72 h-72 opacity-[0.06] text-[#1b2a52] pointer-events-none rotate-6" />
         {/* Faint lab/workshop background layer on the right */}
         <div 
-          className="absolute right-0 top-0 w-[40%] h-full opacity-[0.035] pointer-events-none bg-contain bg-no-repeat bg-right-bottom mix-blend-multiply select-none"
+          className="absolute right-0 top-0 w-[40%] h-full opacity-[0.06] pointer-events-none bg-contain bg-no-repeat bg-right-bottom mix-blend-multiply select-none"
           style={{ backgroundImage: "url('/lab.png')" }}
         />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
@@ -279,8 +279,8 @@ export default function Page() {
         data-aos="fade-up"
       >
         {/* Faint technical drawings watermark */}
-        <FRPTankSVG className="absolute left-10 top-1/2 -translate-y-1/2 w-64 h-96 opacity-[0.025] text-[#1b2a52] pointer-events-none" />
-        <FRPDuctSVG className="absolute right-10 top-1/2 -translate-y-1/2 w-80 h-80 opacity-[0.02] text-[#1b2a52] pointer-events-none" />
+        <FRPTankSVG className="absolute left-10 top-1/2 -translate-y-1/2 w-64 h-96 opacity-[0.06] text-[#1b2a52] pointer-events-none" />
+        <FRPDuctSVG className="absolute right-10 top-1/2 -translate-y-1/2 w-80 h-80 opacity-[0.06] text-[#1b2a52] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           <div className="text-center mb-12 md:mb-20" data-aos="fade-down">
             <h2 className="text-2xl sm:text-4xl md:text-[46px] font-black text-[#1b2a52] mb-4 md:mb-6 leading-tight">
