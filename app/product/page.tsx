@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { FRPTankSVG, FRPDuctSVG, FRPProfileSVG, FRPGratingPanelSVG } from "../components/BackgroundDrawings";
 
 // ─── ANIMATION VARIANTS ───────────────────────────────────────────────
 const fadeUp = {
@@ -195,7 +196,15 @@ export default function Page() {
       </section>
 
       {/* ─── SECTION 1: BUS BODY PARTS ────────────────────────────────── */}
-      <section id="bus" className="scroll-mt-20 w-full bg-white py-16 md:py-24 bg-fiber-weave">
+      <section id="bus" className="relative scroll-mt-20 w-full bg-white py-16 md:py-24 bg-fiber-weave overflow-hidden">
+        {/* Subtle engineering line-art profile overlay */}
+        <FRPProfileSVG className="absolute right-10 top-10 w-80 h-80 opacity-[0.025] text-[#1b2a52] pointer-events-none" />
+        {/* Faint blueprint details of actual bus body component */}
+        <div 
+          className="absolute -left-10 bottom-10 w-96 h-96 opacity-[0.03] pointer-events-none bg-contain bg-no-repeat bg-left-bottom select-none rotate-12"
+          style={{ backgroundImage: "url('/parts/Engine-Hood-A.png')" }}
+        />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           {/* Section Header */}
           <motion.div
@@ -255,8 +264,11 @@ export default function Page() {
       {/* ─── SECTION 3: BODY DOUBLE ───────────────────────────────────── */}
       <section
         id="bodydouble"
-        className="scroll-mt-20 w-full bg-[#1b2a52] py-16 md:py-24 overflow-hidden border-t-4 border-[#F27A22]"
+        className="relative scroll-mt-20 w-full bg-[#1b2a52] py-16 md:py-24 overflow-hidden border-t-4 border-[#F27A22]"
       >
+        {/* Subtle CAD duct background blueprint details */}
+        <FRPDuctSVG className="absolute left-10 bottom-0 w-80 h-80 opacity-[0.02] text-white pointer-events-none" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Text Content - First on mobile for logical reading order */}
@@ -322,8 +334,16 @@ export default function Page() {
       {/* ─── SECTION 2: LOAD TESTING BOX ──────────────────────────────── */}
       <section
         id="load"
-        className="scroll-mt-20 w-full bg-slate-50 py-16 md:py-24 border-t border-gray-100 bg-composite-layers"
+        className="relative scroll-mt-20 w-full bg-slate-50 py-16 md:py-24 border-t border-gray-100 bg-composite-layers overflow-hidden"
       >
+        {/* Faint technical storage tank vector backdrop */}
+        <FRPTankSVG className="absolute right-10 top-1/2 -translate-y-1/2 w-64 h-96 opacity-[0.02] text-[#1b2a52] pointer-events-none" />
+        {/* Faint industrial manufacturing backdrop */}
+        <div 
+          className="absolute left-0 bottom-0 w-[40%] h-[80%] opacity-[0.025] pointer-events-none bg-contain bg-no-repeat bg-left-bottom mix-blend-multiply select-none"
+          style={{ backgroundImage: "url('/robot.png')" }}
+        />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           {/* Section Header */}
           <motion.div

@@ -15,6 +15,7 @@ import React, { useState, useEffect, useRef } from "react";
 import ClientsCarousel from "../components/AboutComponents/ClientsCarousel";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { FRPTankSVG, FRPDuctSVG, FRPProfileSVG, FRPGratingPanelSVG } from "../components/BackgroundDrawings";
 
 // Animated counter component
 function AnimatedCounter({
@@ -107,9 +108,16 @@ export default function Page() {
 
       {/* ─── TWO DECADES ──────────────────────────────────────── */}
       <section
-        className="w-full bg-white py-12 md:py-20 bg-fiber-weave"
+        className="relative w-full bg-white py-12 md:py-20 bg-fiber-weave overflow-hidden"
         data-aos="fade-up"
       >
+        {/* Faint product profiles watermark */}
+        <FRPProfileSVG className="absolute left-4 bottom-4 w-72 h-72 opacity-[0.02] text-[#1b2a52] pointer-events-none rotate-6" />
+        {/* Faint lab/workshop background layer on the right */}
+        <div 
+          className="absolute right-0 top-0 w-[40%] h-full opacity-[0.035] pointer-events-none bg-contain bg-no-repeat bg-right-bottom mix-blend-multiply select-none"
+          style={{ backgroundImage: "url('/lab.png')" }}
+        />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-center">
             <div className="w-full" data-aos="fade-right" data-aos-delay="100">
@@ -267,9 +275,12 @@ export default function Page() {
 
       {/* ─── CORE VALUES ──────────────────────────────────────── */}
       <section
-        className="w-full bg-white py-16 md:py-24 bg-composite-layers"
+        className="relative w-full bg-white py-16 md:py-24 bg-composite-layers overflow-hidden"
         data-aos="fade-up"
       >
+        {/* Faint technical drawings watermark */}
+        <FRPTankSVG className="absolute left-10 top-1/2 -translate-y-1/2 w-64 h-96 opacity-[0.025] text-[#1b2a52] pointer-events-none" />
+        <FRPDuctSVG className="absolute right-10 top-1/2 -translate-y-1/2 w-80 h-80 opacity-[0.02] text-[#1b2a52] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           <div className="text-center mb-12 md:mb-20" data-aos="fade-down">
             <h2 className="text-2xl sm:text-4xl md:text-[46px] font-black text-[#1b2a52] mb-4 md:mb-6 leading-tight">

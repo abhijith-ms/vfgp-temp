@@ -1,6 +1,7 @@
 "use client";
 import HeroSction from "./components/HomeComponents/HeroSction";
 import FeatureBar from "./components/HomeComponents/FeatureBar";
+import { FRPTankSVG, FRPDuctSVG, FRPProfileSVG, FRPGratingPanelSVG } from "./components/BackgroundDrawings";
 import Image from "next/image";
 import {
   CheckCircle2,
@@ -238,7 +239,14 @@ export default function Home() {
       </div>
 
       {/* ── ABOUT / LEGACY ─────────────────────────────────────────────── */}
-      <section className="w-full  py-20 overflow-hidden bg-fiber-weave">
+      <section className="relative w-full  py-20 overflow-hidden bg-fiber-weave">
+        {/* Subtle Manufacturing visual and CAD profile backdrop */}
+        <div 
+          className="absolute right-0 bottom-0 w-[45%] h-[80%] opacity-[0.03] pointer-events-none bg-contain bg-no-repeat bg-right-bottom mix-blend-multiply select-none"
+          style={{ backgroundImage: "url('/lab.png')" }}
+        />
+        <FRPProfileSVG className="absolute left-10 top-1/2 -translate-y-1/2 w-80 h-80 opacity-[0.025] text-[#1b2a52] pointer-events-none" />
+
         <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Text */}
           <motion.div
@@ -378,7 +386,14 @@ export default function Home() {
       </section>
 
       {/* ── OUR PRODUCTS ────────────────────────────────────────────────── */}
-      <section className="w-full  py-13 md:py-20 bg-fiber-weave">
+      <section className="relative w-full  py-13 md:py-20 bg-fiber-weave">
+        {/* Subtle molded component blueprint watermark and CAD tank */}
+        <div 
+          className="absolute -left-10 bottom-0 w-80 h-80 opacity-[0.03] pointer-events-none bg-contain bg-no-repeat bg-left-bottom select-none rotate-12"
+          style={{ backgroundImage: "url('/parts/Snorkel-Mesh-Cover.png')" }}
+        />
+        <FRPTankSVG className="absolute right-10 top-10 w-64 h-96 opacity-[0.02] text-[#1b2a52] pointer-events-none" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           <motion.div
             initial="hidden"
@@ -438,7 +453,14 @@ export default function Home() {
       </section>
 
       {/* ── WHY CHOOSE US — DARK ────────────────────────────────────────── */}
-      <section className="w-full bg-[#111827] py-16 md:py-24 overflow-hidden bg-blueprint-grid">
+      <section className="relative w-full bg-[#111827] py-16 md:py-24 overflow-hidden bg-blueprint-grid">
+        {/* Subtle robot/factory manufacturing backdrop and CAD duct */}
+        <div 
+          className="absolute right-0 top-1/2 -translate-y-1/2 w-[40%] h-[70%] opacity-[0.035] pointer-events-none bg-contain bg-no-repeat bg-right mix-blend-overlay select-none"
+          style={{ backgroundImage: "url('/robot.png')" }}
+        />
+        <FRPDuctSVG className="absolute left-10 top-10 w-72 h-72 opacity-[0.02] text-white pointer-events-none" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-start">
           {/* Left: Text + Progress Bars */}
           <motion.div
@@ -884,7 +906,10 @@ export default function Home() {
       </section>
 
       {/* ── MANUFACTURING PROCESS ────────────────────────────────────────── */}
-      <section className="w-full py-16 md:py-20 border-t border-gray-100 bg-blueprint-grid-light">
+      <section className="relative w-full py-16 md:py-20 border-t border-gray-100 bg-blueprint-grid-light">
+        {/* Subtle CAD grating panel overlay */}
+        <FRPGratingPanelSVG className="absolute right-10 top-1/2 -translate-y-1/2 w-80 h-80 opacity-[0.025] text-[#1b2a52] pointer-events-none" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 text-center">
           <motion.div
             initial="hidden"
