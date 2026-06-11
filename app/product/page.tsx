@@ -102,7 +102,7 @@ const bodyDoubleData = {
     "Integrated mounting structures for secure testing",
     "OEM approved for vehicle safety validations",
   ],
-  img: "/parts/body_double.jpeg",
+  img: "/parts/body_double.png",
 };
 
 const sections = [
