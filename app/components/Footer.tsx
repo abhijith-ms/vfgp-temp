@@ -63,7 +63,7 @@ export default function Footer() {
             <h3 className="text-brand-orange font-cond font-bold text-xs tracking-widest uppercase mb-4 md:mb-6">
               Navigation
             </h3>
-            <ul className="flex flex-col gap-3 font-cond uppercase text-xs tracking-wider">
+            <ul className="flex flex-col gap-3 text-sm">
               <li>
                 <Link
                   href="/"
@@ -107,7 +107,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-4 text-xs md:text-sm">
               <li className="flex items-start gap-3">
                 <MapPin className="w-4.5 h-4.5 text-brand-orange shrink-0 mt-0.5" />
-                <span className="text-white/60 leading-relaxed font-mono">
+                <span className="text-white/60 leading-relaxed">
                   Plot No 6, R.I.E, Zaheerabad,
                   <br />
                   Sangareddy Dist., Telangana - 502220,
@@ -119,7 +119,7 @@ export default function Footer() {
                 <Phone className="w-4.5 h-4.5 text-brand-orange shrink-0" />
                 <a
                   href="tel:+919876543210"
-                  className="text-white/60 hover:text-brand-orange transition-colors font-mono"
+                  className="text-white/60 hover:text-brand-orange transition-colors"
                 >
                   +91 98765 43210
                 </a>
@@ -128,7 +128,7 @@ export default function Footer() {
                 <Mail className="w-4.5 h-4.5 text-brand-orange shrink-0" />
                 <a
                   href="mailto:info@vfgp.in"
-                  className="text-white/60 hover:text-brand-orange transition-colors font-mono"
+                  className="text-white/60 hover:text-brand-orange transition-colors"
                 >
                   info@vfgp.in
                 </a>
@@ -138,9 +138,9 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-white/10 pt-6 md:pt-8 flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-[11px] text-white/40">
+        <div className="border-t border-white/10 pt-6 md:pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/40">
           <p>© 2026 Venkateshwara Fibreglass Products. All Rights Reserved.</p>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 font-sans">
             <div className="border border-brand-orange/30 text-brand-orange px-2.5 py-0.5 tracking-widest uppercase text-[9px] font-cond font-bold">
               ISO CERTIFIED
             </div>
