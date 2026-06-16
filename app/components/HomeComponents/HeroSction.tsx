@@ -53,11 +53,11 @@ export default function HeroSection() {
         <div className="absolute top-[60%] right-0 w-[30%] h-[2px] bg-gradient-to-r from-transparent via-brand-orange/20 to-transparent skew-y-2" />
 
         {/* Blueprint corner marks */}
-        <div className="absolute top-10 left-10 w-8 h-8 opacity-30">
+        <div className="absolute top-10 left-10 w-8 h-8 opacity-30 hidden md:block">
           <div className="absolute top-0 left-0 w-8 h-[2px] bg-brand-orange" />
           <div className="absolute top-0 left-0 w-[2px] h-8 bg-brand-orange" />
         </div>
-        <div className="absolute top-10 right-10 w-8 h-8 opacity-30">
+        <div className="absolute top-10 right-10 w-8 h-8 opacity-30 hidden md:block">
           <div className="absolute top-0 right-0 w-8 h-[2px] bg-brand-orange" />
           <div className="absolute top-0 right-0 w-[2px] h-8 bg-brand-orange" />
         </div>
