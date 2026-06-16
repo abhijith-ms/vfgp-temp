@@ -72,11 +72,7 @@ export default function HeroSection() {
             ISO Certified FRP Manufacturer · Hyderabad
           </div> */}
 
-          <h1 className="font-cond font-black leading-[1.0] text-5xl sm:text-6xl md:text-7xl lg:text-[76px] tracking-tight uppercase mb-2">
-            Advanced <span className="text-brand-orange">FRP</span>
-            <br />
-            <span className="font-light text-white/80">Composites</span>
-          </h1>
+          <h1 className="font-cond font-black leading-[1.0] text-5xl sm:text-6xl md:text-7xl lg:text-[76px] tracking-tight uppercase mb-2">Advanced <span className="text-brand-orange">FRP</span><br /><span className="font-light text-white/80">Composites</span></h1>
           <div className="h-1 bg-brand-orange w-24 mb-6" />
 
           <p className="text-white/70 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg mb-8 font-sans">

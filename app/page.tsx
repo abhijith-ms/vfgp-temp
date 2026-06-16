@@ -1042,7 +1042,7 @@ export default function Home() {
                   alt={alt}
                   width={150}
                   height={60}
-                  className="max-h-full max-w-full object-contain filter grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                  className="max-h-full max-w-full object-contain opacity-80 hover:opacity-100 transition-all duration-300"
                 />
               </div>
             ))}
@@ -1062,7 +1062,7 @@ export default function Home() {
                   alt={alt}
                   width={150}
                   height={60}
-                  className="max-h-full max-w-full object-contain filter grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                  className="max-h-full max-w-full object-contain opacity-80 hover:opacity-100 transition-all duration-300"
                 />
               </div>
             ))}
