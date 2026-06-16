@@ -104,7 +104,7 @@ export default function Page() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-          <p className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange mb-2">[ About Venkateshwara ]</p>
+
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-cond font-black text-white uppercase tracking-tight mb-4">
             About Us
           </h1>
@@ -136,10 +136,7 @@ export default function Page() {
             </div>
             
             <div className="flex flex-col">
-              <div className="inline-flex items-center gap-2 mb-4">
-                <span className="w-6 h-[2px] bg-brand-orange" />
-                <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Our Journey</span>
-              </div>
+
               
               <h2 className="text-3xl sm:text-4xl font-cond font-black text-brand-navy uppercase mb-6 leading-none">
                 Two Decades of Excellence
@@ -231,11 +228,7 @@ export default function Page() {
         
         <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-4 h-[2px] bg-brand-orange" />
-              <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Design Principles</span>
-              <span className="w-4 h-[2px] bg-brand-orange" />
-            </div>
+
             
             <h2 className="text-3xl sm:text-4xl font-cond font-black text-brand-navy uppercase">
               Our Core Values
@@ -270,11 +263,7 @@ export default function Page() {
       <section className="w-full bg-[#f3f5f8] py-16 md:py-24 bg-frp-mesh border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
           <div className="mb-16">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-4 h-[2px] bg-brand-orange" />
-              <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Management</span>
-              <span className="w-4 h-[2px] bg-brand-orange" />
-            </div>
+
             
             <h2 className="text-3xl sm:text-4xl font-cond font-black text-brand-navy uppercase">
               Leadership Team
@@ -330,10 +319,7 @@ export default function Page() {
             </div>
             
             <div className="lg:w-[50%] p-8 sm:p-12 lg:p-16 flex flex-col justify-center relative z-20">
-              <div className="inline-flex items-center gap-2 mb-4">
-                <span className="w-6 h-[2px] bg-brand-orange" />
-                <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Facility</span>
-              </div>
+
               
               <h2 className="text-3xl sm:text-4xl font-cond font-black text-brand-orange uppercase leading-none mb-6">
                 State-of-the-Art

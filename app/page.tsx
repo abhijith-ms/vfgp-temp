@@ -293,10 +293,6 @@ export default function Home() {
             viewport={sectionViewport}
             variants={fadeRight}
           >
-            <div className="inline-flex items-center gap-2 mb-4">
-              <span className="w-6 h-[2px] bg-brand-orange" />
-              <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Who We Are</span>
-            </div>
 
             <h2 className="font-cond font-black tracking-tight text-brand-navy text-4xl sm:text-5xl leading-none uppercase mb-6">
               Leading <span className="text-brand-orange">FRP Manufacturers</span>
@@ -380,11 +376,6 @@ export default function Home() {
             variants={fadeUp}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-4 h-[2px] bg-brand-orange" />
-              <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Sectors We Power</span>
-              <span className="w-4 h-[2px] bg-brand-orange" />
-            </div>
 
             <h2 className="font-cond font-black text-brand-navy text-4xl sm:text-5xl leading-none uppercase">
               Industries <span className="text-brand-orange">We Serve</span>
@@ -455,11 +446,6 @@ export default function Home() {
             variants={fadeUp}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-4 h-[2px] bg-brand-orange" />
-              <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Precision Molded Components</span>
-              <span className="w-4 h-[2px] bg-brand-orange" />
-            </div>
 
             <h2 className="font-cond font-black text-brand-navy text-4xl sm:text-5xl leading-none uppercase">
               Our <span className="text-brand-orange">Featured Products</span>
@@ -526,10 +512,6 @@ export default function Home() {
             viewport={sectionViewport}
             variants={fadeRight}
           >
-            <div className="inline-flex items-center gap-2 mb-4">
-              <span className="w-6 h-[2px] bg-brand-orange" />
-              <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Our Metrics</span>
-            </div>
 
             <h2 className="font-cond font-black text-white text-4xl leading-none uppercase mb-6">
               Why Choose <span className="text-brand-orange">Us</span>
@@ -619,10 +601,6 @@ export default function Home() {
             viewport={sectionViewport}
             variants={fadeRight}
           >
-            <div className="inline-flex items-center gap-2 mb-4">
-              <span className="w-6 h-[2px] bg-brand-orange" />
-              <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Flagship Assembly</span>
-            </div>
 
             <h2 className="font-cond font-black text-brand-navy text-4xl leading-none uppercase mb-6">
               Our <span className="text-brand-orange">Unique Product</span>
@@ -675,11 +653,6 @@ export default function Home() {
             variants={fadeUp}
             className="mb-16"
           >
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-4 h-[2px] bg-brand-orange" />
-              <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Workflow</span>
-              <span className="w-4 h-[2px] bg-brand-orange" />
-            </div>
 
             <h2 className="font-cond font-black text-brand-navy text-4xl sm:text-5xl leading-none uppercase">
               Our Manufacturing <span className="text-brand-orange">Process</span>
@@ -777,10 +750,6 @@ export default function Home() {
             variants={fadeRight}
             className="bg-white px-8 md:px-16 py-20"
           >
-            <div className="inline-flex items-center gap-2 mb-4">
-              <span className="w-6 h-[2px] bg-brand-orange" />
-              <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">FAQ</span>
-            </div>
 
             <h2 className="font-cond font-black text-brand-navy text-4xl leading-none uppercase mb-6">
               Learn From <span className="text-brand-orange">Our FAQ</span>
@@ -804,10 +773,6 @@ export default function Home() {
             variants={fadeLeft}
             className="bg-[#f3f5f8] bg-blueprint-grid-light px-8 md:px-16 py-20 border-t lg:border-t-0 border-l-0 lg:border-l border-gray-200/50"
           >
-            <div className="inline-flex items-center gap-2 mb-4">
-              <span className="w-6 h-[2px] bg-brand-orange" />
-              <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Enquiry</span>
-            </div>
 
             <h2 className="font-cond font-black text-brand-navy text-4xl leading-none uppercase mb-6">
               Get in Touch
@@ -873,11 +838,6 @@ export default function Home() {
             variants={fadeUp}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-4 h-[2px] bg-brand-orange" />
-              <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Endorsements</span>
-              <span className="w-4 h-[2px] bg-brand-orange" />
-            </div>
 
             <h2 className="font-cond font-black text-white text-4xl leading-none uppercase">
               What <span className="text-brand-orange">Clients Say</span>
@@ -936,11 +896,6 @@ export default function Home() {
             variants={fadeUp}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-4 h-[2px] bg-brand-orange" />
-              <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Process Media</span>
-              <span className="w-4 h-[2px] bg-brand-orange" />
-            </div>
 
             <h2 className="font-cond font-black text-brand-navy text-4xl sm:text-5xl leading-none uppercase">
               Factory <span className="text-brand-orange">Video Gallery</span>

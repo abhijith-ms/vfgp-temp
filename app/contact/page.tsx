@@ -82,7 +82,7 @@ export default function ContactPage() {
         <div className="absolute top-0 right-0 w-1/2 h-full bg-radial from-brand-orange/10 via-transparent to-transparent pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto text-center md:text-left">
-          <p className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange mb-3">[ Contact Technical Sales ]</p>
+
           <h1 className="text-4xl md:text-6xl font-cond font-black text-white tracking-tight leading-none uppercase mb-6">
             Plan your next <span className="text-brand-orange">FRP Project</span>
           </h1>
@@ -138,10 +138,7 @@ export default function ContactPage() {
           <div className="lg:col-span-5 flex flex-col">
             <div className="bg-[#0a1628] p-8 text-white shadow-xl relative overflow-hidden bg-blueprint-grid flex-1 flex flex-col justify-between">
               <div>
-                <div className="inline-flex items-center gap-2 mb-4">
-                  <span className="w-6 h-[2px] bg-brand-orange" />
-                  <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Hyderabad Plant</span>
-                </div>
+
                 
                 <h2 className="text-3xl font-cond font-black uppercase mb-4">
                   Visit Our <span className="text-brand-orange">Facility</span>
@@ -168,10 +165,7 @@ export default function ContactPage() {
           <div className="lg:col-span-7">
             <div className="bg-slate-50 border border-slate-200 p-8 sm:p-10 shadow-lg bg-blueprint-grid-light flex flex-col justify-center">
               <div className="mb-8">
-                <div className="inline-flex items-center gap-2 mb-3">
-                  <span className="w-4 h-[2px] bg-brand-orange" />
-                  <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Spec sheet</span>
-                </div>
+
                 <h2 className="text-3xl font-cond font-black uppercase text-brand-navy">
                   Request a <span className="text-brand-orange">Quote</span>
                 </h2>

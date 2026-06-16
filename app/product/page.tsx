@@ -143,7 +143,7 @@ export default function Page() {
             animate="visible"
             className="w-full max-w-7xl mx-auto px-6 md:px-12 text-center"
           >
-            <p className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange mb-3">[ Spec Catalog ]</p>
+
             <motion.h1
               variants={fadeUp}
               className="text-4xl sm:text-6xl md:text-7xl font-cond font-black leading-none uppercase text-white mb-6"
@@ -199,11 +199,7 @@ export default function Page() {
             variants={fadeUp}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-4 h-[2px] bg-brand-orange" />
-              <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Automotive Components</span>
-              <span className="w-4 h-[2px] bg-brand-orange" />
-            </div>
+
             
             <h2 className="text-3xl sm:text-4xl font-cond font-black text-brand-navy uppercase">
               Bus Body <span className="text-brand-orange">Parts</span>
@@ -264,10 +260,7 @@ export default function Page() {
               viewport={{ once: true, amount: 0.15 }}
               variants={fadeRight}
             >
-              <div className="inline-flex items-center gap-2 mb-4">
-                <span className="w-6 h-[2px] bg-brand-orange" />
-                <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">{bodyDoubleData.tagline}</span>
-              </div>
+
               
               <h2 className="text-3xl sm:text-4xl font-cond font-black text-white uppercase mb-6 leading-none">
                 {bodyDoubleData.title}
@@ -341,11 +334,7 @@ export default function Page() {
             variants={fadeUp}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-4 h-[2px] bg-brand-orange" />
-              <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Load Verification Equipment</span>
-              <span className="w-4 h-[2px] bg-brand-orange" />
-            </div>
+
 
             <h2 className="text-3xl sm:text-4xl font-cond font-black text-brand-navy uppercase">
               FRP Load <span className="text-brand-orange">Testing Box</span>

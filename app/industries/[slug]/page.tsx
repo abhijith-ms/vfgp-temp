@@ -126,12 +126,7 @@ export default function IndustryPage({
             variants={staggerContainer}
             className="mt-8 md:mt-16"
           >
-            <motion.p
-              variants={fadeUp}
-              className="text-brand-orange font-cond font-bold tracking-widest uppercase text-xs md:text-sm mb-3"
-            >
-              [ {data.subtitle} ]
-            </motion.p>
+
             <motion.h1
               variants={fadeUp}
               className="text-4xl sm:text-5xl md:text-6xl font-cond font-black text-white leading-none uppercase tracking-tight mb-6 max-w-4xl"
