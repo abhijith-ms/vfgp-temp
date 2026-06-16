@@ -67,10 +67,10 @@ export default function HeroSection() {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Left Content (7 Columns) */}
         <div className="lg:col-span-7 flex flex-col items-start text-white">
-          <div className="inline-flex items-center gap-2 mb-6 border border-brand-orange/40 bg-brand-orange/5 px-4 py-1.5 font-cond text-xs font-semibold tracking-widest uppercase text-brand-orange">
+          {/* <div className="inline-flex items-center gap-2 mb-6 border border-brand-orange/40 bg-brand-orange/5 px-4 py-1.5 font-cond text-xs font-semibold tracking-widest uppercase text-brand-orange">
             <span className="w-1.5 h-1.5 bg-brand-orange animate-pulse" />
             ISO Certified FRP Manufacturer · Hyderabad
-          </div>
+          </div> */}
 
           <h1 className="font-cond font-black leading-[1.0] text-5xl sm:text-6xl md:text-7xl lg:text-[76px] tracking-tight uppercase mb-2">
             Advanced <span className="text-brand-orange">FRP</span>
@@ -129,7 +129,7 @@ export default function HeroSection() {
               <line x1="20" y1="460" x2="400" y2="460" strokeDasharray="3,3" />
               <line x1="20" y1="40" x2="20" y2="460" strokeDasharray="3,3" />
               <line x1="400" y1="40" x2="400" y2="460" strokeDasharray="3,3" />
-              
+
               <line x1="20" y1="40" x2="35" y2="40" strokeWidth="1" />
               <line x1="20" y1="40" x2="20" y2="55" strokeWidth="1" />
               <line x1="400" y1="40" x2="385" y2="40" strokeWidth="1" />
