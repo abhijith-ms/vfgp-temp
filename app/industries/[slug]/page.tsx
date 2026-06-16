@@ -1,9 +1,11 @@
 "use client";
+
 import { use } from "react";
 import { motion, easeOut } from "framer-motion";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { FRPDuctSVG, FRPProfileSVG } from "../../components/BackgroundDrawings";
 
 // ─── CONTENT DATABASE ────────────────────────────────────────────────────────
 const industriesData: Record<string, any> = {
@@ -12,11 +14,11 @@ const industriesData: Record<string, any> = {
     subtitle: "Automotive Solutions",
     heroImg: "/industries/bus.jpg",
     intro1:
-      "We at VFGP have been involved for over more than three decade in developing workable solutions using FRP, for AUTOMOTIVE applications. Using FRP’s distinctive advantage of enhanced life and minimum maintenance we have earned the loyalty of thousands of users nationwide. Due to the design flexibility of FRP, the aesthetics of these is far better than those of their counterpart and are available in ready to use conditions.",
+      "We at VFGP have been involved for over more than three decades in developing workable solutions using FRP, for AUTOMOTIVE applications. Using FRP’s distinctive advantage of enhanced life and minimum maintenance we have earned the loyalty of thousands of users nationwide. Due to the design flexibility of FRP, the aesthetics of these is far better than those of their counterparts and are available in ready to use conditions.",
     intro2:
-      "Our clients can avail from us FRP Automobile Accessories that are manufactured using premium grade raw material. These FRP made accessories are offered by us in different sizes and can be easily customized as per the details specified by the clients. Moreover, we assure to keep our clients completely contented with our range.",
+      "Our clients can avail from us FRP Automobile Accessories that are manufactured using premium grade raw materials. These FRP made accessories are offered by us in different sizes and can be easily customized as per the details specified by the clients. Moreover, we assure to keep our clients completely contented with our range.",
     intro3:
-      "Our expertise lies in manufacturing FRP Automobile Products that have been manufactured using superior quality raw material. These material enables us to ensure durability and strength of the product. Available in customized ranges, these FRP Automobile Products are provided to our clients at industry leading prices.",
+      "Our expertise lies in manufacturing FRP Automobile Products that have been manufactured using superior quality raw materials. These materials enable us to ensure durability and strength of the product. Available in customized ranges, these FRP Automobile Products are provided to our clients at industry leading prices.",
     listTitle: "Our range of automobile accessories includes:",
     list: [
       "Rear Facia",
@@ -31,10 +33,10 @@ const industriesData: Record<string, any> = {
   },
   defence: {
     title: "FRP Defence Products",
-    subtitle: "Defence & Aerospace",
+    subtitle: "Defence & Strategic",
     heroImg: "/industries/defence.png",
     intro1:
-      "VFG is leader in manufacturing FRP defence Products in India. We have a wide variety of defence products. We offer high-grade FRP Shelters using superior quality FRP, which are supplied to the Defence Army in high altitude areas.",
+      "VFG is a leader in manufacturing FRP defence Products in India. We have a wide variety of defence products. We offer high-grade FRP Shelters using superior quality FRP, which are supplied to the Defence Army in high altitude areas.",
     intro2:
       "The defence instrument carrying box manufactured at our end is made using high-grade raw materials. These defense instrument boxes are used to carry defence arms over long distances because of their durable nature and light weight.",
     intro3:
@@ -69,18 +71,18 @@ const industriesData: Record<string, any> = {
 
 // ─── ANIMATION VARIANTS ───────────────────────────────────────────────
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOut } },
 };
 
 const fadeRight = {
-  hidden: { opacity: 0, x: -40 },
+  hidden: { opacity: 0, x: -30 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: easeOut } },
 };
 
 const staggerContainer = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
 
 // ─── PAGE COMPONENT ───────────────────────────────────────────────────
@@ -89,21 +91,17 @@ export default function IndustryPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  // 1. Get the data for the current URL slug
   const { slug: currentSlug } = use(params);
-
-  // 2. Get the data for the current URL slug
   const data = industriesData[currentSlug];
 
-  // 3. If the URL slug doesn't exist, show a 404 page
   if (!data) {
     notFound();
   }
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white font-sans antialiased text-brand-navy">
       {/* ─── HERO SECTION ─────────────────────────────────────────────── */}
-      <section className="relative w-full min-h-[50vh] md:min-h-[60vh] flex items-center pt-16 md:pt-0">
+      <section className="relative w-full min-h-[50vh] flex items-center pt-16 md:pt-0 bg-[#0a1628] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src={data.heroImg}
@@ -111,7 +109,15 @@ export default function IndustryPage({
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="absolute inset-0 bg-[#0c1221]/85 z-10" />
+        <div className="absolute inset-0 bg-[#0a1628]/90 z-10" />
+        {/* Grid Overlay */}
+        <div className="absolute inset-0 bg-blueprint-grid opacity-50 z-10" />
+
+        {/* Technical crosshairs */}
+        <div className="absolute top-8 left-8 w-6 h-6 opacity-30 z-20">
+          <div className="absolute top-0 left-0 w-6 h-[1.5px] bg-brand-orange" />
+          <div className="absolute top-0 left-0 w-[1.5px] h-6 bg-brand-orange" />
+        </div>
 
         <div className="relative z-20 w-full max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">
           <motion.div
@@ -122,26 +128,26 @@ export default function IndustryPage({
           >
             <motion.p
               variants={fadeUp}
-              className="text-[#F27A22] font-black tracking-[0.15em] md:tracking-[0.2em] uppercase text-xs md:text-sm mb-3 md:mb-4"
+              className="text-brand-orange font-cond font-bold tracking-widest uppercase text-xs md:text-sm mb-3"
             >
-              {data.subtitle}
+              [ {data.subtitle} ]
             </motion.p>
             <motion.h1
               variants={fadeUp}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-black text-white leading-[1.1] tracking-tight mb-6 max-w-4xl"
+              className="text-4xl sm:text-5xl md:text-6xl font-cond font-black text-white leading-none uppercase tracking-tight mb-6 max-w-4xl"
             >
               {data.title}
             </motion.h1>
             <motion.div
               variants={fadeUp}
-              className="w-16 md:w-20 h-1 md:h-1.5 bg-[#F27A22] rounded-full mb-4 md:mb-8"
+              className="w-16 h-1 bg-brand-orange mb-4"
             />
           </motion.div>
         </div>
       </section>
 
       {/* ─── MAIN CONTENT SECTION ─────────────────────────────────────── */}
-      <section className="w-full py-16 md:py-24 bg-white bg-fiber-weave">
+      <section className="w-full py-16 md:py-24 bg-white bg-fiber-weave overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Content (Left Side - 8 Columns) */}
           <motion.div
@@ -149,17 +155,19 @@ export default function IndustryPage({
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
             variants={staggerContainer}
-            className="lg:col-span-8"
+            className="lg:col-span-8 relative"
           >
+            {/* Faint technical watermark behind text */}
+            <FRPDuctSVG className="absolute right-0 bottom-4 w-72 h-72 opacity-[0.04] text-brand-navy pointer-events-none" />
+
             <motion.h2
               variants={fadeUp}
-              className="text-3xl md:text-4xl font-black text-[#1b2a52] mb-6 md:mb-8"
+              className="text-3xl font-cond font-black text-brand-navy uppercase mb-6"
             >
-              Industry <span className=" text-[#F27A22]">Overview</span>
+              Sector <span className="text-brand-orange">Overview</span>
             </motion.h2>
 
-            {/* Replaced prose with direct tailwind classes for better consistency */}
-            <div className="text-gray-500 text-base md:text-lg leading-relaxed space-y-6 md:space-y-8 mb-10 md:mb-12">
+            <div className="text-gray-600 text-sm sm:text-base leading-relaxed space-y-6 md:space-y-8 mb-12 font-sans relative z-10">
               <motion.p variants={fadeUp}>{data.intro1}</motion.p>
               <motion.p variants={fadeUp}>{data.intro2}</motion.p>
               <motion.p variants={fadeUp}>{data.intro3}</motion.p>
@@ -168,16 +176,16 @@ export default function IndustryPage({
             {/* Feature List */}
             <motion.div
               variants={fadeUp}
-              className="bg-slate-50 border border-gray-100 rounded-2xl p-6 sm:p-8 md:p-10"
+              className="bg-slate-50 border border-gray-100 p-6 sm:p-10 rounded-none relative z-10 bg-blueprint-grid-light"
             >
-              <h3 className="text-xl md:text-2xl font-black text-[#1b2a52] mb-6 md:mb-8">
+              <h3 className="text-xl font-cond font-bold text-brand-navy uppercase tracking-wider mb-6">
                 {data.listTitle}
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 font-cond text-sm uppercase tracking-wide">
                 {data.list.map((item: string, i: number) => (
                   <div key={i} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-[#F27A22] shrink-0 mt-0.5 md:mt-0" />
-                    <span className="font-semibold text-gray-700 text-sm md:text-base leading-snug">
+                    <CheckCircle2 className="w-4.5 h-4.5 text-brand-orange shrink-0 mt-0.5" />
+                    <span className="font-bold text-gray-700 leading-snug">
                       {item}
                     </span>
                   </div>
@@ -192,14 +200,14 @@ export default function IndustryPage({
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
             variants={fadeRight}
-            className="lg:col-span-4 space-y-6 md:space-y-8"
+            className="lg:col-span-4 space-y-8"
           >
-            {/* Quick Navigation / Other Industries */}
-            <div className="bg-[#1b2a52] rounded-2xl p-6 sm:p-8 shadow-xl">
-              <h4 className="text-white font-black text-xl md:text-2xl mb-6">
-                Explore Industries
+            {/* Quick Navigation */}
+            <div className="bg-[#0a1628] border border-white/10 p-6 sm:p-8 shadow-2xl bg-blueprint-grid text-white">
+              <h4 className="font-cond font-black text-xl uppercase tracking-wider mb-6">
+                Sectors
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-3 font-cond uppercase text-xs tracking-wider">
                 {[
                   { name: "Automobile Products", slug: "automobile" },
                   { name: "Defence Products", slug: "defence" },
@@ -208,19 +216,16 @@ export default function IndustryPage({
                   <li key={link.slug}>
                     <Link
                       href={`/industries/${link.slug}`}
-                      // Added "group" class here to fix the hover arrow animation
-                      className={`group flex items-center justify-between p-3.5 md:p-4 rounded-xl font-bold text-sm md:text-base transition-all ${
+                      className={`group flex items-center justify-between p-3.5 border transition-all ${
                         currentSlug === link.slug
-                          ? "bg-[#F27A22] text-white shadow-md"
-                          : "bg-white/5 text-gray-300 hover:bg-white/15 hover:text-white"
+                          ? "bg-brand-orange border-brand-orange text-white"
+                          : "bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:text-white"
                       }`}
                     >
                       {link.name}
                       <ArrowRight
-                        className={`w-4 h-4 md:w-5 md:h-5 ${
-                          currentSlug === link.slug
-                            ? "opacity-100"
-                            : "opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0"
+                        className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${
+                          currentSlug === link.slug ? "opacity-100" : "opacity-40"
                         }`}
                       />
                     </Link>
@@ -230,21 +235,22 @@ export default function IndustryPage({
             </div>
 
             {/* CTA Box */}
-            <div className="bg-[#F27A22] rounded-2xl p-6 sm:p-8 text-white shadow-xl shadow-orange-900/10">
-              <h4 className="font-black text-xl md:text-2xl mb-3 md:mb-4">
-                Need Custom Solutions?
+            <div className="bg-brand-orange p-6 sm:p-8 text-white relative overflow-hidden shadow-xl">
+              {/* Subtle mesh background */}
+              <div className="absolute inset-0 bg-frp-mesh opacity-20 pointer-events-none" />
+              
+              <h4 className="font-cond font-black text-xl uppercase tracking-wider mb-3 relative z-10">
+                Custom Specs
               </h4>
-              <p className="text-orange-100 mb-6 md:mb-8 font-medium text-sm md:text-base leading-relaxed">
-                Our engineering team is ready to assist you with specifications
-                and bespoke manufacturing requirements.
+              <p className="text-orange-50 mb-6 font-sans text-sm leading-relaxed relative z-10">
+                Our technical sales team is ready to evaluate draft designs, custom load constraints, and plug tolerances.
               </p>
 
-              {/* FIX: Added "block text-center" so the Link stretches and centers text like a button */}
               <Link
                 href="/contact"
-                className="block text-center w-full bg-white text-[#F27A22] py-3.5 md:py-4 rounded-xl font-black text-sm md:text-base hover:bg-gray-50 transition-colors shadow-md"
+                className="block text-center w-full bg-[#0a1628] text-white py-3 font-cond font-bold text-xs uppercase tracking-widest hover:bg-brand-navy-light transition-colors relative z-10 shadow-md"
               >
-                Contact Technical Sales
+                Contact Engineering Sales
               </Link>
             </div>
           </motion.div>

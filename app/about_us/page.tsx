@@ -15,7 +15,7 @@ import React, { useState, useEffect, useRef } from "react";
 import ClientsCarousel from "../components/AboutComponents/ClientsCarousel";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FRPTankSVG, FRPDuctSVG, FRPProfileSVG, FRPGratingPanelSVG } from "../components/BackgroundDrawings";
+import { FRPTankSVG, FRPDuctSVG, FRPProfileSVG } from "../components/BackgroundDrawings";
 
 // Animated counter component
 function AnimatedCounter({
@@ -74,7 +74,7 @@ function AnimatedCounter({
   }, [hasStarted, target, duration]);
 
   return (
-    <span ref={ref}>
+    <span ref={ref} className="font-cond font-black text-brand-orange">
       {count}
       {suffix}
     </span>
@@ -83,80 +83,82 @@ function AnimatedCounter({
 
 export default function Page() {
   return (
-    <div>
+    <div className="font-sans antialiased text-brand-navy bg-white">
       {/* ─── HERO ─────────────────────────────────────────────── */}
-      <section
-        className="relative h-72 sm:h-87.5 md:h-100 w-full flex items-center justify-center"
-        data-aos="fade-up"
-      >
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('about/about_hero.png')" }}
-        />
-        <div className="absolute inset-0 bg-[#1b2a52]/85" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
-          <h1 className="text-3xl sm:text-5xl md:text-[56px] font-black text-white mb-3 md:mb-4 tracking-tight leading-tight">
+      <section className="relative h-72 sm:h-80 md:h-96 w-full flex items-center justify-center bg-[#0a1628] overflow-hidden">
+        {/* Weave & Grid Background */}
+        <div className="absolute inset-0 bg-fiber-weave opacity-20" />
+        <div className="absolute inset-0 bg-blueprint-grid opacity-70" />
+        
+        {/* Glow zone */}
+        <div className="absolute w-[400px] h-[400px] rounded-full bg-radial from-brand-orange/10 via-transparent to-transparent blur-2xl" />
+
+        {/* Technical framing */}
+        <div className="absolute top-8 left-8 w-6 h-6 opacity-30">
+          <div className="absolute top-0 left-0 w-6 h-[1.5px] bg-brand-orange" />
+          <div className="absolute top-0 left-0 w-[1.5px] h-6 bg-brand-orange" />
+        </div>
+        <div className="absolute bottom-8 right-8 w-6 h-6 opacity-30">
+          <div className="absolute bottom-0 right-0 w-6 h-[1.5px] bg-brand-orange" />
+          <div className="absolute bottom-0 right-0 w-[1.5px] h-6 bg-brand-orange" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+          <p className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange mb-2">[ About Venkateshwara ]</p>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-cond font-black text-white uppercase tracking-tight mb-4">
             About Us
           </h1>
-          <div className="w-12 sm:w-16 h-1.5 bg-[#F27A22] mx-auto rounded-full mb-4 md:mb-6" />
-          <p className="text-gray-200 max-w-2xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed font-medium px-2">
-            Pioneering the future of industrial manufacturing with superior
-            fiber-reinforced plastic solutions for over 30 years.
+          <div className="w-16 h-1 bg-brand-orange mx-auto mb-6" />
+          <p className="text-white/80 max-w-xl mx-auto text-xs sm:text-sm md:text-base leading-relaxed font-sans px-2">
+            Pioneering the future of industrial composite lamination with high-precision fiber-reinforced plastic solutions for over 30 years.
           </p>
         </div>
       </section>
 
       {/* ─── TWO DECADES ──────────────────────────────────────── */}
-      <section
-        className="relative w-full bg-white py-12 md:py-20 bg-fiber-weave overflow-hidden"
-        data-aos="fade-up"
-      >
-        {/* Faint product profiles watermark */}
-        <FRPProfileSVG className="absolute left-4 bottom-4 w-72 h-72 opacity-[0.06] text-[#1b2a52] pointer-events-none rotate-6" />
-        {/* Faint lab/workshop background layer on the right */}
+      <section className="relative w-full bg-white py-16 md:py-24 bg-fiber-weave overflow-hidden border-b border-gray-100">
+        {/* Watermarks */}
+        <FRPProfileSVG className="absolute left-4 bottom-4 w-72 h-72 opacity-[0.05] text-brand-navy pointer-events-none rotate-6" />
         <div 
-          className="absolute right-0 top-0 w-[40%] h-full opacity-[0.06] pointer-events-none bg-contain bg-no-repeat bg-right-bottom mix-blend-multiply select-none"
+          className="absolute right-0 top-0 w-[40%] h-full opacity-[0.04] pointer-events-none bg-contain bg-no-repeat bg-right-bottom mix-blend-multiply select-none"
           style={{ backgroundImage: "url('/lab.png')" }}
         />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-center">
-            <div className="w-full" data-aos="fade-right" data-aos-delay="100">
+
+        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="w-full relative">
+              <div className="absolute -top-4 -left-4 w-16 h-16 border-t-2 border-l-2 border-brand-orange opacity-40" />
               <img
                 src="about/collage.png"
                 alt="Two Decades of Excellence Collage"
-                className="w-full h-auto object-cover shadow-sm border border-gray-100 rounded-lg"
+                className="w-full h-auto object-cover shadow-sm border border-gray-100 rounded-none relative z-10"
               />
             </div>
-            <div
-              className="flex flex-col"
-              data-aos="fade-left"
-              data-aos-delay="200"
-            >
-              <h2 className="text-2xl sm:text-3xl md:text-[38px] font-bold text-[#1b2a52] mb-4 md:mb-6 leading-tight">
+            
+            <div className="flex flex-col">
+              <div className="inline-flex items-center gap-2 mb-4">
+                <span className="w-6 h-[2px] bg-brand-orange" />
+                <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Our Journey</span>
+              </div>
+              
+              <h2 className="text-3xl sm:text-4xl font-cond font-black text-brand-navy uppercase mb-6 leading-none">
                 Two Decades of Excellence
               </h2>
 
-              <p className="text-gray-700 text-sm sm:text-base leading-relaxed mb-4 md:mb-6">
-                VFGP delivers world-class FRP composites for automobiles and
-                other applications from Zaheerabad&apos;s industrial hub.
-                Founded in 2003 as a small-scale unit, we have grown steadily by
-                staying true to our vision of consistent quality and timely
-                delivery, guided by first-generation entrepreneurs committed to
-                innovation and reliability.
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-6 font-sans">
+                VFGP delivers world-class FRP composites for automobiles and strategic engineering applications from Zaheerabad&apos;s industrial hub. Founded in 2003 as a small-scale unit, we have grown steadily by staying true to our vision of consistent quality and timely delivery, guided by first-generation entrepreneurs committed to innovation and reliability.
               </p>
 
-              <p className="text-gray-700 text-sm sm:text-base leading-relaxed mb-6 md:mb-10">
-                Today, our facility spans over 100,000 square feet, housing the
-                most advanced moulding and tooling technology in the industry.
-                We don&apos;t just manufacture products; we engineer solutions
-                that stand the test of time in the harshest environments.
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-8 font-sans">
+                Today, our facility houses advanced lamination and tooling setups. We don&apos;t just manufacture products; we engineer solutions that stand the test of time in the harshest industrial and military environments.
               </p>
+              
               <div>
                 <Link
                   href="/contact"
-                  className="border border-[#1b2a52] text-[#1b2a52] px-6 sm:px-8 py-2.5 sm:py-3 rounded-md font-semibold text-sm sm:text-base hover:bg-[#1b2a52] hover:text-white transition-colors inline-block"
+                  className="border border-brand-navy hover:bg-brand-navy hover:text-white text-brand-navy px-8 py-3 font-cond font-bold text-xs uppercase tracking-widest transition-colors inline-block"
                 >
-                  View Our Timeline
+                  Contact Our Engineers
                 </Link>
               </div>
             </div>
@@ -165,326 +167,197 @@ export default function Page() {
       </section>
 
       {/* ─── STATS ────────────────────────────────────────────── */}
-      <section
-        className="w-full bg-[#30335A] py-12 md:py-16"
-        data-aos="zoom-in"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
-            <div
-              className="flex flex-col items-center"
-              data-aos="fade-up"
-              data-aos-delay="0"
-            >
-              <span className="text-3xl sm:text-5xl md:text-[56px] font-black text-white mb-2 md:mb-3">
-                <AnimatedCounter target={20} suffix="+" />
-              </span>
-              <span className="text-[#DE8A5C] text-xs sm:text-sm font-bold tracking-widest uppercase">
-                Years Experience
-              </span>
-            </div>
-
-            <div
-              className="flex flex-col items-center"
-              data-aos="fade-up"
-              data-aos-delay="100"
-            >
-              <span className="text-3xl sm:text-5xl md:text-[56px] font-black text-white mb-2 md:mb-3">
-                <AnimatedCounter target={150} suffix="+" />
-              </span>
-              <span className="text-[#DE8A5C] text-xs sm:text-sm font-bold tracking-widest uppercase">
-                Employees
-              </span>
-            </div>
-
-            <div
-              className="flex flex-col items-center"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <span className="text-3xl sm:text-5xl md:text-[56px] font-black text-white mb-2 md:mb-3">
-                <AnimatedCounter target={500} suffix="+" />
-              </span>
-              <span className="text-[#DE8A5C] text-xs sm:text-sm font-bold tracking-widest uppercase">
-                Projects Completed
-              </span>
-            </div>
-
-            <div
-              className="flex flex-col items-center"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <span className="text-3xl sm:text-5xl md:text-[56px] font-black text-white mb-2 md:mb-3">
-                <AnimatedCounter target={100} suffix="+" />
-              </span>
-              <span className="text-[#DE8A5C] text-xs sm:text-sm font-bold tracking-widest uppercase">
-                Global Clients
-              </span>
-            </div>
+      <section className="w-full bg-[#0a1628] py-12 md:py-16 bg-blueprint-grid border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/10">
+            {[
+              { target: 30, suffix: "+", label: "Years Experience" },
+              { target: 150, suffix: "+", label: "Employees" },
+              { target: 500, suffix: "+", label: "Projects Completed" },
+              { target: 100, suffix: "+", label: "Global Clients" },
+            ].map((stat, idx) => (
+              <div key={idx} className="flex flex-col items-center">
+                <span className="text-4xl sm:text-5xl font-cond font-black text-brand-orange mb-2">
+                  <AnimatedCounter target={stat.target} suffix={stat.suffix} />
+                </span>
+                <span className="text-white/45 font-cond text-[10px] tracking-widest uppercase font-bold">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ─── MISSION / VISION ─────────────────────────────────── */}
-      <section
-        className="w-full bg-white py-12 md:py-20 bg-gradient-mesh"
-        data-aos="fade-up"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            <motion.div
-              className="bg-[#24242A] rounded-xl p-6 sm:p-10 md:p-12"
-              data-aos="fade-right"
-              data-aos-delay="100"
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-            >
-              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#DCE8F5] rounded-xl flex items-center justify-center mb-6 md:mb-8">
-                <Rocket className="w-5 h-5 sm:w-6 sm:h-6 text-[#1b2a52]" />
+      <section className="w-full bg-white py-16 md:py-24 bg-gradient-mesh border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[
+              {
+                icon: Rocket,
+                title: "Our Mission",
+                desc: "To empower global infrastructure and industry through innovative composite solutions that provide unmatched durability, sustainability, and performance parameters.",
+              },
+              {
+                icon: Eye,
+                title: "Our Vision",
+                desc: "To be the most trusted name in composite engineering worldwide, setting the standard for quality, lamination tooling, and technical advancements in the FRP domain.",
+              },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="bg-brand-navy p-8 sm:p-12 hover:border-brand-orange/40 border border-white/5 transition-all duration-300"
+              >
+                <div className="w-12 h-12 bg-white/5 border border-white/10 flex items-center justify-center mb-6">
+                  <item.icon className="w-5 h-5 text-brand-orange" />
+                </div>
+                <h3 className="text-2xl font-cond font-black text-white uppercase tracking-wider mb-4">
+                  {item.title}
+                </h3>
+                <p className="text-white/60 text-sm sm:text-base leading-relaxed font-sans">
+                  {item.desc}
+                </p>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 md:mb-6">
-                Our Mission
-              </h3>
-              <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed">
-                To empower global infrastructure and industry through innovative
-                composite solutions that provide unmatched durability,
-                sustainability, and performance.
-              </p>
-            </motion.div>
-            <motion.div
-              className="bg-[#24242A] rounded-xl p-6 sm:p-10 md:p-12"
-              data-aos="fade-left"
-              data-aos-delay="200"
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-            >
-              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#DCE8F5] rounded-xl flex items-center justify-center mb-6 md:mb-8">
-                <Eye className="w-5 h-5 sm:w-6 sm:h-6 text-[#1b2a52]" />
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 md:mb-6">
-                Our Vision
-              </h3>
-              <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed">
-                To be the most trusted name in composite engineering worldwide,
-                setting the standard for quality and technological advancement
-                in FRP manufacturing.
-              </p>
-            </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ─── CORE VALUES ──────────────────────────────────────── */}
-      <section
-        className="relative w-full bg-white py-16 md:py-24 bg-composite-layers overflow-hidden"
-        data-aos="fade-up"
-      >
-        {/* Faint technical drawings watermark */}
-        <FRPTankSVG className="absolute left-10 top-1/2 -translate-y-1/2 w-64 h-96 opacity-[0.06] text-[#1b2a52] pointer-events-none" />
-        <FRPDuctSVG className="absolute right-10 top-1/2 -translate-y-1/2 w-80 h-80 opacity-[0.06] text-[#1b2a52] pointer-events-none" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
-          <div className="text-center mb-12 md:mb-20" data-aos="fade-down">
-            <h2 className="text-2xl sm:text-4xl md:text-[46px] font-black text-[#1b2a52] mb-4 md:mb-6 leading-tight">
+      <section className="relative w-full bg-white py-16 md:py-24 bg-composite-layers overflow-hidden border-b border-gray-100">
+        <FRPTankSVG className="absolute left-6 top-1/2 -translate-y-1/2 w-64 h-96 opacity-[0.05] text-brand-navy pointer-events-none" />
+        <FRPDuctSVG className="absolute right-6 top-1/2 -translate-y-1/2 w-72 h-72 opacity-[0.05] text-brand-navy pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 mb-3">
+              <span className="w-4 h-[2px] bg-brand-orange" />
+              <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Design Principles</span>
+              <span className="w-4 h-[2px] bg-brand-orange" />
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl font-cond font-black text-brand-navy uppercase">
               Our Core Values
             </h2>
-            <div className="w-20 sm:w-32 h-1.5 bg-[#C47D34] mx-auto" />
+            <div className="h-0.5 bg-brand-navy w-12 mx-auto mt-4" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 text-center">
-            <div
-              className="flex flex-col items-center group"
-              data-aos="fade-up"
-              data-aos-delay="0"
-            >
-              <div className="w-18 h-18 sm:w-22 sm:h-22 bg-[#282F5A] rounded-full flex items-center justify-center mb-4 md:mb-6 group-hover:bg-[#F27A22] transition-colors duration-300">
-                <BadgeCheck
-                  className="w-8 h-8 sm:w-10 sm:h-10 text-white group-hover:text-[#1b2a52] transition-colors duration-300"
-                  strokeWidth={1.5}
-                />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            {[
+              { icon: BadgeCheck, title: "Quality", desc: "Unyielding commitment to precision in every layer." },
+              { icon: Gavel, title: "Integrity", desc: "Honest engineering and transparent partnerships." },
+              { icon: Lightbulb, title: "Innovation", desc: "Pushing the boundaries of material sciences." },
+              { icon: Handshake, title: "Commitment", desc: "Dedicated to the structural success of your projects." },
+            ].map((value, idx) => (
+              <div key={idx} className="flex flex-col items-center group">
+                <div className="w-16 h-16 bg-brand-navy flex items-center justify-center mb-6 group-hover:bg-brand-orange transition-colors duration-300">
+                  <value.icon className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-lg font-cond font-bold text-brand-navy uppercase tracking-wider mb-2">
+                  {value.title}
+                </h3>
+                <p className="text-gray-500 text-xs sm:text-sm leading-relaxed px-4 font-sans">
+                  {value.desc}
+                </p>
               </div>
-              <h3 className="text-lg sm:text-[22px] font-bold text-[#1b2a52] mb-2 md:mb-4">
-                Quality
-              </h3>
-              <p className="text-black text-sm sm:text-[15px] leading-relaxed px-2 sm:px-4">
-                Unyielding commitment to precision in every layer.
-              </p>
-            </div>
-
-            <div
-              className="flex flex-col items-center group"
-              data-aos="fade-up"
-              data-aos-delay="100"
-            >
-              <div className="w-18 h-18 sm:w-22 sm:h-22 bg-[#282F5A] rounded-full flex items-center justify-center mb-4 md:mb-6 group-hover:bg-[#F27A22] transition-colors duration-300">
-                <Gavel
-                  className="w-8 h-8 sm:w-10 sm:h-10 text-white group-hover:text-[#1b2a52] transition-colors duration-300"
-                  strokeWidth={1.5}
-                />
-              </div>
-              <h3 className="text-lg sm:text-[22px] font-bold text-[#1b2a52] mb-2 md:mb-4">
-                Integrity
-              </h3>
-              <p className="text-black text-sm sm:text-[15px] leading-relaxed px-2">
-                Honest engineering and transparent partnerships.
-              </p>
-            </div>
-
-            <div
-              className="flex flex-col items-center group"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <div className="w-18 h-18 sm:w-22 sm:h-22 bg-[#282F5A] rounded-full flex items-center justify-center mb-4 md:mb-6 group-hover:bg-[#F27A22] transition-colors duration-300">
-                <Lightbulb
-                  className="w-8 h-8 sm:w-10 sm:h-10 text-white group-hover:text-[#1b2a52] transition-colors duration-300"
-                  strokeWidth={1.5}
-                />
-              </div>
-              <h3 className="text-lg sm:text-[22px] font-bold text-[#1b2a52] mb-2 md:mb-4">
-                Innovation
-              </h3>
-              <p className="text-black text-sm sm:text-[15px] leading-relaxed px-2">
-                Pushing the boundaries of material science.
-              </p>
-            </div>
-
-            <div
-              className="flex flex-col items-center group"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <div className="w-18 h-18 sm:w-22 sm:h-22 bg-[#282F5A] rounded-full flex items-center justify-center mb-4 md:mb-6 group-hover:bg-[#F27A22] transition-colors duration-300">
-                <Handshake
-                  className="w-8 h-8 sm:w-10 sm:h-10 text-white group-hover:text-[#1b2a52] transition-colors duration-300"
-                  strokeWidth={1.5}
-                />
-              </div>
-              <h3 className="text-lg sm:text-[22px] font-bold text-[#1b2a52] mb-2 md:mb-4">
-                Commitment
-              </h3>
-              <p className="text-black text-sm sm:text-[15px] leading-relaxed px-2">
-                Dedicated to the success of our clients&apos; projects.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ─── LEADERSHIP TEAM ──────────────────────────────────── */}
-      <section className="w-full bg-[#DCE8F5] py-16 md:py-20 bg-frp-mesh" data-aos="fade-up">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
-          <div className="text-center mb-10 md:mb-16" data-aos="fade-down">
-            <h2 className="text-2xl sm:text-4xl md:text-[42px] font-black text-[#1b2a52] mb-3 md:mb-4 leading-tight">
+      {/* ─── LEADERSHIP TEAM (Light Mesh) ─────────────────────── */}
+      <section className="w-full bg-[#f3f5f8] py-16 md:py-24 bg-frp-mesh border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
+          <div className="mb-16">
+            <div className="inline-flex items-center gap-2 mb-3">
+              <span className="w-4 h-[2px] bg-brand-orange" />
+              <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Management</span>
+              <span className="w-4 h-[2px] bg-brand-orange" />
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl font-cond font-black text-brand-navy uppercase">
               Leadership Team
             </h2>
-            <div className="w-12 sm:w-16 h-1.5 bg-[#C47D34] mx-auto" />
-            <p className="mt-4 max-w-3xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed text-[#1b2a52]/80 font-medium px-2">
-              You will find yourself working in a true partnership that results in an incredible experience, and an end product that is the best.
+            <div className="h-0.5 bg-brand-navy w-12 mx-auto mt-4" />
+            <p className="mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed text-gray-600 font-sans px-2">
+              Working in a dedicated partnership that delivers technically superior fiberglass components and verified structural standards.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start justify-items-center text-center">
-            <div
-              className="flex flex-col items-center justify-center"
-              data-aos="zoom-in"
-              data-aos-delay="100"
-            >
-              <motion.div
-                className="w-48 sm:w-70 h-60 sm:h-85 rounded-2xl overflow-hidden mb-4 md:mb-6"
-                whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
-              >
-                <img
-                  src="/about/chandu_ch.png"
-                  alt="Chandu CH"
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#1b2a52] mb-1">
-                Chandu CH
-              </h3>
-              <p className="text-[#1b2a52] font-medium text-sm sm:text-base">
-                Founder & President
-              </p>
-            </div>
-
-            <div
-              className="flex flex-col items-center justify-center"
-              data-aos="zoom-in"
-              data-aos-delay="200"
-            >
-              <motion.div
-                className="w-48 sm:w-70 h-60 sm:h-85 rounded-2xl overflow-hidden mb-4 md:mb-6"
-                whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
-              >
-                <img
-                  src="/vicepresident.jpeg"
-                  alt="Rameshan KIV"
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#1b2a52] mb-1">
-                Rameshan KIV
-              </h3>
-              <p className="text-[#1b2a52] font-medium text-sm sm:text-base">
-                Vice President
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto justify-items-center text-center">
+            {[
+              { name: "Chandu CH", role: "Founder & President", img: "/about/chandu_ch.png" },
+              { name: "Rameshan KIV", role: "Vice President", img: "/vicepresident.jpeg" },
+            ].map((member, idx) => (
+              <div key={idx} className="flex flex-col items-center">
+                <div className="w-56 sm:w-64 h-64 sm:h-76 overflow-hidden mb-6 border border-gray-200/50 shadow-sm relative group">
+                  {/* Decorative corner indicators on the photo border */}
+                  <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-white/40 z-20" />
+                  <div className="absolute bottom-2 right-2 w-3 h-3 border-b border-r border-white/40 z-20" />
+                  
+                  <img
+                    src={member.img}
+                    alt={member.name}
+                    className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
+                  />
+                </div>
+                <h3 className="text-xl font-cond font-black text-brand-navy uppercase tracking-wider mb-1">
+                  {member.name}
+                </h3>
+                <p className="text-brand-orange font-cond text-xs tracking-widest uppercase font-bold">
+                  {member.role}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ─── PRODUCTION ───────────────────────────────────────── */}
-      <section className="w-full bg-white py-16 md:py-20" data-aos="fade-up">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
-          <div className="flex flex-col lg:flex-row bg-[#2A2E5B] rounded-2xl overflow-hidden shadow-2xl">
-            <div
-              className="lg:w-[55%] min-h-64 sm:min-h-87.5 lg:min-h-full relative"
-              data-aos="fade-right"
-            >
+      {/* ─── PRODUCTION (Dark Navy) ───────────────────────────── */}
+      <section className="w-full bg-white py-16 md:py-24 border-b border-gray-100 bg-composite-layers">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="flex flex-col lg:flex-row bg-brand-navy text-white shadow-2xl relative overflow-hidden">
+            {/* Tech watermark */}
+            <div className="absolute inset-0 bg-blueprint-grid opacity-35 pointer-events-none" />
+            
+            <div className="lg:w-[50%] min-h-[300px] relative">
               <img
                 src="/about/production.jpg"
-                alt="State-of-the-Art Production"
-                className="absolute inset-0 w-full h-full object-cover"
+                alt="State-of-the-Art Production Facility"
+                className="absolute inset-0 w-full h-full object-cover relative z-10"
               />
             </div>
-            <div
-              className="lg:w-[45%] p-6 sm:p-10 lg:p-14 border-l-0 lg:border-l-10 border-t-10 lg:border-t-0 border-[#C47D34] flex flex-col justify-center"
-              data-aos="fade-left"
-              data-aos-delay="100"
-            >
-              <h2 className="text-2xl sm:text-3xl md:text-[42px] font-black text-[#D98C21] mb-4 md:mb-6 leading-tight">
+            
+            <div className="lg:w-[50%] p-8 sm:p-12 lg:p-16 flex flex-col justify-center relative z-20">
+              <div className="inline-flex items-center gap-2 mb-4">
+                <span className="w-6 h-[2px] bg-brand-orange" />
+                <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Facility</span>
+              </div>
+              
+              <h2 className="text-3xl sm:text-4xl font-cond font-black text-brand-orange uppercase leading-none mb-6">
                 State-of-the-Art
                 <br />
-                Production
+                Production Setup
               </h2>
 
-              <p className="text-[#E8AB75] text-sm sm:text-base leading-relaxed mb-6 md:mb-10">
-                Our advanced facility features temperature-controlled
-                environments for precise moulding, custom tooling workshops, and
-                automated production lines that guarantee consistency across
-                high-volume orders.
+              <p className="text-white/70 text-sm sm:text-base leading-relaxed mb-8 font-sans">
+                Our tooling facility features temperature-regulated curing zones for precise composite layup configurations, ensuring minimum void levels and consistent fiber stacking ratios.
               </p>
 
-              <ul className="space-y-4 md:space-y-6">
-                <li className="flex items-center gap-3 md:gap-4">
-                  <Sliders className="w-5 h-5 sm:w-6 sm:h-6 text-white shrink-0" />
-                  <span className="text-white font-medium text-sm sm:text-[15px]">
-                    Precision Custom Tooling
-                  </span>
-                </li>
-
-                <li className="flex items-center gap-3 md:gap-4">
-                  <Compass className="w-5 h-5 sm:w-6 sm:h-6 text-white shrink-0" />
-                  <span className="text-white font-medium text-sm sm:text-[15px]">
-                    Advanced Vacuum Infusion
-                  </span>
-                </li>
-
-                <li className="flex items-center gap-3 md:gap-4">
-                  <Microscope className="w-5 h-5 sm:w-6 sm:h-6 text-white shrink-0" />
-                  <span className="text-white font-medium text-sm sm:text-[15px]">
-                    In-house Quality Testing Lab
-                  </span>
-                </li>
+              <ul className="space-y-4">
+                {[
+                  { icon: Sliders, text: "Precision Custom Tooling Setup" },
+                  { icon: Compass, text: "Advanced Vacuum Resin Infusion" },
+                  { icon: Microscope, text: "In-house Layer Validation Laboratory" },
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-center gap-3.5">
+                    <item.icon className="w-5 h-5 text-brand-orange shrink-0" />
+                    <span className="text-white font-cond font-bold text-sm tracking-widest uppercase">
+                      {item.text}
+                    </span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -492,28 +365,22 @@ export default function Page() {
       </section>
 
       {/* ─── CLIENTS CAROUSEL ─────────────────────────────────── */}
-      <div data-aos="fade-up">
+      <div className="bg-[#fafafa] border-b border-gray-100">
         <ClientsCarousel />
       </div>
 
       {/* ─── CTA ──────────────────────────────────────────────── */}
-      <section
-        className="w-full bg-[#DCE8F6] py-16 md:py-20 bg-frp-mesh"
-        data-aos="fade-up"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-[42px] font-black text-[#282F5A] mb-4 md:mb-6 leading-tight">
-            Looking for High Performance FRP{" "}
-            <span className="text-[#F27A22]">Components?</span>
+      <section className="w-full bg-[#DCE8F6] py-16 md:py-20 bg-frp-mesh border-b border-gray-200">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <h2 className="font-cond font-black text-brand-navy text-3xl sm:text-[40px] leading-tight uppercase mb-4">
+            Looking for High Performance FRP <span className="text-brand-orange">Components?</span>
           </h2>
-
-          <p className="text-[#1b2a52] text-sm sm:text-base md:text-lg max-w-2xl mx-auto mb-6 md:mb-10 px-2">
-            Get in touch with our engineering team for custom quotes and
-            technical feasibility studies.
+          <p className="text-brand-navy/80 text-sm sm:text-base max-w-xl mx-auto mb-8 font-sans leading-relaxed">
+            Get in touch with our design and development engineering staff for custom pricing details and laminate modeling checks.
           </p>
           <Link
             href="/contact"
-            className="bg-[#1b2a52] text-white px-8 sm:px-12 py-3 sm:py-4 rounded font-bold text-sm sm:text-base hover:bg-[#F27A22] transition-colors shadow-lg shadow-black/20"
+            className="inline-block bg-brand-navy hover:bg-brand-navy-light text-white px-10 py-4 font-cond font-bold text-xs uppercase tracking-widest transition-colors shadow-lg shadow-black/10"
           >
             Request a Quote
           </Link>

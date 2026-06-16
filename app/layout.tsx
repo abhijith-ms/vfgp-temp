@@ -1,19 +1,27 @@
 import type { Metadata } from "next";
-import { Manrope, Geist_Mono } from "next/font/google";
+import { Barlow, Barlow_Condensed, Space_Mono } from "next/font/google";
 import "./globals.css";
 import "aos/dist/aos.css";
 import NavBar from "./components/HomeComponents/NavBar";
 import Footer from "./components/Footer";
 import AOSInit from "./components/AOSInit";
 
-const sansFont = Manrope({
+const sansFont = Barlow({
   variable: "--font-sans",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
-const monoFont = Geist_Mono({
+const condFont = Barlow_Condensed({
+  variable: "--font-cond",
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+});
+
+const monoFont = Space_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -30,7 +38,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sansFont.variable} ${monoFont.variable} h-full antialiased`}
+      className={`${sansFont.variable} ${condFont.variable} ${monoFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <AOSInit />
@@ -42,3 +50,4 @@ export default function RootLayout({
     </html>
   );
 }
+

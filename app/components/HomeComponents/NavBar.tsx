@@ -1,8 +1,6 @@
 "use client";
 
-import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-import icon from "../../../public/logo.png";
 import Link from "next/link";
 import { ChevronDown, Menu, X } from "lucide-react";
 
@@ -42,32 +40,37 @@ export default function NavBar() {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [industriesOpen]);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white shadow-sm border-b border-gray-100">
-      <nav className="max-w-[1280px] mx-auto flex justify-between items-center px-6 md:px-12 py-4 relative">
-        <Link href="/" className="flex gap-3 items-center">
-          <Image
-            src={icon}
-            alt="logo"
-            className="w-9 h-9 sm:w-11 sm:h-11 object-contain"
-          />
-          <h1 className="text-[13px] sm:text-[15px] md:text-[16px] leading-tight font-black uppercase text-[#1b2a52]">
-            VENKATESHWARA <br /> FIBREGLASS PRODUCTS
+    <header className="sticky top-0 z-50 w-full bg-brand-navy/95 backdrop-blur-md border-b border-white/10 shadow-lg">
+      <nav className="max-w-7xl mx-auto flex justify-between items-center px-6 md:px-12 py-3.5 relative">
+        {/* Technical VFG Industrial Logo */}
+        <Link href="/" className="flex gap-3 items-center group">
+          <div className="w-10 h-10 bg-white flex items-center justify-center p-1.5 transition-transform group-hover:scale-105">
+            <img
+              src="/logo.png"
+              alt="logo"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <h1 className="text-xs sm:text-[13px] leading-[1.3] font-cond font-bold uppercase tracking-widest text-white">
+            VENKATESHWARA <br />
+            <span className="text-brand-orange">FIBREGLASS</span> PRODUCTS
           </h1>
         </Link>
 
-        <ul className="hidden lg:flex gap-8 xl:gap-10 items-center text-[#1b2a52] font-bold text-[15px]">
+        {/* Desktop Links */}
+        <ul className="hidden lg:flex gap-8 xl:gap-10 items-center text-white/80 font-cond font-semibold tracking-widest uppercase text-[13px]">
           <li>
-            <Link href="/" className="hover:text-[#F27A22] transition-colors">
+            <Link href="/" className="hover:text-brand-orange transition-colors">
               Home
             </Link>
           </li>
           <li>
             <Link
               href="/about_us"
-              className="hover:text-[#F27A22] transition-colors"
+              className="hover:text-brand-orange transition-colors"
             >
               About Us
             </Link>
@@ -75,7 +78,7 @@ export default function NavBar() {
           <li>
             <Link
               href="/product"
-              className="hover:text-[#F27A22] transition-colors"
+              className="hover:text-brand-orange transition-colors"
             >
               Products
             </Link>
@@ -83,22 +86,22 @@ export default function NavBar() {
           <li className="relative" ref={desktopDropdownRef}>
             <button
               onClick={() => setIndustriesOpen((value) => !value)}
-              className="flex items-center gap-1 hover:text-[#F27A22] transition-colors"
+              className="flex items-center gap-1 hover:text-brand-orange transition-colors cursor-pointer uppercase font-semibold"
             >
               Industries
               <ChevronDown
-                className={`w-4 h-4 transition-transform duration-200 ${industriesOpen ? "rotate-180" : ""}`}
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${industriesOpen ? "rotate-180" : ""}`}
               />
             </button>
 
             {industriesOpen && (
-              <div className="absolute top-full left-0 mt-3 w-48 bg-white shadow-xl rounded-md border border-gray-100 py-2 z-50">
+              <div className="absolute top-full left-0 mt-3.5 w-48 bg-brand-navy-mid border border-white/10 shadow-2xl rounded-sm py-2 z-50">
                 {industries.map((industry) => (
                   <Link
                     key={industry.href}
                     href={industry.href}
                     onClick={() => setIndustriesOpen(false)}
-                    className="block px-4 py-2 text-sm text-[#1b2a52] hover:bg-[#f8f9fb] hover:text-[#F27A22] transition-colors"
+                    className="block px-5 py-2.5 text-xs text-white/90 font-cond uppercase tracking-wider hover:bg-white/5 hover:text-brand-orange transition-colors"
                   >
                     {industry.label}
                   </Link>
@@ -108,34 +111,37 @@ export default function NavBar() {
           </li>
         </ul>
 
+        {/* CTA Quote Button */}
         <div className="hidden lg:flex">
           <Link
             href="/contact"
-            className="bg-[#1b2a52] hover:bg-[#283266] text-white px-7 py-3 rounded-md font-bold text-sm transition-colors shadow-md"
+            className="bg-brand-orange hover:bg-brand-orange-light text-white px-6 py-2.5 font-cond font-bold text-xs uppercase tracking-wider transition-colors shadow-md shadow-brand-orange/10"
           >
             Get a Quote
           </Link>
         </div>
 
+        {/* Mobile menu trigger */}
         <div className="lg:hidden flex items-center">
           <button
             onClick={() => setOpen((value) => !value)}
-            className="text-[#1b2a52] p-2 -mr-2 focus:outline-none hover:text-[#F27A22] transition-colors"
+            className="text-white p-2 -mr-2 focus:outline-none hover:text-brand-orange transition-colors cursor-pointer"
             aria-label="Toggle Menu"
           >
-            {open ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+            {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </nav>
 
+      {/* Mobile Drawer Menu */}
       {open && (
-        <div className="absolute top-full left-0 w-full bg-white shadow-2xl border-t border-gray-100 lg:hidden z-50">
-          <ul className="flex flex-col items-center gap-6 py-8 text-[#1b2a52] font-bold text-base">
+        <div className="absolute top-full left-0 w-full bg-brand-navy border-t border-white/10 lg:hidden z-50 shadow-2xl">
+          <ul className="flex flex-col items-center gap-5 py-8 text-white/90 font-cond font-bold tracking-widest uppercase text-sm">
             <li>
               <Link
                 href="/"
                 onClick={closeMenu}
-                className="hover:text-[#F27A22] transition-colors"
+                className="hover:text-brand-orange transition-colors"
               >
                 Home
               </Link>
@@ -144,7 +150,7 @@ export default function NavBar() {
               <Link
                 href="/about_us"
                 onClick={closeMenu}
-                className="hover:text-[#F27A22] transition-colors"
+                className="hover:text-brand-orange transition-colors"
               >
                 About Us
               </Link>
@@ -153,30 +159,30 @@ export default function NavBar() {
               <Link
                 href="/product"
                 onClick={closeMenu}
-                className="hover:text-[#F27A22] transition-colors"
+                className="hover:text-brand-orange transition-colors"
               >
                 Products
               </Link>
             </li>
-            <li className="w-full max-w-xs" ref={mobileDropdownRef}>
+            <li className="w-full max-w-xs text-center" ref={mobileDropdownRef}>
               <button
                 onClick={() => setIndustriesOpen((value) => !value)}
-                className="w-full flex items-center justify-center gap-2 hover:text-[#F27A22] transition-colors"
+                className="w-full flex items-center justify-center gap-1.5 hover:text-brand-orange transition-colors cursor-pointer"
               >
                 Industries
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform duration-200 ${industriesOpen ? "rotate-180" : ""}`}
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${industriesOpen ? "rotate-180" : ""}`}
                 />
               </button>
 
               {industriesOpen && (
-                <div className="mt-3 flex flex-col items-center gap-3">
+                <div className="mt-3 flex flex-col items-center gap-2.5 bg-brand-navy-mid/50 py-3 rounded-md border border-white/5">
                   {industries.map((industry) => (
                     <Link
                       key={industry.href}
                       href={industry.href}
                       onClick={closeMenu}
-                      className="hover:text-[#F27A22] transition-colors"
+                      className="text-xs text-white/80 hover:text-brand-orange transition-colors"
                     >
                       {industry.label}
                     </Link>
@@ -188,16 +194,16 @@ export default function NavBar() {
               <Link
                 href="/contact"
                 onClick={closeMenu}
-                className="hover:text-[#F27A22] transition-colors"
+                className="hover:text-brand-orange transition-colors"
               >
                 Contact
               </Link>
             </li>
-            <li className="mt-4 w-full px-6">
+            <li className="mt-2 w-full px-8">
               <Link
                 href="/contact"
                 onClick={closeMenu}
-                className="flex justify-center bg-[#F27A22] text-white px-4 py-3.5 rounded-md shadow-md hover:bg-[#c96414] transition-colors w-full"
+                className="flex justify-center bg-brand-orange text-white px-5 py-3 font-cond font-bold text-xs uppercase tracking-wider hover:bg-brand-orange-light transition-colors w-full shadow-lg"
               >
                 Get a Quote
               </Link>

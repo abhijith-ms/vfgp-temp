@@ -6,47 +6,52 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#2A2E5B] pt-12 md:pt-20 pb-6 md:pb-8 bg-blueprint-grid">
+    <footer className="w-full bg-[#060e1a] pt-12 md:pt-20 pb-6 md:pb-8 bg-blueprint-grid border-t border-white/10 relative">
+      {/* Decorative technical line */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-orange/40 to-transparent" />
+      
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 lg:gap-8 mb-10 md:mb-16">
           {/* Company Info */}
-          <div className="md:col-span-5 lg:col-span-6" data-aos="fade-up">
+          <div className="md:col-span-5 lg:col-span-6">
             <div className="flex items-center gap-3 mb-4 md:mb-6">
-              <div className="bg-white p-1 w-13 h-13 flex items-center justify-center">
+              <div className="w-10 h-10 bg-white flex items-center justify-center p-1.5">
                 <img
                   src="/logo.png"
-                  alt="VF Logo"
+                  alt="logo"
                   className="w-full h-full object-contain"
                 />
               </div>
               <Link
                 href="/"
-                className="text-[#D98C21] font-black text-xl leading-tight tracking-wide hover:opacity-80 transition-opacity"
+                className="text-white hover:text-brand-orange font-cond font-bold text-lg leading-tight tracking-widest uppercase transition-colors"
               >
                 VENKATESHWARA
                 <br />
-                FIBREGLASS PRODUCTS
+                <span className="text-brand-orange">FIBREGLASS</span> PRODUCTS
               </Link>
             </div>
 
-            <p className="text-white text-sm md:text-[17px] leading-relaxed mb-5 md:mb-8 max-w-105">
-              Providing the global industrial sector with superior fiber
-              reinforced plastic solutions for over 20 years.
+            <p className="text-white/60 text-sm md:text-base leading-relaxed mb-5 md:mb-8 max-w-sm">
+              Providing the global industrial sector with superior fibre
+              reinforced plastic solutions for over 30 years from Zaheerabad, Telangana.
             </p>
 
-            <div className="flex gap-3 md:gap-4">
+            <div className="flex gap-3">
               <a
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-full bg-[#3D426D] flex items-center justify-center text-[#D98C21] hover:bg-[#4A4F7D] hover:scale-110 transition-all duration-300"
+                className="w-9 h-9 rounded-none bg-white/5 border border-white/10 flex items-center justify-center text-brand-orange hover:bg-brand-orange hover:text-white hover:scale-105 transition-all duration-300"
+                aria-label="LinkedIn"
               >
                 <Globe className="w-4 h-4" />
               </a>
 
               <a
                 href="mailto:info@vfgp.in"
-                className="w-11 h-11 rounded-full bg-[#3D426D] flex items-center justify-center text-[#D98C21] hover:bg-[#4A4F7D] hover:scale-110 transition-all duration-300"
+                className="w-9 h-9 rounded-none bg-white/5 border border-white/10 flex items-center justify-center text-brand-orange hover:bg-brand-orange hover:text-white hover:scale-105 transition-all duration-300"
+                aria-label="Email"
               >
                 <ExternalLink className="w-4 h-4" />
               </a>
@@ -54,19 +59,23 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div
-            className="md:col-span-3 hidden md:block lg:col-span-3"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            <h3 className="text-[#D98C21] font-bold text-[15px] tracking-widest uppercase mb-4 md:mb-6">
-              QUICK LINKS
+          <div className="md:col-span-3 hidden md:block lg:col-span-3">
+            <h3 className="text-brand-orange font-cond font-bold text-xs tracking-widest uppercase mb-4 md:mb-6">
+              Navigation
             </h3>
-            <ul className="flex flex-col gap-3 md:gap-4">
+            <ul className="flex flex-col gap-3 font-cond uppercase text-xs tracking-wider">
+              <li>
+                <Link
+                  href="/"
+                  className="text-white/60 hover:text-brand-orange transition-colors"
+                >
+                  Home
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/about_us"
-                  className="text-white hover:text-[#D98C21] transition-colors text-[15px]"
+                  className="text-white/60 hover:text-brand-orange transition-colors"
                 >
                   About Us
                 </Link>
@@ -74,23 +83,15 @@ export default function Footer() {
               <li>
                 <Link
                   href="/product"
-                  className="text-white hover:text-[#D98C21] transition-colors text-[15px]"
+                  className="text-white/60 hover:text-brand-orange transition-colors"
                 >
                   Products
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/industries/automobile"
-                  className="text-white hover:text-[#D98C21] transition-colors text-[15px]"
-                >
-                  Industries
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/contact"
-                  className="text-white hover:text-[#D98C21] transition-colors text-[15px]"
+                  className="text-white/60 hover:text-brand-orange transition-colors"
                 >
                   Contact Us
                 </Link>
@@ -99,18 +100,14 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div
-            className="md:col-span-4 lg:col-span-3"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <h3 className="text-[#D98C21] font-bold text-[15px] tracking-widest uppercase mb-4 md:mb-6">
-              CONTACT
+          <div className="md:col-span-4 lg:col-span-3">
+            <h3 className="text-brand-orange font-cond font-bold text-xs tracking-widest uppercase mb-4 md:mb-6">
+              Contact Detail
             </h3>
-            <ul className="flex flex-col gap-4 md:gap-6">
+            <ul className="flex flex-col gap-4 text-xs md:text-sm">
               <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-white shrink-0 mt-0.5" />
-                <span className="text-white text-[15px] leading-relaxed">
+                <MapPin className="w-4.5 h-4.5 text-brand-orange shrink-0 mt-0.5" />
+                <span className="text-white/60 leading-relaxed font-mono">
                   Plot No 6, R.I.E, Zaheerabad,
                   <br />
                   Sangareddy Dist., Telangana - 502220,
@@ -119,19 +116,19 @@ export default function Footer() {
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-white shrink-0" />
+                <Phone className="w-4.5 h-4.5 text-brand-orange shrink-0" />
                 <a
                   href="tel:+919876543210"
-                  className="text-white hover:text-[#D98C21] transition-colors text-[15px]"
+                  className="text-white/60 hover:text-brand-orange transition-colors font-mono"
                 >
                   +91 98765 43210
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-white shrink-0" />
+                <Mail className="w-4.5 h-4.5 text-brand-orange shrink-0" />
                 <a
                   href="mailto:info@vfgp.in"
-                  className="text-white hover:text-[#D98C21] transition-colors text-[15px]"
+                  className="text-white/60 hover:text-brand-orange transition-colors font-mono"
                 >
                   info@vfgp.in
                 </a>
@@ -141,23 +138,20 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-white/10 pt-6 md:pt-8 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
-          <p className="text-white/80 text-[14px]">
-            © 2026 VENKATESHWARA FIBREGLASS PRODUCTS. All Rights Reserved.
-          </p>
-          <div className="flex gap-4 md:gap-6">
-            <Link
-              href="/contact"
-              className="text-white/80 hover:text-[#D98C21] transition-colors text-[14px]"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/contact"
-              className="text-white/80 hover:text-[#D98C21] transition-colors text-[14px]"
-            >
-              Terms of Service
-            </Link>
+        <div className="border-t border-white/10 pt-6 md:pt-8 flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-[11px] text-white/40">
+          <p>© 2026 Venkateshwara Fibreglass Products. All Rights Reserved.</p>
+          <div className="flex items-center gap-6">
+            <div className="border border-brand-orange/30 text-brand-orange px-2.5 py-0.5 tracking-widest uppercase text-[9px] font-cond font-bold">
+              ISO CERTIFIED
+            </div>
+            <div className="flex gap-4">
+              <Link href="/contact" className="hover:text-brand-orange transition-colors">
+                Privacy
+              </Link>
+              <Link href="/contact" className="hover:text-brand-orange transition-colors">
+                Terms
+              </Link>
+            </div>
           </div>
         </div>
       </div>

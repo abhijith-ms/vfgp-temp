@@ -1,13 +1,14 @@
 "use client";
-import React, { useRef } from "react";
+
+import React from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { FRPTankSVG, FRPDuctSVG, FRPProfileSVG, FRPGratingPanelSVG } from "../components/BackgroundDrawings";
+import { FRPTankSVG, FRPDuctSVG, FRPProfileSVG } from "../components/BackgroundDrawings";
 
 // ─── ANIMATION VARIANTS ───────────────────────────────────────────────
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
@@ -15,7 +16,7 @@ const fadeUp = {
   },
 };
 const fadeRight = {
-  hidden: { opacity: 0, x: -40 },
+  hidden: { opacity: 0, x: -30 },
   visible: {
     opacity: 1,
     x: 0,
@@ -23,7 +24,7 @@ const fadeRight = {
   },
 };
 const fadeLeft = {
-  hidden: { opacity: 0, x: 40 },
+  hidden: { opacity: 0, x: 30 },
   visible: {
     opacity: 1,
     x: 0,
@@ -34,7 +35,7 @@ const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1 },
+    transition: { staggerChildren: 0.08 },
   },
 };
 
@@ -122,73 +123,59 @@ function scrollToSection(sectionId: string) {
   }
 }
 
-// ─── MAIN PAGE ────────────────────────────────────────────────────────
 export default function Page() {
   return (
-    <main className="min-h-screen bg-white" role="main" lang="en">
-      {/* ─── HERO SECTION – FIXED & MODERN DESIGN ─────────────────────────── */}
-      <section className="relative h-[calc(100vh-60px)] flex flex-col overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/parts/hero/producthero.png"
-            alt="FRP products hero banner showcasing bus body parts and testing equipment"
-            className="w-full h-full object-cover"
-            loading="eager"
-            fetchPriority="high"
-          />
-        </div>
+    <main className="min-h-screen bg-white font-sans antialiased text-brand-navy" role="main" lang="en">
+      {/* ─── HERO SECTION ───────────────────────────────────────────────── */}
+      <section className="relative h-[calc(80vh-60px)] flex flex-col justify-between bg-[#0a1628] overflow-hidden">
+        {/* Weave & Grid Background */}
+        <div className="absolute inset-0 bg-fiber-weave opacity-20 z-0" />
+        <div className="absolute inset-0 bg-blueprint-grid opacity-75 z-0" />
+        
+        {/* Glow zone */}
+        <div className="absolute w-[500px] h-[500px] rounded-full bg-radial from-brand-orange/10 via-transparent to-transparent blur-2xl z-0" />
 
-        {/* Professional Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0c1221]/75 via-[#0c1221]/85 to-[#1b2a52]/95 z-10" />
-
-        {/* Main Content */}
-        <div className="relative z-20 flex-1 flex items-center">
+        {/* Content */}
+        <div className="relative z-10 flex-1 flex items-center">
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
-            className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 text-center"
+            className="w-full max-w-7xl mx-auto px-6 md:px-12 text-center"
           >
-            {/* Hero Title */}
+            <p className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange mb-3">[ Spec Catalog ]</p>
             <motion.h1
               variants={fadeUp}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.05] tracking-[-0.03em] text-white mb-6"
+              className="text-4xl sm:text-6xl md:text-7xl font-cond font-black leading-none uppercase text-white mb-6"
             >
-              Our{" "}
-              <span className="bg-gradient-to-r from-[#F27A22] to-[#FF9F5E] bg-clip-text text-transparent">
-                Products
-              </span>
+              Our <span className="text-brand-orange">Products</span>
             </motion.h1>
-
-            {/* Subtitle */}
+            <div className="w-16 h-1 bg-brand-orange mx-auto mb-6" />
             <motion.p
               variants={fadeUp}
-              className="max-w-2xl mx-auto text-lg sm:text-xl text-white/90 font-medium leading-relaxed"
+              className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-white/80 leading-relaxed font-sans"
             >
-              High-quality FRP components and testing equipment designed for
-              durability, lightweight performance, and industry-leading
-              precision.
+              High-performance FRP molded assemblies, structural profiles, and safety testing apparatus built to stringent engineering tolerances.
             </motion.p>
           </motion.div>
         </div>
 
-        {/* ─── MODERN TAB NAVIGATION with Animated Underline ─────────────────── */}
+        {/* ─── MODERN TAB NAVIGATION ──────────────────────────────────── */}
         <nav
           aria-label="Product categories navigation"
-          className="z-30 pb-8 md:pb-12 px-4 hidden md:block sm:px-6 md:px-12 flex justify-center"
+          className="z-30 pb-8 px-6 hidden md:flex justify-center"
         >
-          <div className="inline-flex bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl p-2 shadow-2xl">
+          <div className="inline-flex bg-white/5 border border-white/10 rounded-none p-1.5 shadow-2xl backdrop-blur-md">
             {sections.map((section) => (
               <button
                 key={section.id}
                 onClick={() => scrollToSection(section.id)}
-                className="group relative px-7 md:px-10 py-4 text-sm md:text-base font-semibold text-white rounded-3xl transition-all hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F27A22] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent whitespace-nowrap"
+                className="group relative px-8 py-3.5 text-xs font-cond font-bold tracking-widest text-white uppercase hover:bg-white/5 transition-all cursor-pointer whitespace-nowrap"
                 aria-label={`Scroll to ${section.label} section`}
               >
                 {section.label}
-                {/* Animated underline */}
-                <span className="absolute mx-6 bottom-2 left-0 right-0 h-[2px] bg-[#F27A22] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
+                {/* Underline indicator */}
+                <span className="absolute bottom-1 left-4 right-4 h-[1.5px] bg-brand-orange scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
               </button>
             ))}
           </div>
@@ -196,64 +183,64 @@ export default function Page() {
       </section>
 
       {/* ─── SECTION 1: BUS BODY PARTS ────────────────────────────────── */}
-      <section id="bus" className="relative scroll-mt-20 w-full bg-white py-16 md:py-24 bg-fiber-weave overflow-hidden">
+      <section id="bus" className="relative scroll-mt-20 w-full bg-white py-16 md:py-24 bg-fiber-weave overflow-hidden border-b border-gray-100">
         {/* Subtle engineering line-art profile overlay */}
-        <FRPProfileSVG className="absolute right-10 top-10 w-80 h-80 opacity-[0.06] text-[#1b2a52] pointer-events-none" />
-        {/* Faint blueprint details of actual bus body component */}
+        <FRPProfileSVG className="absolute right-6 top-10 w-80 h-80 opacity-[0.05] text-brand-navy pointer-events-none" />
         <div 
-          className="absolute -left-10 bottom-10 w-96 h-96 opacity-[0.06] pointer-events-none bg-contain bg-no-repeat bg-left-bottom select-none rotate-12"
+          className="absolute -left-10 bottom-10 w-96 h-96 opacity-[0.04] pointer-events-none bg-contain bg-no-repeat bg-left-bottom select-none rotate-12"
           style={{ backgroundImage: "url('/parts/Engine-Hood-A.png')" }}
         />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
-          {/* Section Header */}
+        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.1 }}
             variants={fadeUp}
-            className="text-center mb-12 md:mb-16"
+            className="text-center mb-16"
           >
-            <p className="text-[#F27A22] font-black tracking-[0.2em] uppercase text-sm mb-4">
-              Automobile Components
-            </p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-[#1b2a52] mb-4">
-              Bus Body <span className="text-[#F27A22]">Parts</span>
+            <div className="inline-flex items-center gap-2 mb-3">
+              <span className="w-4 h-[2px] bg-brand-orange" />
+              <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Automotive Components</span>
+              <span className="w-4 h-[2px] bg-brand-orange" />
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl font-cond font-black text-brand-navy uppercase">
+              Bus Body <span className="text-brand-orange">Parts</span>
             </h2>
-            <div className="w-20 h-1.5 bg-[#F27A22] mx-auto rounded-full mb-6" />
-            <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-              Precision-molded FRP bus body components engineered for
-              durability, lightweight performance, and modern bus manufacturing
-              standards.
+            <div className="h-0.5 bg-brand-navy w-12 mx-auto mt-4" />
+            <p className="text-gray-500 text-sm sm:text-base leading-relaxed mt-4 max-w-xl mx-auto font-sans">
+              Precision-molded FRP bus body parts engineered to class-A finishes, offering high tensile durability and minimal weight parameters.
             </p>
           </motion.div>
 
-          {/* Parts Grid - Fully responsive */}
+          {/* Parts Grid */}
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-8 md:gap-x-8 md:gap-y-16"
+            viewport={{ once: true, amount: 0.05 }}
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8"
           >
             {busBodyParts.map((part) => (
               <motion.div
                 key={part.id}
                 variants={fadeUp}
-                className="group cursor-pointer flex flex-col items-center"
+                className="group cursor-pointer flex flex-col items-center bg-white border border-gray-100 p-4 hover:border-brand-orange/30 shadow-sm hover:shadow-md transition-all duration-300"
               >
-                <div className="w-full aspect-4/3 flex items-center justify-center overflow-hidden mb-6">
+                {/* Tech image wrap with faint grid layout */}
+                <div className="w-full aspect-[4/3] flex items-center justify-center overflow-hidden mb-6 bg-slate-50 bg-blueprint-grid-light opacity-95">
                   <img
                     src={part.img}
                     alt={part.name}
-                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
+                    className="max-h-[90%] max-w-[90%] object-contain group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
                 <div className="text-center">
-                  <h3 className="text-[#1b2a52] font-black text-sm md:text-base tracking-[0.18em] uppercase mb-2 group-hover:text-[#F27A22] transition-colors">
+                  <h3 className="font-cond font-bold text-brand-navy text-xs sm:text-sm tracking-widest uppercase mb-1.5 group-hover:text-brand-orange transition-colors">
                     {part.name}
                   </h3>
-                  <div className="w-8 h-0.5 bg-gray-200 mx-auto group-hover:bg-[#F27A22] transition-colors" />
+                  <div className="w-6 h-0.5 bg-gray-100 mx-auto group-hover:bg-brand-orange transition-colors" />
                 </div>
               </motion.div>
             ))}
@@ -261,49 +248,57 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ─── SECTION 3: BODY DOUBLE ───────────────────────────────────── */}
+      {/* ─── SECTION 2: BODY DOUBLE ───────────────────────────────────── */}
       <section
         id="bodydouble"
-        className="relative scroll-mt-20 w-full bg-[#1b2a52] py-16 md:py-24 overflow-hidden border-t-4 border-[#F27A22]"
+        className="relative scroll-mt-20 w-full bg-[#0a1628] py-16 md:py-24 overflow-hidden border-t-2 border-brand-orange bg-blueprint-grid"
       >
-        {/* Subtle CAD duct background blueprint details */}
-        <FRPDuctSVG className="absolute left-10 bottom-0 w-80 h-80 opacity-[0.08] text-white pointer-events-none" />
+        <FRPDuctSVG className="absolute left-6 bottom-0 w-80 h-80 opacity-[0.06] text-white pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 text-white">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Text Content - First on mobile for logical reading order */}
+            {/* Text Content */}
             <motion.div
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.15 }}
               variants={fadeRight}
             >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl text-center font-black text-[#F27A22] mb-6 leading-tight">
-                FRP Body Double
+              <div className="inline-flex items-center gap-2 mb-4">
+                <span className="w-6 h-[2px] bg-brand-orange" />
+                <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">{bodyDoubleData.tagline}</span>
+              </div>
+              
+              <h2 className="text-3xl sm:text-4xl font-cond font-black text-white uppercase mb-6 leading-none">
+                {bodyDoubleData.title}
               </h2>
-              <div className="w-20 h-1 bg-[#F27A22] mb-8 mx-auto rounded-full" />
-              <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-8">
+              <div className="h-1 bg-brand-orange w-16 mb-6" />
+              
+              <p className="text-white/70 text-sm sm:text-base leading-relaxed mb-8 font-sans">
                 {bodyDoubleData.desc}
               </p>
-              <ul className="space-y-4 mb-10">
+              
+              <ul className="space-y-4 mb-10 font-cond text-sm uppercase tracking-wide">
                 {bodyDoubleData.features.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-white">
-                    <CheckCircle2 className="w-6 h-6 text-[#F27A22] shrink-0 mt-0.5" />
-                    <span className="font-medium text-gray-200">{item}</span>
+                  <li key={i} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-brand-orange shrink-0 mt-0.5" />
+                    <span className="font-bold text-white/90">{item}</span>
                   </li>
                 ))}
               </ul>
+              
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-block"
               >
                 <Link
                   href="/contact"
-                  className="flex justify-center items-center gap-2 bg-[#F27A22] text-white mx-16 px-2 py-4 rounded-2xl font-bold text-base hover:bg-[#c96414] focus-visible:ring-2 focus-visible:ring-white transition-all shadow-lg"
+                  className="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-light text-white font-cond font-bold text-xs uppercase tracking-widest px-8 py-3.5 rounded-none transition-colors shadow-lg shadow-brand-orange/20"
                   aria-label="Request specifications for Automotive Testing Body Double"
                 >
                   Request Specifications
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
               </motion.div>
             </motion.div>
@@ -312,18 +307,18 @@ export default function Page() {
             <motion.div
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.15 }}
               variants={fadeLeft}
               className="relative order-first lg:order-none"
             >
-              <div className="absolute -top-4 -right-4 w-28 h-28 md:w-32 md:h-32 border-t-[4px] border-r-[4px] border-[#F27A22] z-0" />
-              <div className="absolute -bottom-4 -left-4 w-28 h-28 md:w-32 md:h-32 border-b-[4px] border-l-[4px] border-gray-600 z-0" />
-              <div className="relative z-10 bg-white rounded-3xl p-3 shadow-2xl">
+              <div className="absolute -top-4 -right-4 w-28 h-28 border-t border-r border-brand-orange opacity-40 z-0" />
+              <div className="absolute -bottom-4 -left-4 w-28 h-28 border-b border-l border-white/20 opacity-40 z-0" />
+              <div className="relative z-10 bg-white rounded-none p-3 border border-white/5 shadow-2xl">
                 <img
                   src={bodyDoubleData.img}
-                  alt="Precision-engineered FRP Automotive Testing Body Double for safety validation"
+                  alt="FRP Automotive Testing Body Double"
                   loading="lazy"
-                  className="w-full h-auto rounded-2xl object-cover"
+                  className="w-full h-auto object-cover rounded-none"
                 />
               </div>
             </motion.div>
@@ -331,83 +326,78 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ─── SECTION 2: LOAD TESTING BOX ──────────────────────────────── */}
+      {/* ─── SECTION 3: LOAD TESTING BOX ──────────────────────────────── */}
       <section
         id="load"
-        className="relative scroll-mt-20 w-full bg-slate-50 py-16 md:py-24 border-t border-gray-100 bg-composite-layers overflow-hidden"
+        className="relative scroll-mt-20 w-full bg-white py-16 md:py-24 bg-composite-layers border-b border-gray-100 overflow-hidden"
       >
-        {/* Faint technical storage tank vector backdrop */}
-        <FRPTankSVG className="absolute right-10 top-1/2 -translate-y-1/2 w-64 h-96 opacity-[0.06] text-[#1b2a52] pointer-events-none" />
-        {/* Faint industrial manufacturing backdrop */}
-        <div 
-          className="absolute left-0 bottom-0 w-[40%] h-[80%] opacity-[0.06] pointer-events-none bg-contain bg-no-repeat bg-left-bottom mix-blend-multiply select-none"
-          style={{ backgroundImage: "url('/robot.png')" }}
-        />
+        <FRPTankSVG className="absolute right-6 top-1/2 -translate-y-1/2 w-64 h-96 opacity-[0.05] text-brand-navy pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
-          {/* Section Header */}
+        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.1 }}
             variants={fadeUp}
-            className="text-center mb-12 md:mb-16"
+            className="text-center mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#1b2a52] mb-4">
-              FRP Load <span className="text-[#F27A22]">Testing Box</span>
+            <div className="inline-flex items-center gap-2 mb-3">
+              <span className="w-4 h-[2px] bg-brand-orange" />
+              <span className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange">Load Verification Equipment</span>
+              <span className="w-4 h-[2px] bg-brand-orange" />
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl font-cond font-black text-brand-navy uppercase">
+              FRP Load <span className="text-brand-orange">Testing Box</span>
             </h2>
-            <div className="w-20 h-1.5 bg-[#F27A22] mx-auto rounded-full mb-6" />
-            <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-              High-strength FRP load testing boxes available in various
-              capacities for rigorous industrial and automotive load
-              simulations. Built for extreme durability under heavy stress.
+            <div className="h-0.5 bg-brand-navy w-12 mx-auto mt-4" />
+            <p className="text-gray-500 text-sm sm:text-base leading-relaxed mt-4 max-w-xl mx-auto font-sans">
+              High-durability lamination boxes built to simulate extreme loading configurations for automotive body platforms and structures.
             </p>
           </motion.div>
 
-          {/* Products Grid - Responsive */}
+          {/* Products Grid */}
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.15 }}
             className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12"
           >
             {loadTestingProducts.map((product, idx) => (
               <motion.div
                 key={idx}
                 variants={fadeUp}
-                className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100 hover:shadow-2xl hover:-translate-y-2 focus-within:ring-2 focus-within:ring-[#F27A22] transition-all duration-300 group"
+                className="bg-white border border-gray-100 p-6 md:p-8 hover:border-brand-orange/30 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group"
               >
-                <div className="overflow-hidden rounded-2xl mb-8 bg-gray-50 flex items-center justify-center aspect-video">
+                <div className="overflow-hidden bg-slate-50 flex items-center justify-center aspect-video mb-6 relative bg-blueprint-grid-light opacity-95">
                   <img
                     src={product.img}
-                    alt={`${product.name} - ${product.capacity} capacity FRP load testing box`}
+                    alt={product.name}
                     loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="max-h-[90%] max-w-[90%] object-contain group-hover:scale-103 transition-transform duration-500"
                   />
+                  <div className="absolute top-4 left-4 bg-brand-navy text-white text-[10px] font-mono tracking-wider px-3 py-1 uppercase">
+                    {product.capacity} Capacity
+                  </div>
                 </div>
 
                 <div className="text-center mb-6">
-                  <h3 className="text-3xl font-black text-[#1b2a52] mb-1">
-                    {product.capacity}
+                  <h3 className="font-cond font-black text-brand-navy text-2xl uppercase tracking-wider mb-1">
+                    {product.name}
                   </h3>
-                  <span className="text-gray-400 font-medium text-lg">
-                    Capacity
-                  </span>
-                  <div className="w-12 h-1 bg-[#F27A22] mx-auto rounded-full mt-4" />
+                  <div className="w-8 h-0.5 bg-brand-orange mx-auto mt-3" />
                 </div>
 
-                <p className="text-gray-600 text-base leading-relaxed mb-8 text-center">
+                <p className="text-gray-500 text-sm leading-relaxed mb-8 text-center font-sans flex-grow">
                   {product.desc}
                 </p>
 
-                <ul className="space-y-3">
+                <ul className="space-y-3 pt-6 border-t border-gray-50 text-xs sm:text-sm font-cond uppercase tracking-wide">
                   {product.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-[#F27A22] shrink-0 mt-0.5" />
-                      <span className="text-gray-700 text-sm font-medium">
-                        {feature}
-                      </span>
+                      <CheckCircle2 className="w-4.5 h-4.5 text-brand-orange shrink-0 mt-0.5" />
+                      <span className="text-gray-700 font-bold">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -418,26 +408,25 @@ export default function Page() {
       </section>
 
       {/* ─── CTA SECTION ──────────────────────────────────────────────── */}
-      <section className="w-full bg-[#DCE8F6] py-16 md:py-20 bg-frp-mesh">
+      <section className="relative w-full py-20 bg-[#DCE8F6] bg-frp-mesh border-b border-gray-200">
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.15 }}
           variants={fadeUp}
-          className="max-w-225 mx-auto px-4 sm:px-6 text-center"
+          className="max-w-3xl mx-auto px-6 text-center relative z-10"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-[40px] font-black text-[#282F5A] mb-3 md:mb-4 leading-tight">
-            Need Custom FRP <span className="text-[#F27A22]">Components?</span>
+          <h2 className="font-cond font-black text-brand-navy text-3xl sm:text-[40px] leading-tight uppercase mb-4">
+            Need Custom FRP <span className="text-brand-orange">Components?</span>
           </h2>
-          <p className="text-[#1b2a52] text-sm sm:text-base md:text-lg max-w-2xl mx-auto mb-6 md:mb-10 px-2">
-            Get in touch with our engineering team for custom quotes and
-            technical feasibility studies.
+          <p className="text-brand-navy/80 text-sm sm:text-base max-w-xl mx-auto mb-8 font-sans leading-relaxed">
+            Get in touch with our design and development engineering staff for custom pricing details and laminate modeling checks.
           </p>
           <Link href="/contact" className="inline-block">
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#1b2a52] text-white px-8 sm:px-12 py-3 sm:py-4 rounded font-bold text-sm sm:text-base hover:bg-[#F27A22] transition-colors shadow-lg shadow-black/20"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="bg-brand-navy hover:bg-brand-navy-light text-white font-cond font-bold tracking-widest uppercase text-xs px-10 py-4 shadow-lg shadow-black/10 rounded-none cursor-pointer"
             >
               Request a Quote
             </motion.button>
