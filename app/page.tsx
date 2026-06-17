@@ -253,26 +253,24 @@ export default function Home() {
       {/* ── TECHNICAL SCROLLING TICKER ───────────────────────────────── */}
       <div className="w-full bg-brand-orange py-3.5 overflow-hidden border-y border-white/10 relative z-10 shadow-md">
         <div className="relative flex overflow-x-hidden">
-          <motion.div
-            className="flex items-center gap-10 w-max whitespace-nowrap text-white font-mono text-xs font-bold tracking-widest uppercase"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ ease: "linear", duration: 18, repeat: Infinity }}
+          <div
+            className="flex items-center gap-10 w-max whitespace-nowrap text-white font-mono text-xs font-bold tracking-widest uppercase animate-marquee"
           >
             {Array.from({ length: 4 }).map((_, i) => (
               <span key={i} className="inline-flex items-center gap-10">
-                <span>Fiberglass Reinforced Plastic</span>
+                <span className="ticker-item cursor-pointer">Fiberglass Reinforced Plastic</span>
                 <span className="w-2 h-2 bg-white rotate-45 opacity-60" />
-                <span>Vacuum Infusion Technology</span>
+                <span className="ticker-item cursor-pointer">Vacuum Infusion Technology</span>
                 <span className="w-2 h-2 bg-white rotate-45 opacity-60" />
-                <span>ISO 9001:2015 Certified Manufacturing</span>
+                <span className="ticker-item cursor-pointer">ISO 9001:2015 Certified Manufacturing</span>
                 <span className="w-2 h-2 bg-white rotate-45 opacity-60" />
-                <span>OEM Automobile Supplier</span>
+                <span className="ticker-item cursor-pointer">OEM Automobile Supplier</span>
                 <span className="w-2 h-2 bg-white rotate-45 opacity-60" />
-                <span>Defence Grade Composites</span>
+                <span className="ticker-item cursor-pointer">Defence Grade Composites</span>
                 <span className="w-2 h-2 bg-white rotate-45 opacity-60" />
               </span>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
 

@@ -8,6 +8,30 @@
   --color-brand-navy-light: #1a3a6b;
   --color-brand-orange: #f47c20;
   --color-brand-orange-light: #ff9a45;
+
+  --animate-marquee: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.ticker-item {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.ticker-item:hover {
+  transform: scale(1.1);
 }
 
 :root {
