@@ -106,6 +106,16 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 export default function Home() {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const [isMarqueePaused, setIsMarqueePaused] = useState(false);
+  const [hoveredTickerIndex, setHoveredTickerIndex] = useState<string | null>(null);
+
+  const tickerTexts = [
+    "Fiberglass Reinforced Plastic",
+    "Vacuum Infusion Technology",
+    "ISO 9001:2015 Certified Manufacturing",
+    "OEM Automobile Supplier",
+    "Defence Grade Composites"
+  ];
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -255,19 +265,37 @@ export default function Home() {
         <div className="relative flex overflow-x-hidden">
           <div
             className="flex items-center gap-10 w-max whitespace-nowrap text-white font-mono text-xs font-bold tracking-widest uppercase animate-marquee"
+            style={{ animationPlayState: isMarqueePaused ? "paused" : "running" }}
+            onMouseEnter={() => setIsMarqueePaused(true)}
+            onMouseLeave={() => {
+              setIsMarqueePaused(false);
+              setHoveredTickerIndex(null);
+            }}
           >
             {Array.from({ length: 4 }).map((_, i) => (
               <span key={i} className="inline-flex items-center gap-10">
-                <span className="ticker-item cursor-pointer">Fiberglass Reinforced Plastic</span>
-                <span className="w-2 h-2 bg-white rotate-45 opacity-60" />
-                <span className="ticker-item cursor-pointer">Vacuum Infusion Technology</span>
-                <span className="w-2 h-2 bg-white rotate-45 opacity-60" />
-                <span className="ticker-item cursor-pointer">ISO 9001:2015 Certified Manufacturing</span>
-                <span className="w-2 h-2 bg-white rotate-45 opacity-60" />
-                <span className="ticker-item cursor-pointer">OEM Automobile Supplier</span>
-                <span className="w-2 h-2 bg-white rotate-45 opacity-60" />
-                <span className="ticker-item cursor-pointer">Defence Grade Composites</span>
-                <span className="w-2 h-2 bg-white rotate-45 opacity-60" />
+                {tickerTexts.map((text, idx) => {
+                  const itemKey = `${i}-${idx}`;
+                  const isHovered = hoveredTickerIndex === itemKey;
+                  return (
+                    <span
+                      key={idx}
+                      className="inline-flex items-center gap-10"
+                    >
+                      <span
+                        className="transition-transform duration-200 cursor-pointer inline-block"
+                        style={{
+                          transform: isHovered ? "scale(1.15)" : "scale(1)",
+                        }}
+                        onMouseEnter={() => setHoveredTickerIndex(itemKey)}
+                        onMouseLeave={() => setHoveredTickerIndex(null)}
+                      >
+                        {text}
+                      </span>
+                      <span className="w-2 h-2 bg-white rotate-45 opacity-60" />
+                    </span>
+                  );
+                })}
               </span>
             ))}
           </div>
