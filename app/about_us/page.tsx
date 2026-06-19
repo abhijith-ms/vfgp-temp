@@ -304,8 +304,8 @@ export default function Page() {
       </section>
 
       {/* ─── PRODUCTION (Dark Navy) ───────────────────────────── */}
-      <section className="w-full bg-white py-16 md:py-24 border-b border-gray-100 bg-composite-layers">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <section className="w-full bg-brand-navy sm:bg-white py-0 sm:py-16 md:py-24 border-b border-gray-100 sm:bg-composite-layers">
+        <div className="max-w-7xl mx-auto px-0 sm:px-6 md:px-12">
           <div className="flex flex-col lg:flex-row bg-brand-navy text-white shadow-2xl relative overflow-hidden">
             {/* Tech watermark */}
             <div className="absolute inset-0 bg-blueprint-grid opacity-35 pointer-events-none" />
@@ -314,7 +314,7 @@ export default function Page() {
               <img
                 src="/about/production.jpg"
                 alt="State-of-the-Art Production Facility"
-                className="absolute inset-0 w-full h-full object-cover relative z-10"
+                className="absolute inset-0 w-full h-full object-cover z-10"
               />
             </div>
             

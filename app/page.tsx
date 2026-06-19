@@ -524,6 +524,73 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── CLIENTS INF marque (Light Grid) ───────────────────────────── */}
+      <section className="w-full py-16 overflow-hidden bg-[#fafbfc] border-b border-gray-100 relative">
+        <div className="absolute inset-0 bg-blueprint-grid-light opacity-30" />
+        
+        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center mb-10 relative z-10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={sectionViewport}
+            variants={fadeUp}
+          >
+            <h2 className="font-cond font-black text-brand-navy text-3xl leading-none uppercase">
+              Our <span className="text-brand-orange">Clients</span>
+            </h2>
+            <div className="h-0.5 bg-brand-navy w-12 mx-auto mt-3" />
+          </motion.div>
+        </div>
+
+        {/* Seamless Marquee Container */}
+        <div className="relative flex overflow-x-hidden group z-10">
+          {/* Fading side edges */}
+          <div className="absolute top-0 bottom-0 left-0 w-24 bg-gradient-to-r from-[#fafbfc] to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-[#fafbfc] to-transparent z-10 pointer-events-none" />
+
+          <motion.div
+            className="flex items-center gap-8 pr-8 w-max"
+            animate={{ x: ["0%", "-100%"] }}
+            transition={{ ease: "linear", duration: 25, repeat: Infinity }}
+          >
+            {clientsList.map(({ src, alt }, idx) => (
+              <div
+                key={`${alt}-${idx}`}
+                className="w-48 h-24 shrink-0 flex items-center justify-center bg-white px-6 py-4 border border-gray-100 hover:border-brand-orange/30 shadow-sm transition-all duration-300"
+              >
+                <Image
+                  src={src}
+                  alt={alt}
+                  width={150}
+                  height={60}
+                  className="max-h-full max-w-full object-contain opacity-80 hover:opacity-100 transition-all duration-300"
+                />
+              </div>
+            ))}
+          </motion.div>
+          <motion.div
+            className="flex items-center gap-8 pr-8 w-max"
+            animate={{ x: ["0%", "-100%"] }}
+            transition={{ ease: "linear", duration: 25, repeat: Infinity }}
+          >
+            {clientsList.map(({ src, alt }, idx) => (
+              <div
+                key={`dup-${alt}-${idx}`}
+                className="w-48 h-24 shrink-0 flex items-center justify-center bg-white px-6 py-4 border border-gray-100 hover:border-brand-orange/30 shadow-sm transition-all duration-300"
+              >
+                <Image
+                  src={src}
+                  alt={alt}
+                  width={150}
+                  height={60}
+                  className="max-h-full max-w-full object-contain opacity-80 hover:opacity-100 transition-all duration-300"
+                />
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
       {/* ── WHY CHOOSE US (Dark Navy/Blueprint Grid) ───────────────────── */}
       <section className="relative w-full bg-[#0a1628] py-20 overflow-hidden bg-blueprint-grid border-b border-white/10">
         {/* Glow zone */}
@@ -979,73 +1046,6 @@ export default function Home() {
                   </p>
                 </div>
               </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ── CLIENTS INF marque (Light Grid) ───────────────────────────── */}
-      <section className="w-full py-16 overflow-hidden bg-[#fafbfc] border-b border-gray-100 relative">
-        <div className="absolute inset-0 bg-blueprint-grid-light opacity-30" />
-        
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center mb-10 relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={sectionViewport}
-            variants={fadeUp}
-          >
-            <h2 className="font-cond font-black text-brand-navy text-3xl leading-none uppercase">
-              Our <span className="text-brand-orange">Clients</span>
-            </h2>
-            <div className="h-0.5 bg-brand-navy w-12 mx-auto mt-3" />
-          </motion.div>
-        </div>
-
-        {/* Seamless Marquee Container */}
-        <div className="relative flex overflow-x-hidden group z-10">
-          {/* Fading side edges */}
-          <div className="absolute top-0 bottom-0 left-0 w-24 bg-gradient-to-r from-[#fafbfc] to-transparent z-10 pointer-events-none" />
-          <div className="absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-[#fafbfc] to-transparent z-10 pointer-events-none" />
-
-          <motion.div
-            className="flex items-center gap-8 pr-8 w-max"
-            animate={{ x: ["0%", "-100%"] }}
-            transition={{ ease: "linear", duration: 25, repeat: Infinity }}
-          >
-            {clientsList.map(({ src, alt }, idx) => (
-              <div
-                key={`${alt}-${idx}`}
-                className="w-48 h-24 shrink-0 flex items-center justify-center bg-white px-6 py-4 border border-gray-100 hover:border-brand-orange/30 shadow-sm transition-all duration-300"
-              >
-                <Image
-                  src={src}
-                  alt={alt}
-                  width={150}
-                  height={60}
-                  className="max-h-full max-w-full object-contain opacity-80 hover:opacity-100 transition-all duration-300"
-                />
-              </div>
-            ))}
-          </motion.div>
-          <motion.div
-            className="flex items-center gap-8 pr-8 w-max"
-            animate={{ x: ["0%", "-100%"] }}
-            transition={{ ease: "linear", duration: 25, repeat: Infinity }}
-          >
-            {clientsList.map(({ src, alt }, idx) => (
-              <div
-                key={`dup-${alt}-${idx}`}
-                className="w-48 h-24 shrink-0 flex items-center justify-center bg-white px-6 py-4 border border-gray-100 hover:border-brand-orange/30 shadow-sm transition-all duration-300"
-              >
-                <Image
-                  src={src}
-                  alt={alt}
-                  width={150}
-                  height={60}
-                  className="max-h-full max-w-full object-contain opacity-80 hover:opacity-100 transition-all duration-300"
-                />
-              </div>
             ))}
           </motion.div>
         </div>
