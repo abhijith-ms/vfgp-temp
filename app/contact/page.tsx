@@ -32,7 +32,7 @@ const contactCards = [
     desktopdetail: "Plot No 6, R.I.E",
     mobilehelper: "Zaheerabad, TS",
     desktophelper: "Zaheerabad, TS",
-    link: "https://maps.google.com",
+    link: "https://www.google.com/maps?q=Plot+No+6,+R.I.E,+Zaheerabad,+Telangana,+India",
   },
   {
     icon: Clock,
