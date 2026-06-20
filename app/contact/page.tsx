@@ -32,7 +32,7 @@ const contactCards = [
     desktopdetail: "Plot No 6, R.I.E",
     mobilehelper: "Zaheerabad, TS",
     desktophelper: "Zaheerabad, TS",
-    link: "https://www.google.com/maps?q=Plot+No+6,+R.I.E,+Zaheerabad,+Telangana,+India",
+    link: "https://maps.app.goo.gl/iSyCaCMWDueX1Ath8",
   },
   {
     icon: Clock,
@@ -152,7 +152,7 @@ export default function ContactPage() {
                 <iframe
                   title="VFGP Location Map Desktop"
                   className="w-full h-full border-0"
-                  src="https://www.google.com/maps?q=Plot%20No%206%2C%20R.I.E%2C%20Zaheerabad%2C%20Telangana%2C%20India&output=embed"
+                  src="https://www.google.com/maps?q=Venkateshwara%20FibreGlass%20Zaheerabad&output=embed"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   allowFullScreen
@@ -286,7 +286,7 @@ export default function ContactPage() {
               <iframe
                 title="VFGP Location Map Mobile"
                 className="w-full h-full border-0"
-                src="https://www.google.com/maps?q=Plot%20No%206%2C%20R.I.E%2C%20Zaheerabad%2C%20Telangana%2C%20India&output=embed"
+                src="https://www.google.com/maps?q=Venkateshwara%20FibreGlass%20Zaheerabad&output=embed"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
