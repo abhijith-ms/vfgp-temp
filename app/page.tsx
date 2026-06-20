@@ -556,13 +556,13 @@ export default function Home() {
             {clientsList.map(({ src, alt }, idx) => (
               <div
                 key={`${alt}-${idx}`}
-                className="w-48 h-24 shrink-0 flex items-center justify-center bg-white px-6 py-4 border border-gray-100 hover:border-brand-orange/30 shadow-sm transition-all duration-300"
+                className="w-56 md:w-64 h-28 md:h-32 shrink-0 flex items-center justify-center bg-white px-6 py-4 border border-gray-100 hover:border-brand-orange/30 shadow-sm transition-all duration-300"
               >
                 <Image
                   src={src}
                   alt={alt}
-                  width={150}
-                  height={60}
+                  width={180}
+                  height={80}
                   className="max-h-full max-w-full object-contain opacity-80 hover:opacity-100 transition-all duration-300"
                 />
               </div>
@@ -576,13 +576,13 @@ export default function Home() {
             {clientsList.map(({ src, alt }, idx) => (
               <div
                 key={`dup-${alt}-${idx}`}
-                className="w-48 h-24 shrink-0 flex items-center justify-center bg-white px-6 py-4 border border-gray-100 hover:border-brand-orange/30 shadow-sm transition-all duration-300"
+                className="w-56 md:w-64 h-28 md:h-32 shrink-0 flex items-center justify-center bg-white px-6 py-4 border border-gray-100 hover:border-brand-orange/30 shadow-sm transition-all duration-300"
               >
                 <Image
                   src={src}
                   alt={alt}
-                  width={150}
-                  height={60}
+                  width={180}
+                  height={80}
                   className="max-h-full max-w-full object-contain opacity-80 hover:opacity-100 transition-all duration-300"
                 />
               </div>
