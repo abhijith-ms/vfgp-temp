@@ -1,8 +1,56 @@
 @import "tailwindcss";
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   VFGP — FONT STACK
+   Based on fonts in the VFG company brochure:
+   Aileron (Regular/Bold/Heavy) — self-hosted from public/fonts/
+   Poppins — Google Fonts (close match to Canva Sans display font)
+   Inter — Google Fonts (utility / nav / buttons)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Aileron Regular ────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Aileron';
+  src: url('/fonts/Aileron-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Aileron SemiBold ───────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Aileron';
+  src: url('/fonts/Aileron-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Aileron Bold ───────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Aileron';
+  src: url('/fonts/Aileron-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Aileron Heavy ──────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Aileron';
+  src: url('/fonts/Aileron-Heavy.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
-  --font-cond: var(--font-cond), sans-serif;
-  
+  /* Tailwind font-family tokens — exposed as `font-display`, `font-sans`, etc. */
+  /* --font-display is injected as a CSS variable by Next.js via layout.tsx     */
+  --font-cond: var(--font-display), 'Poppins', 'Aileron', 'Arial', sans-serif;
+  --font-sans: 'Aileron', var(--font-display), 'Arial', Helvetica, system-ui, sans-serif;
+  --font-utility: var(--font-utility), 'Inter', 'Arial', system-ui, sans-serif;
+
   --color-brand-navy: #0a1628;
   --color-brand-navy-mid: #112240;
   --color-brand-navy-light: #1a3a6b;
@@ -10,6 +58,27 @@
   --color-brand-orange-light: #ff9a45;
 
   --animate-marquee: marquee 20s linear infinite;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --navy: 10, 22, 40; /* #0a1628 */
+  --orange: 244, 124, 32; /* #f47c20 */
+
+  /* VFGP brand font stack variables */
+  --font-display-stack: var(--font-display), 'Poppins', 'Aileron', 'Arial', sans-serif;
+  --font-heading-stack: 'Aileron', var(--font-display), 'Poppins', 'Arial', sans-serif;
+  --font-body-stack:    'Aileron', 'Arial', Helvetica, system-ui, sans-serif;
+  --font-utility-stack: var(--font-utility), 'Inter', 'Arial', system-ui, sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body-stack);
+  font-weight: 400;
+  line-height: 1.6;
 }
 
 @keyframes marquee {
@@ -32,19 +101,6 @@
 
 .ticker-item:hover {
   transform: scale(1.1);
-}
-
-:root {
-    --background: #ffffff;
-    --foreground: #000000;
-    --navy: 10, 22, 40; /* #0a1628 */
-    --orange: 244, 124, 32; /* #f47c20 */
-}
-
-body {
-    background: var(--background);
-    color: var(--foreground);
-    font-family: var(--font-sans), sans-serif;
 }
 
 

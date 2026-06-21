@@ -1,27 +1,25 @@
 import type { Metadata } from "next";
-import { Barlow, Barlow_Condensed, Space_Mono } from "next/font/google";
+import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
 import "aos/dist/aos.css";
 import NavBar from "./components/HomeComponents/NavBar";
 import Footer from "./components/Footer";
 import AOSInit from "./components/AOSInit";
 
-const sansFont = Barlow({
-  variable: "--font-sans",
+/* ── Display / Hero font: Poppins (close match to Canva Sans) */
+const displayFont = Poppins({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "600", "700", "800"],
+  display: "swap",
 });
 
-const condFont = Barlow_Condensed({
-  variable: "--font-cond",
+/* ── Utility / Nav / Button font: Inter */
+const utilityFont = Inter({
+  variable: "--font-utility",
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
-});
-
-const monoFont = Space_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "500", "600"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -38,7 +36,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sansFont.variable} ${condFont.variable} ${monoFont.variable} h-full antialiased`}
+      className={`${displayFont.variable} ${utilityFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <AOSInit />
@@ -50,4 +48,3 @@ export default function RootLayout({
     </html>
   );
 }
-
