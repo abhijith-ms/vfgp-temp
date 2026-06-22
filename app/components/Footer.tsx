@@ -49,6 +49,16 @@ export default function Footer() {
               </a>
 
               <a
+                href="https://share.google/i8AbVeGAGZsXDjbZu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-none bg-white/5 border border-white/10 flex items-center justify-center text-brand-orange hover:bg-brand-orange hover:text-white hover:scale-105 transition-all duration-300"
+                aria-label="Google My Business"
+              >
+                <MapPin className="w-4 h-4" />
+              </a>
+
+              <a
                 href="mailto:venkateshwara_fibreglass@yahoo.com"
                 className="w-9 h-9 rounded-none bg-white/5 border border-white/10 flex items-center justify-center text-brand-orange hover:bg-brand-orange hover:text-white hover:scale-105 transition-all duration-300"
                 aria-label="Email"
@@ -107,13 +117,18 @@ export default function Footer() {
             <ul className="flex flex-col gap-4 text-xs md:text-sm">
               <li className="flex items-start gap-3">
                 <MapPin className="w-4.5 h-4.5 text-brand-orange shrink-0 mt-0.5" />
-                <span className="text-white/60 leading-relaxed">
+                <a
+                  href="https://share.google/i8AbVeGAGZsXDjbZu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/60 hover:text-brand-orange transition-colors leading-relaxed"
+                >
                   Plot No 6, R.I.E, Zaheerabad,
                   <br />
                   Sangareddy Dist., Telangana - 502220,
                   <br />
                   India
-                </span>
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4.5 h-4.5 text-brand-orange shrink-0" />
