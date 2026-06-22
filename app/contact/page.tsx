@@ -15,16 +15,16 @@ const contactCards = [
   {
     icon: Phone,
     title: "Call Us",
-    desktopdetail: "+91 98765 43210",
+    desktopdetail: "+91 98493 91922",
     desktophelper: "Mon - Sat, 9am - 7pm",
-    link: "tel:+919876543210",
+    link: "tel:+919849391922",
   },
   {
     icon: Mail,
     title: "Email",
-    desktopdetail: "sales@vfgp.in",
+    desktopdetail: "venkateshwara_fibreglass@yahoo.com",
     desktophelper: "Reply within 24 hours",
-    link: "mailto:sales@vfgp.in",
+    link: "mailto:venkateshwara_fibreglass@yahoo.com",
   },
   {
     icon: MapPin,
@@ -210,7 +210,7 @@ export default function ContactPage() {
                     required
                     name="phone"
                     type="tel"
-                    placeholder="+91 98765 43210"
+                    placeholder="+91 98493 91922"
                     className="w-full bg-white border border-slate-200 rounded-none px-4 py-3 text-xs text-brand-navy outline-none focus:border-brand-orange transition-colors"
                   />
                 </div>
@@ -340,7 +340,7 @@ export default function ContactPage() {
                   required
                   name="phone"
                   type="tel"
-                  placeholder="+91 98765 43210"
+                  placeholder="+91 98493 91922"
                   className="w-full bg-white border border-slate-200 rounded-none px-4 py-2.5 text-xs text-brand-navy focus:outline-none focus:border-brand-orange transition-colors"
                 />
               </div>

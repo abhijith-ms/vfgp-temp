@@ -49,7 +49,7 @@ export default function Footer() {
               </a>
 
               <a
-                href="mailto:info@vfgp.in"
+                href="mailto:venkateshwara_fibreglass@yahoo.com"
                 className="w-9 h-9 rounded-none bg-white/5 border border-white/10 flex items-center justify-center text-brand-orange hover:bg-brand-orange hover:text-white hover:scale-105 transition-all duration-300"
                 aria-label="Email"
               >
@@ -118,19 +118,19 @@ export default function Footer() {
               <li className="flex items-center gap-3">
                 <Phone className="w-4.5 h-4.5 text-brand-orange shrink-0" />
                 <a
-                  href="tel:+919876543210"
+                  href="tel:+919849391922"
                   className="text-white/60 hover:text-brand-orange transition-colors"
                 >
-                  +91 98765 43210
+                  +91 98493 91922
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4.5 h-4.5 text-brand-orange shrink-0" />
                 <a
-                  href="mailto:info@vfgp.in"
+                  href="mailto:venkateshwara_fibreglass@yahoo.com"
                   className="text-white/60 hover:text-brand-orange transition-colors"
                 >
-                  info@vfgp.in
+                  venkateshwara_fibreglass@yahoo.com
                 </a>
               </li>
             </ul>

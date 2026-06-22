@@ -878,7 +878,7 @@ export default function Home() {
               {[
                 { label: "Your Name", icon: User, type: "text", placeholder: "John Doe" },
                 { label: "Your Email", icon: Mail, type: "email", placeholder: "john@company.com" },
-                { label: "Phone Number", icon: Phone, type: "tel", placeholder: "+91 98765 43210" },
+                { label: "Phone Number", icon: Phone, type: "tel", placeholder: "+91 98493 91922" },
               ].map(({ label, icon: Icon, type, placeholder }) => (
                 <div key={label}>
                   <label className="block text-[10px] font-bold text-brand-navy uppercase tracking-widest mb-1.5 font-mono">
