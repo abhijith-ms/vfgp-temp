@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { MapPin, Phone, Mail, Globe, ExternalLink } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
@@ -39,31 +39,15 @@ export default function Footer() {
 
             <div className="flex gap-3">
               <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-none bg-white/5 border border-white/10 flex items-center justify-center text-brand-orange hover:bg-brand-orange hover:text-white hover:scale-105 transition-all duration-300"
-                aria-label="LinkedIn"
-              >
-                <Globe className="w-4 h-4" />
-              </a>
-
-              <a
                 href="https://share.google/i8AbVeGAGZsXDjbZu"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-none bg-white/5 border border-white/10 flex items-center justify-center text-brand-orange hover:bg-brand-orange hover:text-white hover:scale-105 transition-all duration-300"
                 aria-label="Google My Business"
               >
-                <MapPin className="w-4 h-4" />
-              </a>
-
-              <a
-                href="mailto:venkateshwara_fibreglass@yahoo.com"
-                className="w-9 h-9 rounded-none bg-white/5 border border-white/10 flex items-center justify-center text-brand-orange hover:bg-brand-orange hover:text-white hover:scale-105 transition-all duration-300"
-                aria-label="Email"
-              >
-                <ExternalLink className="w-4 h-4" />
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-5.136 4.114-3.483 0-6.312-2.829-6.312-6.313S10.508 5.88 13.99 5.88c1.5 0 2.87.525 3.95 1.545l3.075-3.075C19.16 2.655 16.74 1.5 13.99 1.5 8.2 1.5 3.5 6.2 3.5 12s4.7 10.5 10.49 10.5c5.78 0 10.42-4.13 10.42-10.5 0-.705-.075-1.2-.2-1.715h-10.22z"/>
+                </svg>
               </a>
             </div>
           </div>
