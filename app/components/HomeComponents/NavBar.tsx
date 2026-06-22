@@ -47,13 +47,11 @@ export default function NavBar() {
       <nav className="max-w-7xl mx-auto flex justify-between items-center px-6 md:px-12 py-3.5 relative">
         {/* Technical VFG Industrial Logo */}
         <Link href="/" className="flex items-center group">
-          <div className="h-10 md:h-12 bg-white flex items-center justify-center p-1.5 transition-transform group-hover:scale-105">
-            <img
-              src="/fulllogo.png"
-              alt="logo"
-              className="h-full w-auto object-contain"
-            />
-          </div>
+          <img
+            src="/fulllogo.png?v=1"
+            alt="logo"
+            className="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+          />
         </Link>
 
         {/* Desktop Links */}
