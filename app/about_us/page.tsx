@@ -334,7 +334,7 @@ export default function Page() {
               <ul className="space-y-4">
                 {[
                   { icon: Sliders, text: "Precision Custom Tooling Setup" },
-                  { icon: Compass, text: "Advanced Vacuum Resin Infusion" },
+                  { icon: Compass, text: "Advanced Hand Lay-Up Lamination" },
                   { icon: Microscope, text: "In-house Layer Validation Laboratory" },
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3.5">

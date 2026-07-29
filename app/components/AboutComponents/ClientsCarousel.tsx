@@ -6,10 +6,12 @@ const clients = [
   { src: "/clients/mungi.png", alt: "Mungi" },
   { src: "/clients/navistar.png", alt: "Mahindra Navistar" },
   { src: "/clients/rise.png", alt: "Mahindra Rise" },
+  { src: "/clients/indian-railways.png", alt: "Indian Railways" },
   { src: "/clients/ashokleyland.png", alt: "Ashok Leyland" },
   { src: "/clients/mungi.png", alt: "Mungi" },
   { src: "/clients/navistar.png", alt: "Mahindra Navistar" },
   { src: "/clients/rise.png", alt: "Mahindra Rise" },
+  { src: "/clients/indian-railways.png", alt: "Indian Railways" },
 ];
 
 export default function ClientsCarousel() {

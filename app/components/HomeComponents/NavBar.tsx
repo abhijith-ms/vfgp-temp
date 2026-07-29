@@ -46,12 +46,17 @@ export default function NavBar() {
     <header className="sticky top-0 z-50 w-full bg-brand-navy/95 backdrop-blur-md border-b border-white/10 shadow-lg">
       <nav className="max-w-7xl mx-auto flex justify-between items-center px-6 md:px-12 py-3.5 relative">
         {/* Technical VFG Industrial Logo */}
-        <Link href="/" className="flex items-center group">
+        <Link href="/" className="flex items-center gap-2.5 group">
           <img
-            src="/fulllogo.png?v=1"
-            alt="logo"
-            className="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+            src="/logo-transparent.png"
+            alt="VFP logo"
+            className="h-9 md:h-10 w-auto object-contain transition-transform group-hover:scale-105"
           />
+          <span className="hidden sm:inline text-white font-cond font-bold text-sm md:text-base leading-tight tracking-widest uppercase">
+            Venkateshwara
+            <br />
+            <span className="text-brand-orange">Fibreglass</span> Products
+          </span>
         </Link>
 
         {/* Desktop Links */}

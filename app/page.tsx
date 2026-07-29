@@ -20,11 +20,9 @@ import {
   Phone,
   User,
   MessageSquare,
-  Play,
-  X,
   ArrowRight,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 
@@ -105,49 +103,32 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function Home() {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
-  const [activeVideo, setActiveVideo] = useState<string | null>(null);
   const [isMarqueePaused, setIsMarqueePaused] = useState(false);
   const [hoveredTickerIndex, setHoveredTickerIndex] = useState<string | null>(null);
 
   const tickerTexts = [
     "Fiberglass Reinforced Plastic",
-    "Vacuum Infusion Technology",
     "ISO 9001:2015 Certified Manufacturing",
     "OEM Automobile Supplier",
     "Defence Grade Composites"
   ];
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setActiveVideo(null);
-      }
-    };
-    if (activeVideo) {
-      window.addEventListener("keydown", handleKeyDown);
-    }
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeVideo]);
-
-  const factoryVideos = [
+  const factoryGallery = [
     {
       title: "Hand Lay-up & Manual Lamination",
       desc: "Our skilled technicians performing manual lamination and lay-up, illustrating the dedicated hand craftsmanship required for molding durable composite structures.",
-      videoSrc: "/videos/1.mp4",
       thumbnail: "/bus.png",
       tag: "Hand Craftsmanship"
     },
     {
       title: "Robotic Spraying & Oversight",
       desc: "Industrial robotic arms applying paint and gel coats, combining automation with manual lamination and human quality checks.",
-      videoSrc: "/videos/2.mp4",
       thumbnail: "/robot.png",
       tag: "Robotic Automation"
     },
     {
       title: "Manual Assembly & Final Detailing",
       desc: "Our team manually assembling components, trimming edges, and carrying out visual inspection on the factory floor.",
-      videoSrc: "/videos/3.mp4",
       thumbnail: "/bus2.png",
       tag: "Manual Detailing"
     }
@@ -191,12 +172,12 @@ export default function Home() {
     {
       question: "What is the surface finish quality of your FRP products?",
       answer:
-        "Our products are finished to Class A surface standards using vacuum infusion and controlled gel-coat techniques, ensuring smooth, paint-ready surfaces suitable for automotive exteriors.",
+        "Our products are finished to Class A surface standards using hand lay-up and controlled gel-coat techniques, ensuring smooth, paint-ready surfaces suitable for automotive exteriors.",
     },
     {
       question: "Can VENKATESHWARA FIBREGLASS PRODUCTS handle large-scale production runs?",
       answer:
-        "Yes. Our automated production lines and vacuum resin infusion infrastructure are designed for both prototype and high-volume batch production to meet diverse client demands.",
+        "Yes. Our skilled production teams and hand lay-up production infrastructure are designed for both prototype and high-volume batch production to meet diverse client demands.",
     },
   ];
 
@@ -223,10 +204,12 @@ export default function Home() {
     { src: "/clients/mungi.png", alt: "Mungi" },
     { src: "/clients/navistar.png", alt: "Mahindra Navistar" },
     { src: "/clients/rise.png", alt: "Mahindra Rise" },
+    { src: "/clients/indian-railways.png", alt: "Indian Railways" },
     { src: "/clients/ashokleyland.png", alt: "Ashok Leyland 2" },
     { src: "/clients/mungi.png", alt: "Mungi 2" },
     { src: "/clients/navistar.png", alt: "Mahindra Navistar 2" },
     { src: "/clients/rise.png", alt: "Mahindra Rise 2" },
+    { src: "/clients/indian-railways.png", alt: "Indian Railways 2" },
   ];
 
   const featuredProducts = [
@@ -332,7 +315,7 @@ export default function Home() {
 
             <ul className="space-y-4 mb-8">
               {[
-                "Advanced Vacuum Infusion Technology",
+                "Advanced Hand Lay-Up Technology",
                 "In-house R&D and Tooling Facility",
                 "End-to-end Project Management",
               ].map((item) => (
@@ -651,7 +634,7 @@ export default function Home() {
               {
                 icon: Settings2,
                 label: "Advanced Production",
-                desc: "Automated laminates & temperature-controlled infusion plants.",
+                desc: "Skilled hand lay-up lamination & temperature-controlled curing bays.",
               },
               {
                 icon: BarChart2,
@@ -699,7 +682,7 @@ export default function Home() {
               Our <span className="text-brand-orange">Unique Product</span>
             </h2>
             <p className="text-gray-500 text-sm sm:text-base leading-relaxed mb-6 font-sans">
-              Our flagship FRP composite load box is engineered to deliver heavy load carrying capabilities at one-third the weight of steel. Constructed via vacuum infusion to minimize void fraction.
+              Our flagship FRP composite load box is engineered to deliver heavy load carrying capabilities at one-third the weight of steel. Constructed via precision hand lay-up to minimize void fraction.
             </p>
             <p className="text-gray-500 text-sm sm:text-base leading-relaxed mb-8 font-sans">
               Class A surface finishes, standardized sizes, and integrated structural ribbing make it ready for tactical, strategic, and high-impact industrial deployment.
@@ -786,7 +769,7 @@ export default function Home() {
                 {
                   num: "03",
                   title: "Fabrication",
-                  desc: "Vacuum infusion lamination or RTM assembly.",
+                  desc: "Hand lay-up lamination or RTM assembly.",
                 },
                 {
                   num: "04",
@@ -979,7 +962,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── FACTORY VIDEO GALLERY (Light Mesh) ─────────────────────────── */}
+      {/* ── FACTORY FLOOR GALLERY (Light Mesh) ─────────────────────────── */}
       <section className="relative w-full py-20 overflow-hidden bg-frp-mesh bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
           <motion.div
@@ -991,7 +974,7 @@ export default function Home() {
           >
 
             <h2 className="font-cond font-black text-brand-navy text-4xl sm:text-5xl leading-none uppercase">
-              Factory <span className="text-brand-orange">Video Gallery</span>
+              Factory <span className="text-brand-orange">Floor Gallery</span>
             </h2>
             <div className="h-1 bg-brand-navy w-16 mx-auto mt-4" />
           </motion.div>
@@ -1003,46 +986,33 @@ export default function Home() {
             variants={staggerContainer}
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
           >
-            {factoryVideos.map((video, idx) => (
+            {factoryGallery.map((photo, idx) => (
               <motion.div
                 key={idx}
                 variants={fadeUp}
-                onClick={() => setActiveVideo(video.videoSrc)}
                 whileHover={{ y: -6 }}
-                className="group border border-gray-100 hover:border-brand-orange/30 bg-white shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col overflow-hidden"
+                className="group border border-gray-100 hover:border-brand-orange/30 bg-white shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden"
               >
                 {/* Visual Cover */}
                 <div className="relative h-56 w-full overflow-hidden bg-slate-900 shrink-0">
                   <img
-                    src={video.thumbnail}
-                    alt={video.title}
+                    src={photo.thumbnail}
+                    alt={photo.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
-                  <div className="absolute inset-0 bg-[#0a1628]/40 group-hover:bg-[#0a1628]/55 transition-colors duration-300" />
-                  
-                  {/* Play Button Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="w-14 h-14 bg-brand-orange text-white flex items-center justify-center shadow-lg transition-transform duration-300"
-                    >
-                      <Play className="w-6 h-6 fill-white translate-x-0.5" />
-                    </motion.div>
-                  </div>
-                  
+
                   {/* Category tag */}
                   <div className="absolute top-4 left-4 bg-brand-navy border border-white/10 text-white font-cond text-[9px] font-bold tracking-widest uppercase px-3 py-1">
-                    {video.tag}
+                    {photo.tag}
                   </div>
                 </div>
 
                 <div className="p-6 flex flex-col flex-grow">
                   <h3 className="font-cond font-black text-brand-navy text-lg uppercase tracking-wider mb-2 group-hover:text-brand-orange transition-colors">
-                    {video.title}
+                    {photo.title}
                   </h3>
                   <p className="text-gray-500 text-sm leading-relaxed font-sans">
-                    {video.desc}
+                    {photo.desc}
                   </p>
                 </div>
               </motion.div>
@@ -1078,46 +1048,6 @@ export default function Home() {
           </Link>
         </motion.div>
       </section>
-
-      {/* ── VIDEO LIGHTBOX MODAL ────────────────────────────────────────── */}
-      <AnimatePresence>
-        {activeVideo && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-[#0a1628]/80 backdrop-blur-md"
-            onClick={() => setActiveVideo(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ type: "spring", duration: 0.5 }}
-              className="relative w-full max-w-4xl bg-brand-navy border border-white/10 shadow-2xl rounded-none overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Close Button */}
-              <button
-                onClick={() => setActiveVideo(null)}
-                className="absolute top-4 right-4 z-10 p-2 bg-black/60 hover:bg-black/80 text-white rounded-none transition-colors border border-white/10"
-              >
-                <X className="w-5 h-5" />
-              </button>
-              
-              {/* Video Player */}
-              <div className="aspect-video w-full bg-black flex items-center justify-center">
-                <video
-                  src={activeVideo}
-                  controls
-                  autoPlay
-                  className="w-full h-full object-contain"
-                />
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </main>
   );
 }
