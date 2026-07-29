@@ -43,16 +43,16 @@ export default function NavBar() {
   }, [industriesOpen]);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-brand-navy/95 backdrop-blur-md border-b border-white/10 shadow-lg">
+    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-lg">
       <nav className="max-w-7xl mx-auto flex justify-between items-center px-6 md:px-12 py-3.5 relative">
         {/* Technical VFG Industrial Logo */}
-        <Link href="/" className="flex items-center gap-2.5 group">
+        <Link href="/" className="flex items-center gap-2 sm:gap-2.5 group">
           <img
             src="/logo-transparent.png"
             alt="VFP logo"
-            className="h-9 md:h-10 w-auto object-contain transition-transform group-hover:scale-105"
+            className="h-8 sm:h-9 md:h-10 w-auto object-contain transition-transform group-hover:scale-105"
           />
-          <span className="hidden sm:inline text-white font-cond font-bold text-sm md:text-base leading-tight tracking-widest uppercase">
+          <span className="inline text-brand-navy font-cond font-bold text-[10px] sm:text-sm md:text-base leading-tight tracking-wide sm:tracking-widest uppercase">
             Venkateshwara
             <br />
             <span className="text-brand-orange">Fibreglass</span> Products
@@ -60,7 +60,7 @@ export default function NavBar() {
         </Link>
 
         {/* Desktop Links */}
-        <ul className="hidden lg:flex gap-8 xl:gap-10 items-center text-white/80 font-cond font-semibold tracking-widest uppercase text-[13px]">
+        <ul className="hidden lg:flex gap-8 xl:gap-10 items-center text-brand-navy/80 font-cond font-semibold tracking-widest uppercase text-[13px]">
           <li>
             <Link href="/" className="hover:text-brand-orange transition-colors">
               Home
@@ -94,13 +94,13 @@ export default function NavBar() {
             </button>
 
             {industriesOpen && (
-              <div className="absolute top-full left-0 mt-3.5 w-48 bg-brand-navy-mid border border-white/10 shadow-2xl rounded-sm py-2 z-50">
+              <div className="absolute top-full left-0 mt-3.5 w-48 bg-white border border-gray-200 shadow-2xl rounded-sm py-2 z-50">
                 {industries.map((industry) => (
                   <Link
                     key={industry.href}
                     href={industry.href}
                     onClick={() => setIndustriesOpen(false)}
-                    className="block px-5 py-2.5 text-xs text-white/90 font-cond uppercase tracking-wider hover:bg-white/5 hover:text-brand-orange transition-colors"
+                    className="block px-5 py-2.5 text-xs text-brand-navy/80 font-cond uppercase tracking-wider hover:bg-gray-50 hover:text-brand-orange transition-colors"
                   >
                     {industry.label}
                   </Link>
@@ -124,7 +124,7 @@ export default function NavBar() {
         <div className="lg:hidden flex items-center">
           <button
             onClick={() => setOpen((value) => !value)}
-            className="text-white p-2 -mr-2 focus:outline-none hover:text-brand-orange transition-colors cursor-pointer"
+            className="text-brand-navy p-2 -mr-2 focus:outline-none hover:text-brand-orange transition-colors cursor-pointer"
             aria-label="Toggle Menu"
           >
             {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -134,8 +134,8 @@ export default function NavBar() {
 
       {/* Mobile Drawer Menu */}
       {open && (
-        <div className="absolute top-full left-0 w-full bg-brand-navy border-t border-white/10 lg:hidden z-50 shadow-2xl">
-          <ul className="flex flex-col items-center gap-5 py-8 text-white/90 font-cond font-bold tracking-widest uppercase text-sm">
+        <div className="absolute top-full left-0 w-full bg-white border-t border-gray-200 lg:hidden z-50 shadow-2xl">
+          <ul className="flex flex-col items-center gap-5 py-8 text-brand-navy/90 font-cond font-bold tracking-widest uppercase text-sm">
             <li>
               <Link
                 href="/"
@@ -175,13 +175,13 @@ export default function NavBar() {
               </button>
 
               {industriesOpen && (
-                <div className="mt-3 flex flex-col items-center gap-2.5 bg-brand-navy-mid/50 py-3 rounded-md border border-white/5">
+                <div className="mt-3 flex flex-col items-center gap-2.5 bg-gray-50 py-3 rounded-md border border-gray-200">
                   {industries.map((industry) => (
                     <Link
                       key={industry.href}
                       href={industry.href}
                       onClick={closeMenu}
-                      className="text-xs text-white/80 hover:text-brand-orange transition-colors"
+                      className="text-xs text-brand-navy/80 hover:text-brand-orange transition-colors"
                     >
                       {industry.label}
                     </Link>
