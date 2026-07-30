@@ -154,45 +154,45 @@ function DesktopPanel({
 }
 
 // <lg (tablet + mobile): the right column has no room without cramping the
-// 3D view. Collapses to a compact strip anchored below the sticky navbar
-// (top-16 clears NavBar.tsx's ~64px height) rather than stacking under
-// CaptionOverlay, whose height varies with content and isn't touched by this
-// change — avoids any risk of the two overlapping. Trimmed to tool + up to 2
-// benefits; no illustration, no full paragraph, capped height so the 3D
-// scene stays the dominant visual. Not animated (plain conditional render) —
-// a deliberate simplification for this pass.
+// 3D view. The 3D scene must stay the hero here, so this floats as a small,
+// dense, bottom-anchored card (nothing sits between the navbar and the scene)
+// — clears the shared stepper via bottom-16, and is horizontally centered
+// like a floating card rather than a stretched strip. Trimmed to stage/title/
+// tool/benefits/outcome only; no illustration, no full paragraph. CaptionOverlay's
+// own card is hidden on this breakpoint so this is the single text source on
+// mobile. Not animated (plain conditional render) — a deliberate simplification.
 function CompactPanel({ header, insights }: { header: StageHeader; insights?: StageInsights }) {
   if (!insights) return null;
   const accent = insights.highlightColor ?? DEFAULT_ACCENT;
   const benefits = insights.keyBenefits?.slice(0, 2) ?? [];
+  const hasToolsOrBenefits = (insights.tools && insights.tools.length > 0) || benefits.length > 0;
 
   return (
-    <div className="lg:hidden absolute inset-x-0 top-16 z-20 pointer-events-none px-4 sm:px-6">
-      <div className="max-w-sm mx-auto sm:mx-0 max-h-[35vh] overflow-hidden bg-brand-navy-mid/90 border border-brand-orange/30 px-4 py-3 backdrop-blur-md">
+    <div className="lg:hidden absolute inset-x-0 bottom-16 z-20 pointer-events-none px-4">
+      <div className="max-w-sm mx-auto max-h-[28vh] overflow-hidden bg-brand-navy-mid/90 border border-brand-orange/30 px-4 py-2.5 backdrop-blur-md">
         <span className="font-mono text-[9px] uppercase tracking-widest text-white/50">
           Stage {String(header.stageIndex).padStart(2, "0")} / {header.totalStages - 1}
         </span>
-        <h4 className="font-cond font-black text-sm uppercase tracking-wide text-white mt-0.5 mb-2">
+        <h4 className="font-cond font-black text-sm uppercase tracking-wide text-white mt-0 mb-1">
           {header.title}
         </h4>
         {insights.tools && insights.tools.length > 0 && (
-          <p className="text-white/80 text-xs font-sans mb-2">
+          <p className="text-white/80 text-xs font-sans mb-1">
             <span className="text-white/40 uppercase font-mono text-[9px] tracking-widest mr-1">Tool</span>
             {insights.tools.join(" & ")}
           </p>
         )}
         {benefits.length > 0 && (
-          <div className="flex flex-wrap gap-1.5">
+          <ul className="flex flex-col gap-0.5">
             {benefits.map((benefit) => (
-              <span
-                key={benefit}
-                className="border px-2 py-0.5 text-[9px] font-mono uppercase tracking-wide text-white/80"
-                style={{ borderColor: `${accent}66` }}
-              >
-                {benefit}
-              </span>
+              <li key={benefit} className="text-white/80 text-[10px] font-mono uppercase tracking-wide">
+                <span style={{ color: accent }}>✓</span> {benefit}
+              </li>
             ))}
-          </div>
+          </ul>
+        )}
+        {!hasToolsOrBenefits && insights.outcome && (
+          <p className="text-white/70 text-xs font-sans leading-snug">{insights.outcome}</p>
         )}
       </div>
     </div>

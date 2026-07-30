@@ -17,21 +17,26 @@ export default function CaptionOverlay({ stages, activeStageIndex }: CaptionOver
   return (
     <div className="absolute inset-x-0 bottom-0 z-20 pointer-events-none">
       <div className="max-w-7xl mx-auto px-6 md:px-12 pb-10 flex flex-col gap-4">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={stage.id}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.35 }}
-            className="max-w-lg bg-brand-navy-mid/90 border border-brand-orange/40 p-5 shadow-xl backdrop-blur-md"
-          >
-            <h4 className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange mb-2">
-              {stage.title}
-            </h4>
-            <p className="text-white/80 text-sm font-sans leading-relaxed">{stage.description}</p>
-          </motion.div>
-        </AnimatePresence>
+        {/* Desktop only — mobile shows a single compact card (CompanionPanel's
+            CompactPanel) instead, to avoid two competing text sources on a
+            small screen. Stepper below stays visible at every breakpoint. */}
+        <div className="hidden lg:block">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={stage.id}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.35 }}
+              className="max-w-lg bg-brand-navy-mid/90 border border-brand-orange/40 p-5 shadow-xl backdrop-blur-md"
+            >
+              <h4 className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange mb-2">
+                {stage.title}
+              </h4>
+              <p className="text-white/80 text-sm font-sans leading-relaxed">{stage.description}</p>
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
         <div className="flex items-center gap-2">
           {stages.map((s, i) => (
