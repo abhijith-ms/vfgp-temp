@@ -1,52 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import HandLayupLayerStack from "./HandLayupLayerStack";
+import { ChevronDown } from "lucide-react";
 
-const layerDescriptions: { title: string; desc: string }[] = [
-  {
-    title: "Mold Surface & Release Agent",
-    desc: "The polished mold surface is cleaned and treated with a release agent (wax or PVA), forming the base against which every subsequent layer is built.",
-  },
-  {
-    title: "Gel Coat",
-    desc: "A pigmented, UV- and corrosion-resistant resin layer sprayed directly onto the mold surface, forming the finished part's outer skin.",
-  },
-  {
-    title: "Surface Mat",
-    desc: "A thin continuous-strand glass veil laid over the gel coat, creating a smooth, resin-rich barrier that prevents fiber print-through.",
-  },
-  {
-    title: "Chopped Strand Mat",
-    desc: "Non-directional glass fibers hand-laid and rolled with resin, adding bulk thickness and isotropic strength through the laminate.",
-  },
-  {
-    title: "Woven Roving",
-    desc: "Heavy bidirectional fiberglass cloth positioned for high tensile and impact strength along the part's primary structural axes.",
-  },
-  {
-    title: "Back Coat & Final Cure",
-    desc: "A sealing resin layer locks in the laminate stack, which then cures at room temperature until fully hardened and ready for demolding.",
-  },
-];
-
-// Short quick-glance names for the per-layer hover tag on the 3D diagram itself
-// (the fuller titles/descriptions above stay in the shared caption card).
-const layerShortLabels = [
-  "Mold Surface",
-  "Gel Coat",
-  "Surface Mat",
-  "Chopped Strand Mat",
-  "Woven Roving",
-  "Back Coat",
-];
+const OCTAGON_CLIP =
+  "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)";
 
 export default function HeroSection() {
-  const [activeStageIndex, setActiveStageIndex] = useState<number | null>(null);
-  const [introDone, setIntroDone] = useState(false);
-
   return (
     <section className="relative min-h-[95vh] w-full flex items-center bg-[#0a1628] overflow-hidden">
       {/* Background Grids & Patterns */}
@@ -103,53 +63,34 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Right Content - Interactive 3D (5 Columns) */}
+        {/* Right Content - Static brand visual + scroll cue (5 Columns) */}
         <div className="lg:col-span-5 flex flex-col justify-center items-center relative min-h-[560px]">
           <h3 className="font-cond font-bold text-white/70 text-xs sm:text-sm uppercase tracking-[0.25em] mb-4">
             Hand Lay-Up <span className="text-brand-orange">Method</span>
           </h3>
 
-          {/* Animated CSS-3D hand lay-up layer stack */}
-          <div className="w-full max-w-lg aspect-square" aria-label="Hand Lay-Up Layer Build-Up Diagram">
-            <HandLayupLayerStack
-              onStageChange={setActiveStageIndex}
-              onIntroComplete={() => setIntroDone(true)}
-              layerLabels={layerShortLabels}
+          {/* Static nested-octagon badge — the full build-up story now lives
+              in the scroll-driven section directly below the hero. */}
+          <div className="relative w-56 h-56 sm:w-72 sm:h-72" aria-hidden="true">
+            <div
+              className="absolute inset-0 shadow-[0_10px_18px_rgba(0,0,0,0.35)] border border-white/10"
+              style={{ backgroundColor: "#f47c20", clipPath: OCTAGON_CLIP }}
+            />
+            <div
+              className="absolute inset-6 sm:inset-8 border border-white/10"
+              style={{ backgroundColor: "#0a1628", clipPath: OCTAGON_CLIP }}
+            />
+            <div
+              className="absolute inset-12 sm:inset-16 border border-brand-orange/30"
+              style={{ backgroundColor: "#112240", clipPath: OCTAGON_CLIP }}
             />
           </div>
 
-          {/* Info Card synced to the build-up animation */}
-          <div className="absolute bottom-2 left-6 right-6 z-20 pointer-events-none">
-            <AnimatePresence mode="wait">
-              {activeStageIndex !== null ? (
-                <motion.div
-                  key={activeStageIndex}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="bg-brand-navy-mid/95 border border-brand-orange/40 p-4 shadow-xl backdrop-blur-md"
-                >
-                  <h4 className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange mb-1">
-                    {layerDescriptions[activeStageIndex].title}
-                  </h4>
-                  <p className="text-white/80 text-[11px] font-sans leading-relaxed">
-                    {layerDescriptions[activeStageIndex].desc}
-                  </p>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="default"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="bg-brand-navy-mid/45 border border-white/5 p-4 text-center backdrop-blur-sm"
-                >
-                  <p className="text-white/40 text-[10px] uppercase font-mono tracking-widest leading-relaxed">
-                    {introDone ? "[ Drag to rotate — hover a layer to inspect ]" : "[ Building hand lay-up laminate stack ]"}
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
+          <div className="mt-10 flex flex-col items-center gap-2">
+            <span className="text-white/50 text-[10px] uppercase font-mono tracking-widest">
+              See how it&apos;s made
+            </span>
+            <ChevronDown className="w-4 h-4 text-brand-orange animate-bounce" />
           </div>
         </div>
       </div>

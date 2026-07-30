@@ -254,12 +254,8 @@ export default function HandLayupLayerStack({ onStageChange, onIntroComplete, la
     <div ref={containerRef} className="w-full h-full flex items-center justify-center [perspective:1200px]">
       <div
         ref={groupRef}
-        className="relative w-56 h-56 sm:w-72 sm:h-72 [transform-style:preserve-3d] cursor-grab active:cursor-grabbing"
+        className="relative w-56 h-56 sm:w-72 sm:h-72 [transform-style:preserve-3d]"
         style={{ transform: "rotateX(55deg)" }}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={endDrag}
-        onPointerCancel={endDrag}
         onPointerEnter={handleGroupEnter}
         onPointerLeave={handleGroupLeave}
       >
@@ -270,18 +266,25 @@ export default function HandLayupLayerStack({ onStageChange, onIntroComplete, la
               layerRefs.current[i] = el;
             }}
             className="absolute inset-0 [transform-style:preserve-3d]"
-            onPointerEnter={() => handleLayerEnter(i)}
-            onPointerLeave={() => handleLayerLeave(i)}
           >
             {/* Clipped octagon surface — kept separate from the label below so the
                 label (anchored outside this box via left-full) never gets clipped
-                along with it. */}
+                along with it. Drag + hover handlers live here (not on the unclipped
+                wrapper above) so clip-path's native hit-testing constrains both to
+                the actual visible shape, not the full square bounding box — you
+                can't drag or trigger a hover on the empty background/corners. */}
             <div
-              className="absolute inset-0 shadow-[0_10px_18px_rgba(0,0,0,0.35)] border border-white/10"
+              className="absolute inset-0 shadow-[0_10px_18px_rgba(0,0,0,0.35)] border border-white/10 cursor-grab active:cursor-grabbing"
               style={{
                 backgroundColor: color,
                 clipPath: OCTAGON_CLIP,
               }}
+              onPointerDown={handlePointerDown}
+              onPointerMove={handlePointerMove}
+              onPointerUp={endDrag}
+              onPointerCancel={endDrag}
+              onPointerEnter={() => handleLayerEnter(i)}
+              onPointerLeave={() => handleLayerLeave(i)}
             />
             <div
               ref={(el) => {
