@@ -64,7 +64,12 @@ function ProcessStoryPinned({ process, onCanvasError }: ProcessStoryPinnedProps)
       className="relative w-full bg-brand-navy"
       style={{ height: `${process.stages.length * 100}vh` }}
     >
-      <div ref={pinRef} className="relative w-full h-screen overflow-hidden">
+      {/* h-[100dvh], not h-screen (100vh): on mobile, 100vh resolves against
+          the browser's maximum viewport (as if the address bar were hidden),
+          not what's actually visible — pushing bottom-anchored overlay
+          content below the real, currently-visible area. 100dvh tracks the
+          actual visible viewport as the toolbar shows/hides. */}
+      <div ref={pinRef} className="relative w-full h-[100dvh] overflow-hidden">
         <CanvasErrorBoundary onError={onCanvasError}>
           <ProcessCanvas process={process} progressRef={progressRef} />
         </CanvasErrorBoundary>
