@@ -12,22 +12,39 @@ interface CameraRigProps {
 
 const tmpPosition = new THREE.Vector3();
 const tmpTarget = new THREE.Vector3();
+const tmpOffset = new THREE.Vector3();
 
 // Camera keyframes (position/target/fov) were authored and verified against
-// a wide desktop viewport (~2.0 aspect). On a narrow portrait phone (~0.46
-// aspect), the same distance/target crops the scene hard: three.js
-// PerspectiveCamera.fov is the *vertical* FOV, so horizontal FOV shrinks
-// sharply as aspect narrows, while the octagon "layer" objects are wide
-// relative to their height. Rather than widening FOV to compensate (which
-// introduces fisheye-like distortion at the extremes this would require),
-// pull the camera back along its own view direction on narrower-than-
-// reference viewports so more of the object's width fits in frame.
+// a wide desktop viewport. On a narrow portrait phone, the same distance/
+// target crops the scene hard: three.js PerspectiveCamera.fov is the
+// *vertical* FOV, so horizontal FOV shrinks sharply as aspect narrows, while
+// the octagon "layer" objects are wide relative to their height. Rather than
+// widening FOV to compensate (which introduces fisheye-like distortion at
+// the extremes this would require), pull the camera back along its own view
+// direction on narrower-than-reference viewports so more of the object's
+// width fits in frame.
+//
+// REFERENCE_ASPECT is calibrated to a realistic desktop window (~16:9), not
+// an idealized wide one — using too wide a reference (e.g. 2.0, based on an
+// unusually wide test window) makes compensation quietly fire on completely
+// normal desktop windows too, which compounds badly with stages whose
+// authored camera is already far (see MAX_CAMERA_DISTANCE below).
+//
 // COMPENSATION_STRENGTH is a deliberately provisional tuning knob — 1.0
 // would fully preserve horizontal framing but shrinks the object a lot on
 // very narrow phones; this is a moderate default pending real-device
 // feedback (this environment can't verify true mobile viewports directly).
-const REFERENCE_ASPECT = 2.0;
+//
+// MAX_CAMERA_DISTANCE exists because compensation scales distance
+// *proportionally* — a stage authored farther away to begin with (e.g. the
+// "reveal" pull-back hero shot, ~2x the distance of most other stages) ends
+// up disproportionately farther after the same multiplier, shrinking it far
+// more than closer stages. Clamping the final distance keeps every stage in
+// a broadly similar, comfortably-visible size range on narrow screens,
+// instead of preserving each stage's exact relative distance.
+const REFERENCE_ASPECT = 16 / 9;
 const COMPENSATION_STRENGTH = 0.6;
+const MAX_CAMERA_DISTANCE = 12;
 
 // Generic over stage count — reads live scroll progress and lerps the camera
 // between the two nearest stages' keyframes. No hand-lay-up-specific logic.
@@ -61,7 +78,10 @@ export default function CameraRig({ stages, progressRef }: CameraRigProps) {
     if (aspect < REFERENCE_ASPECT) {
       const fullCompensation = REFERENCE_ASPECT / aspect;
       const distanceScale = 1 + (fullCompensation - 1) * COMPENSATION_STRENGTH;
-      tmpPosition.sub(tmpTarget).multiplyScalar(distanceScale).add(tmpTarget);
+      tmpOffset.copy(tmpPosition).sub(tmpTarget);
+      const clampedDistance = Math.min(tmpOffset.length() * distanceScale, MAX_CAMERA_DISTANCE);
+      tmpOffset.setLength(clampedDistance);
+      tmpPosition.copy(tmpTarget).add(tmpOffset);
     }
 
     camera.position.copy(tmpPosition);
