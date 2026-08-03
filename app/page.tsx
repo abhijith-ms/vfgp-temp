@@ -3,6 +3,7 @@
 import HeroSction from "./components/HomeComponents/HeroSction";
 import FeatureBar from "./components/HomeComponents/FeatureBar";
 import ProcessStorySection from "./components/HomeComponents/ProcessStory/ProcessStorySection";
+import ProcessOverviewBanner from "./components/HomeComponents/ProcessStory/ProcessOverviewBanner";
 import { handLayupProcess } from "./components/HomeComponents/ProcessStory/processes/handLayup";
 import { FRPTankSVG, FRPDuctSVG, FRPProfileSVG, FRPGratingPanelSVG } from "./components/BackgroundDrawings";
 import Image from "next/image";
@@ -240,7 +241,10 @@ export default function Home() {
       {/* ── HERO SECTION ─────────────────────────────────────────────── */}
       <HeroSction />
 
-      {/* ── PROCESS STORY (scroll-driven 3D hand lay-up story) ──────────── */}
+      {/* ── PROCESS OVERVIEW BANNER (static 7-step + benefits summary) ──── */}
+      <ProcessOverviewBanner process={handLayupProcess} />
+
+      {/* ── PROCESS STORY (scroll-driven illustrated hand lay-up story) ── */}
       <ProcessStorySection process={handLayupProcess} />
 
       {/* ── FEATURE BAR ──────────────────────────────────────────────── */}

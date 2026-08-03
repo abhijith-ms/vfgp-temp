@@ -29,6 +29,20 @@ export interface CameraKeyframe {
   fov: number;
 }
 
+/** Subtle, continuous per-stage camera motion applied around a stage's own
+ *  base `camera` keyframe while that stage is active. Each stage's GLB is
+ *  its own independent coordinate space (not one shared scene), so this is
+ *  deliberately scoped to a single stage rather than a cross-stage lerp
+ *  path — see ProcessModelViewer.tsx. */
+export interface CameraMotion {
+  type: "orbit" | "pushIn";
+  /** Seconds for one full oscillation cycle. Keep large (14-30s) for subtlety. */
+  periodSeconds: number;
+  /** "orbit": max azimuth swing in degrees each side of the base position.
+   *  "pushIn": max fractional distance change each side of the base radius. */
+  amplitude: number;
+}
+
 export interface StageInsights {
   /** Registry key resolved by the companion panel's illustration lookup —
    *  never a literal SVG/JSX/path, so swapping the diagram style or later
@@ -56,6 +70,22 @@ export interface ProcessStage {
   title: string;
   description: string;
   camera: CameraKeyframe;
+  /** Subtle idle motion around `camera` while this stage is the active one. */
+  cameraMotion: CameraMotion;
+  /** Path under /public to this stage's GLB, e.g. "/3d/gel-coat.glb" — the
+   *  pinned story's primary 3D hero visual (ProcessModelViewer.tsx). Each
+   *  file is its own independent coordinate space/shot, generated
+   *  independently — no shared pedestal or scale across stages. */
+  modelUrl: string;
+  /** Optional per-model orientation correction (radians, [x,y,z]). These
+   *  GLBs are trimesh exports from arbitrary point-cloud scans with no
+   *  guaranteed Y-up convention — use this to correct orientation instead of
+   *  fighting it with camera position. Calibrated per stage in-browser. */
+  modelRotation?: [number, number, number];
+  /** Legacy field, retained only so the orphaned ProcessCanvas.tsx /
+   *  SceneObjectMesh.tsx (kept on disk, unused, per standing no-preemptive-
+   *  deletion rule) still typecheck. Always [] for GLB-backed stages — do
+   *  not populate for new content. */
   objects: SceneObject[];
   /** Optional supplementary insights for the companion panel. Absent for
    *  camera-only narrative beats (e.g. "mold-surface", "reveal") — the panel
@@ -67,12 +97,32 @@ export interface ProcessStage {
    *  while richer stages get more scroll time, without assuming every stage
    *  occupies equal scroll length. */
   scrollWeight?: number;
+  /** Registry key for this stage's hero illustration (flat SVG) — used only
+   *  by ProcessStoryFallback.tsx's reduced-motion path now that the pinned
+   *  story's primary visual is the GLB model above. Resolved via
+   *  illustrations/hero's registry — never imported directly. */
+  heroIllustrationId: string;
+  /** Explicit per-stage accent color for ProcessStoryFallback's accent bar
+   *  (and the default for insights.highlightColor when unset). Replaces the
+   *  old implicit signal via objects[0].color, which no longer carries real
+   *  data now that objects is always []. */
+  accentColor: string;
+}
+
+export interface ProductBenefit {
+  /** lucide-react icon component name, e.g. "Feather", "Shield". */
+  icon: string;
+  label: string;
 }
 
 export interface ProcessDefinition {
   id: string;
   label: string;
   stages: ProcessStage[];
+  /** Whole-process benefit summary (e.g. Lightweight, High Strength) for the
+   *  static overview banner — distinct from StageInsights.keyBenefits, which
+   *  are per-stage. Optional: a process without banner content simply omits it. */
+  productBenefits?: ProductBenefit[];
 }
 
 /** Cumulative weighted stage boundaries as fractions of total progress
