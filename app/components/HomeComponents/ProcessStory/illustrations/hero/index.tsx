@@ -42,7 +42,7 @@ function Tray({ topColor = TRAY_TOP_COLOR }: { topColor?: string }) {
 }
 
 // Inset material patch approximating the tray's interior footprint.
-function MaterialPatch({ color, inset = 24 }: { color: string; inset?: number }) {
+function MaterialPatch({ color, inset = 24, opacity = 0.94 }: { color: string; inset?: number; opacity?: number }) {
   return (
     <rect
       x={100 + inset}
@@ -51,7 +51,7 @@ function MaterialPatch({ color, inset = 24 }: { color: string; inset?: number })
       height={160 - inset * 1.44}
       rx="12"
       fill={color}
-      opacity="0.94"
+      opacity={opacity}
     />
   );
 }
@@ -89,11 +89,21 @@ function Roller() {
   );
 }
 
-function Brush() {
+// Gel coat is sprayed, not brushed (see ApplyGelCoatIllustration/insights.tools
+// = "Spray Gun") — mist droplets tinted the same orange as the gel coat
+// material patch tie the tool directly to what it's applying.
+function SprayGun() {
   return (
     <>
       <rect x="-90" y="-5" width="58" height="10" rx="5" fill={TOOL_NEUTRAL_SHADE} />
-      <path d="M -38 -10 L -18 -14 L -14 10 L -38 8 Z" fill="#8b5e34" />
+      <rect x="-40" y="-12" width="24" height="20" rx="4" fill={TOOL_NEUTRAL} />
+      <rect x="-20" y="-6" width="14" height="8" rx="2" fill={TOOL_NEUTRAL_SHADE} />
+      <g opacity="0.6">
+        <circle cx="-2" cy="-10" r="2" fill="#f47c20" />
+        <circle cx="6" cy="-2" r="1.6" fill="#f47c20" />
+        <circle cx="-2" cy="6" r="1.8" fill="#f47c20" />
+        <circle cx="8" cy="8" r="1.4" fill="#f47c20" />
+      </g>
     </>
   );
 }
@@ -130,20 +140,33 @@ export function ApplyGelCoatIllustration({ className }: IllustrationProps) {
       <Tray />
       <MaterialPatch color="#f47c20" />
       <GlovedHand>
-        <Brush />
+        <SprayGun />
       </GlovedHand>
     </Scene>
   );
 }
 
+// Surface mat is a thin, resin-rich glass veil laid *over* the gel coat, not
+// a differently-pigmented layer — rendered as the same gel-coat orange with
+// a translucent cream veil on top (rather than the previous solid #ff9a45,
+// which read as nearly the same color as Gel Coat's #f47c20 at icon size).
 export function PlaceSurfaceMatIllustration({ className }: IllustrationProps) {
   return (
     <Scene className={className}>
       <Tray />
-      <MaterialPatch color="#ff9a45" />
-      <path d="M 210 108 Q 230 100 250 112 L 246 132 Q 226 122 214 128 Z" fill="#ffb877" opacity="0.9" />
+      <MaterialPatch color="#f47c20" />
+      <MaterialPatch color="#fdf6ec" opacity={0.5} />
+      <g opacity="0.4" stroke="#c9ad8a" strokeWidth="1">
+        <line x1="120" y1="110" x2="120" y2="230" />
+        <line x1="150" y1="105" x2="150" y2="235" />
+        <line x1="180" y1="102" x2="180" y2="238" />
+        <line x1="210" y1="102" x2="210" y2="238" />
+        <line x1="240" y1="105" x2="240" y2="235" />
+        <line x1="270" y1="110" x2="270" y2="230" />
+      </g>
+      <path d="M 210 108 Q 230 100 250 112 L 246 132 Q 226 122 214 128 Z" fill="#fdf6ec" opacity="0.85" />
       <GlovedHand>
-        <path d="M -84 -18 L -40 -22 L -36 6 L -80 8 Z" fill="#ffb877" opacity="0.9" />
+        <path d="M -84 -18 L -40 -22 L -36 6 L -80 8 Z" fill="#fdf6ec" opacity="0.85" />
       </GlovedHand>
     </Scene>
   );
