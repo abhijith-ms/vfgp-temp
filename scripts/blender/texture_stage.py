@@ -47,12 +47,31 @@ def srgb_to_linear(c):
 # and must be mutually exclusive/exhaustive across all of a stage's regions.
 CONFIGS = {
     "mold-prep": {
-        "base_color_srgb": (0.29, 0.32, 0.36),  # ~#4a5568
-        "roughness": 0.30,
-        "metallic": 0.12,
-        "clearcoat": 0.25,
-        "clearcoat_roughness": 0.15,
+        # Two-region split (no hand in this stage's GLB): threshold found via
+        # the Z-histogram, not just eyeballing a gradient render - a sharp
+        # density spike at z~0.004 (the base plate's flat top surface) with
+        # the raised mold block's walls climbing steadily above it. z=0.05
+        # (just above that spike) cleanly separates the precision mold tool
+        # block (cavity + walls) from the flatter backing/mounting plate it
+        # sits on - two genuinely different real materials/finishes.
+        "metallic": 0.1,
+        "clearcoat": 0.2,
+        "clearcoat_roughness": 0.18,
         "detail": "polished",
+        "regions": [
+            {
+                "name": "mold",
+                "predicate": lambda x, y, z: z >= 0.05,
+                "base_color_srgb": (0.29, 0.32, 0.36),  # ~#4a5568, same as before
+                "roughness": 0.30,
+            },
+            {
+                "name": "base-plate",
+                "predicate": lambda x, y, z: z < 0.05,
+                "base_color_srgb": (0.42, 0.40, 0.38),  # warmer, duller backing plate
+                "roughness": 0.55,
+            },
+        ],
     },
     "gel-coat": {
         # Two-region pilot: threshold calibrated by rendering the stage with
@@ -84,20 +103,57 @@ CONFIGS = {
         ],
     },
     "fiberglass-layup": {
-        "base_color_srgb": (1.0, 0.76, 0.41),  # ~#ffc169
-        "roughness": 0.45,
+        # Two-region split: tried a 3-way (loose sheets / tray+veil / roller
+        # tool) first, but the roller and the veil sheet it's applying sit at
+        # near-identical heights (a roller pressed flat against a taut
+        # sheet), so that boundary never read cleanly - same category of
+        # limitation as gel-coat's brush. Simplified to 2 regions along a
+        # boundary that both reads cleanly AND is physically meaningful:
+        # loose dry mat on the ground (z < -0.55, a sharp density spike in
+        # the Z-histogram - a flat sheet lying on the floor) vs. everything
+        # already wet with resin (tray + roller + veil, z >= -0.55).
         "metallic": 0.0,
         "clearcoat": 0.25,
         "clearcoat_roughness": 0.3,
         "detail": "weave_fine",
+        "regions": [
+            {
+                "name": "loose-sheets",
+                "predicate": lambda x, y, z: z < -0.55,
+                "base_color_srgb": (0.92, 0.90, 0.83),  # dry, pale chopped-strand mat
+                "roughness": 0.65,
+            },
+            {
+                "name": "wet-layup",
+                "predicate": lambda x, y, z: z >= -0.55,
+                "base_color_srgb": (1.0, 0.76, 0.41),  # ~#ffc169, same as before
+                "roughness": 0.45,
+            },
+        ],
     },
     "structural-cure": {
-        "base_color_srgb": (0.10, 0.23, 0.42),  # #1a3a6b
-        "roughness": 0.35,
+        # Two-region split: z >= 0.35 isolates just the roller's handle/grip
+        # (the tool a hand actually holds) from the tray + wet roving + pot -
+        # same "handle reads cleanly, the rest doesn't cleanly subdivide
+        # further" pattern as gel-coat/fiberglass-layup.
         "metallic": 0.0,
         "clearcoat": 0.4,
         "clearcoat_roughness": 0.2,
         "detail": "weave_heavy",
+        "regions": [
+            {
+                "name": "handle",
+                "predicate": lambda x, y, z: z >= 0.35,
+                "base_color_srgb": (0.15, 0.15, 0.16),  # matte dark plastic grip
+                "roughness": 0.5,
+            },
+            {
+                "name": "resin-tray",
+                "predicate": lambda x, y, z: z < 0.35,
+                "base_color_srgb": (0.10, 0.23, 0.42),  # #1a3a6b, same as before
+                "roughness": 0.35,
+            },
+        ],
     },
     "reveal": {
         "base_color_srgb": (0.067, 0.133, 0.251),  # #112240
