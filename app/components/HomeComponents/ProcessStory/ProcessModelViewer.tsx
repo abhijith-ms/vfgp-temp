@@ -48,10 +48,12 @@ export default function ProcessModelViewer({ stages, activeStageIndex }: Process
         />
         <CameraDirector stages={stages} activeStageIndex={activeStageIndex} />
 
-        {/* Four-light product-photography rig (tuned in-browser against the
-            actual neutral-gray geometry, not guessed): key for primary form
-            reveal, fill to lift shadows, a brand-orange rim for a premium
-            backlit edge, and a soft ground-bounce mimicking a studio table. */}
+        {/* Four-light product-photography rig (originally tuned in-browser
+            against flat neutral-gray placeholder geometry, now shared across
+            each stage's own Blender-authored PBR material): key for primary
+            form reveal, fill to lift shadows, a brand-orange rim for a
+            premium backlit edge, and a soft ground-bounce mimicking a
+            studio table. */}
         <ambientLight color="#3a5a8b" intensity={0.5} />
         <directionalLight color="#ffffff" intensity={3.4} position={[2.6, 5, 3.2]} />
         <directionalLight color="#8fb4e8" intensity={1.1} position={[-3.2, 2, -1.2]} />
@@ -139,6 +141,9 @@ function CameraDirector({ stages, activeStageIndex }: CameraDirectorProps) {
 
     tmpDesiredPos.copy(tmpBaseTarget).add(tmpOffset);
 
+    // Imperative mutation of the r3f-provided camera is the standard,
+    // required pattern inside useFrame — not a real immutability bug.
+    // eslint-disable-next-line react-hooks/immutability
     camera.position.x = THREE.MathUtils.damp(camera.position.x, tmpDesiredPos.x, CAMERA_DAMP_LAMBDA, delta);
     camera.position.y = THREE.MathUtils.damp(camera.position.y, tmpDesiredPos.y, CAMERA_DAMP_LAMBDA, delta);
     camera.position.z = THREE.MathUtils.damp(camera.position.z, tmpDesiredPos.z, CAMERA_DAMP_LAMBDA, delta);
@@ -178,25 +183,28 @@ const OPACITY_DAMP_LAMBDA = 6;
 function StageModel({ stage, index, activeStageIndex }: StageModelProps) {
   const { scene } = useGLTF(stage.modelUrl);
   const groupRef = useRef<THREE.Group>(null);
-  const materialRef = useRef<THREE.MeshPhysicalMaterial>(null);
   const opacityRef = useRef(index === activeStageIndex ? 1 : 0);
   const baseRotation = stage.modelRotation ?? [0, 0, 0];
 
-  // These GLBs have only a POSITION attribute (trimesh exports from arbitrary
-  // point-cloud scans) — no NORMAL, no material. three's GLTFLoader does NOT
-  // auto-generate normals when absent (it only flags its default material
-  // flatShading = true), so smooth lighting requires computing them ourselves,
-  // once, and rendering with our own material rather than the loader's.
-  const geometry = useMemo(() => {
+  // These GLBs are now Blender-authored exports (UV-unwrapped, real NORMAL
+  // attribute, per-stage PBR material with a baked normal map — see
+  // texture_stage.py) rather than the raw POSITION-only trimesh scans this
+  // pipeline started from, so both geometry and material come straight from
+  // the loaded scene. `material` is mutated in place (opacity below) — safe
+  // since each stage's URL, and therefore useGLTF's cache entry, is only
+  // ever rendered by this one StageModel instance.
+  const { geometry, material } = useMemo(() => {
     const meshes: THREE.Mesh[] = [];
     scene.traverse((child) => {
       if ((child as THREE.Mesh).isMesh) meshes.push(child as THREE.Mesh);
     });
-    const found = meshes[0]?.geometry ?? null;
-    if (found && !found.attributes.normal) {
-      found.computeVertexNormals();
+    const found = meshes[0];
+    const mat = found?.material as THREE.MeshStandardMaterial | undefined;
+    if (mat) {
+      mat.transparent = true;
+      mat.opacity = opacityRef.current;
     }
-    return found;
+    return { geometry: found?.geometry ?? null, material: mat ?? null };
   }, [scene]);
 
   useFrame((_state, delta) => {
@@ -219,12 +227,15 @@ function StageModel({ stage, index, activeStageIndex }: StageModelProps) {
         baseRotation[2]
       );
     }
-    if (materialRef.current) {
-      materialRef.current.opacity = progress;
+    if (material) {
+      // Same justified imperative-mutation pattern as the camera above —
+      // this material instance is only ever owned by this one StageModel.
+      // eslint-disable-next-line react-hooks/immutability
+      material.opacity = progress;
     }
   });
 
-  if (!geometry) return null;
+  if (!geometry || !material) return null;
 
   return (
     // dispose={null}: geometry/scene come from useGLTF's shared cache (keyed
@@ -235,18 +246,7 @@ function StageModel({ stage, index, activeStageIndex }: StageModelProps) {
     // which reliably crashed the WebGL context ("Context Lost") in testing.
     <group ref={groupRef} dispose={null}>
       <Center>
-        <mesh geometry={geometry}>
-          <meshPhysicalMaterial
-            ref={materialRef}
-            color="#c7cdd6"
-            roughness={0.5}
-            metalness={0.1}
-            clearcoat={0.15}
-            clearcoatRoughness={0.4}
-            transparent
-            opacity={opacityRef.current}
-          />
-        </mesh>
+        <mesh geometry={geometry} material={material} />
       </Center>
     </group>
   );
