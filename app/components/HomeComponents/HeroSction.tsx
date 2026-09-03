@@ -95,26 +95,12 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Technical stats strip */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 bg-brand-navy-mid/90 border-t border-white/10 backdrop-blur-md hidden sm:block">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-2 lg:grid-cols-4 divide-x divide-white/10">
-          {[
-            { num: "30+", label: "Years Experience" },
-            { num: "ISO", label: "Certified Quality" },
-            { num: "OEM", label: "Automotive Supplier" },
-            { num: "100%", label: "Precision Engineering" },
-          ].map((stat, idx) => (
-            <div key={idx} className="py-4.5 px-6 flex items-center gap-3.5">
-              <span className="font-cond font-black text-brand-orange text-2xl lg:text-3xl leading-none">
-                {stat.num}
-              </span>
-              <span className="font-cond font-bold text-white/50 text-[10px] tracking-widest uppercase leading-tight">
-                {stat.label}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
+      {/* The "30+ Years / ISO / OEM / Precision" facts used to repeat here as
+          a second stats strip on top of FeatureBar.tsx (rendered right after
+          the process story, at every breakpoint including mobile, where this
+          strip was always hidden anyway via `hidden sm:block`) — removed so
+          FeatureBar is the single, consistent source across all screen
+          sizes instead of showing the same four facts twice on desktop. */}
     </section>
   );
 }
