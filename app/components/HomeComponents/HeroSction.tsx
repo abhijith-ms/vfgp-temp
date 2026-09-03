@@ -2,9 +2,7 @@
 
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
-
-const OCTAGON_CLIP =
-  "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)";
+import HeroProcessVisual from "./HeroProcessVisual";
 
 export default function HeroSection() {
   return (
@@ -69,21 +67,11 @@ export default function HeroSection() {
             Hand Lay-Up <span className="text-brand-orange">Method</span>
           </h3>
 
-          {/* Static nested-octagon badge — the full build-up story now lives
-              in the scroll-driven section directly below the hero. */}
-          <div className="relative w-56 h-56 sm:w-72 sm:h-72" aria-hidden="true">
-            <div
-              className="absolute inset-0 shadow-[0_10px_18px_rgba(0,0,0,0.35)] border border-white/10"
-              style={{ backgroundColor: "#f47c20", clipPath: OCTAGON_CLIP }}
-            />
-            <div
-              className="absolute inset-6 sm:inset-8 border border-white/10"
-              style={{ backgroundColor: "#0a1628", clipPath: OCTAGON_CLIP }}
-            />
-            <div
-              className="absolute inset-12 sm:inset-16 border border-brand-orange/30"
-              style={{ backgroundColor: "#112240", clipPath: OCTAGON_CLIP }}
-            />
+          {/* 3D build-up flourish (mirrors the scroll-driven ProcessStory
+              scene) — falls back to the original static octagon badge on
+              reduced motion, WebGL failure, or while the 3D bundle loads. */}
+          <div className="relative w-56 h-56 sm:w-72 sm:h-72 overflow-hidden">
+            <HeroProcessVisual />
           </div>
 
           <div className="mt-10 flex flex-col items-center gap-2">
