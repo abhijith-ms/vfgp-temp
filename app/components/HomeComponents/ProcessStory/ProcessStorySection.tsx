@@ -14,7 +14,13 @@ import StepList from "./StepList";
 
 // WebGL can't SSR, and this keeps three/@react-three/* out of the initial
 // page bundle entirely — it only loads once this section is reached.
-const ProcessModelViewer = dynamic(() => import("./ProcessModelViewer"), {
+// ProcessEngineeringScene (fully procedural "engineering illustration" POC —
+// no GLB at all, currently only "mold-prep"/"gel-coat" have real content)
+// replaces the two earlier GLB-based attempts (photoreal PBR, then a
+// GLB-mold + procedural-hand hybrid) — both ProcessModelViewer.tsx and
+// ProcessTechnicalScene.tsx stay on disk, unused, per the standing
+// no-preemptive-deletion rule, so this is trivially revertible.
+const ProcessModelViewer = dynamic(() => import("./ProcessEngineeringScene"), {
   ssr: false,
   loading: () => <div className="w-full h-full bg-brand-navy" />,
 });

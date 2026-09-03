@@ -226,7 +226,7 @@ export function FinishedPartIllustration({ className }: IllustrationProps) {
     <Scene className={className}>
       <polygon points={TRAY_RIM} fill={TRAY_RIM_COLOR} />
       <polygon points={TRAY_TOP} fill="#112240" stroke="#1e2530" strokeWidth="1.5" />
-      <polygon points="172,102 228,102 276,140 276,146 224,108 176,108 124,146 124,140 Z" fill="#f47c20" opacity="0.85" />
+      <polygon points="172,102 228,102 276,140 276,146 224,108 176,108 124,146 124,140" fill="#f47c20" opacity="0.85" />
       <Sparkle x={215} y={135} size={7} />
       <Sparkle x={165} y={165} size={5} />
     </Scene>

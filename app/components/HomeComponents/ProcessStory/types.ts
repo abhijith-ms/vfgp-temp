@@ -107,6 +107,12 @@ export interface ProcessStage {
    *  old implicit signal via objects[0].color, which no longer carries real
    *  data now that objects is always []. */
   accentColor: string;
+  /** Multiplier (default 1) on ProcessModelViewer's fill/ambient/ground-bounce
+   *  lights only — never the key or rim light — while this stage is active.
+   *  Lifts shadow/midtone legibility on stages whose baked material reads too
+   *  dark/uniform under the shared rig, without blowing out the directional
+   *  modeling or highlights that light provides. */
+  lightBoost?: number;
 }
 
 export interface ProductBenefit {

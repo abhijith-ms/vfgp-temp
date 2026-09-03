@@ -27,7 +27,11 @@ export default function CaptionOverlay({ stages, activeStageIndex }: CaptionOver
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.35 }}
-            className="max-w-lg bg-brand-navy-mid/90 border border-brand-orange/40 p-5 shadow-xl backdrop-blur-md"
+            // min-h sized to the tallest description among the 5 stages (3
+            // lines, e.g. fiberglass-layup) so the card's top edge stays put
+            // across stage changes instead of hopping with shorter ones (e.g.
+            // reveal's 2-line description).
+            className="max-w-lg min-h-[130px] bg-brand-navy-mid/90 border border-brand-orange/40 p-5 shadow-xl backdrop-blur-md"
           >
             <h4 className="font-cond font-bold text-xs uppercase tracking-widest text-brand-orange mb-2">
               {stage.title}

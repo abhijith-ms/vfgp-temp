@@ -241,11 +241,16 @@ export default function Home() {
       {/* ── HERO SECTION ─────────────────────────────────────────────── */}
       <HeroSction />
 
-      {/* ── PROCESS OVERVIEW BANNER (static 7-step + benefits summary) ──── */}
+      {/* ── PROCESS OVERVIEW BANNER (methodology at a glance + benefits summary) ──── */}
       <ProcessOverviewBanner process={handLayupProcess} />
 
       {/* ── PROCESS STORY (scroll-driven illustrated hand lay-up story) ── */}
       <ProcessStorySection process={handLayupProcess} />
+
+      {/* Small static buffer so Stage 5's calm navy payoff doesn't cut
+          straight into the next section's bright background with zero
+          transition — no animation, just a short gradient. */}
+      <div className="h-8 md:h-10 w-full bg-gradient-to-b from-brand-navy to-transparent" aria-hidden="true" />
 
       {/* ── FEATURE BAR ──────────────────────────────────────────────── */}
       <div className="hidden md:block">

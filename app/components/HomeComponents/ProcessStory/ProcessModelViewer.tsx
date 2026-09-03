@@ -53,18 +53,76 @@ export default function ProcessModelViewer({ stages, activeStageIndex }: Process
             each stage's own Blender-authored PBR material): key for primary
             form reveal, fill to lift shadows, a brand-orange rim for a
             premium backlit edge, and a soft ground-bounce mimicking a
-            studio table. */}
-        <ambientLight color="#3a5a8b" intensity={0.5} />
+            studio table. Key and rim stay fixed across stages (they define
+            the directional modeling/highlights); ambient/fill/ground are
+            handled by FillLights below, which damps them toward the active
+            stage's own lightBoost. */}
         <directionalLight color="#ffffff" intensity={3.4} position={[2.6, 5, 3.2]} />
-        <directionalLight color="#8fb4e8" intensity={1.1} position={[-3.2, 2, -1.2]} />
         <directionalLight color="#f47c20" intensity={2.6} position={[-1.5, 1.8, -3.5]} />
-        <directionalLight color="#cbd5e1" intensity={0.5} position={[0, -2.2, 1.5]} />
+        <FillLights stages={stages} activeStageIndex={activeStageIndex} />
 
         {stages.map((stage, index) => (
           <StageModel key={stage.id} stage={stage} index={index} activeStageIndex={activeStageIndex} />
         ))}
       </Canvas>
     </div>
+  );
+}
+
+const LIGHT_DAMP_LAMBDA = 4;
+const AMBIENT_BASE_INTENSITY = 0.5;
+const FILL_BASE_INTENSITY = 1.1;
+const GROUND_BASE_INTENSITY = 0.5;
+
+interface FillLightsProps {
+  stages: ProcessStage[];
+  activeStageIndex: number;
+}
+
+// Damps the ambient/fill/ground-bounce lights toward the active stage's own
+// `lightBoost` multiplier (default 1) — never the key or rim light above,
+// which define directional modeling/highlights and should stay stage-
+// independent. Damped (not snapped) so a stage change with a different boost
+// eases rather than pops, matching CameraDirector's own damping pattern.
+function FillLights({ stages, activeStageIndex }: FillLightsProps) {
+  const ambientRef = useRef<THREE.AmbientLight>(null);
+  const fillRef = useRef<THREE.DirectionalLight>(null);
+  const groundRef = useRef<THREE.DirectionalLight>(null);
+
+  useFrame((_state, delta) => {
+    const boost = stages[activeStageIndex]?.lightBoost ?? 1;
+    if (ambientRef.current) {
+      ambientRef.current.intensity = THREE.MathUtils.damp(
+        ambientRef.current.intensity,
+        AMBIENT_BASE_INTENSITY * boost,
+        LIGHT_DAMP_LAMBDA,
+        delta
+      );
+    }
+    if (fillRef.current) {
+      fillRef.current.intensity = THREE.MathUtils.damp(
+        fillRef.current.intensity,
+        FILL_BASE_INTENSITY * boost,
+        LIGHT_DAMP_LAMBDA,
+        delta
+      );
+    }
+    if (groundRef.current) {
+      groundRef.current.intensity = THREE.MathUtils.damp(
+        groundRef.current.intensity,
+        GROUND_BASE_INTENSITY * boost,
+        LIGHT_DAMP_LAMBDA,
+        delta
+      );
+    }
+  });
+
+  return (
+    <>
+      <ambientLight ref={ambientRef} color="#3a5a8b" intensity={AMBIENT_BASE_INTENSITY} />
+      <directionalLight ref={fillRef} color="#8fb4e8" intensity={FILL_BASE_INTENSITY} position={[-3.2, 2, -1.2]} />
+      <directionalLight ref={groundRef} color="#cbd5e1" intensity={GROUND_BASE_INTENSITY} position={[0, -2.2, 1.5]} />
+    </>
   );
 }
 

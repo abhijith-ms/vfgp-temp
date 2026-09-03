@@ -55,7 +55,9 @@ interface StageHeader {
 export default function CompanionPanel({ stages, activeStageIndex }: CompanionPanelProps) {
   const stage = stages[activeStageIndex];
   const insights = stage.insights;
-  const header: StageHeader = { stageIndex: activeStageIndex, totalStages: stages.length, title: stage.title };
+  // 1-indexed for display ("Stage 01 / 5", not "Stage 00 / 4") — the single
+  // source both DesktopPanel and CompactPanel read from.
+  const header: StageHeader = { stageIndex: activeStageIndex + 1, totalStages: stages.length, title: stage.title };
 
   return (
     <>
@@ -95,13 +97,13 @@ function DesktopPanel({
               className="absolute inset-0 flex items-center px-8 py-10"
             >
               <div className="w-full">
-                <motion.div variants={itemVariants}>
+                {/* Title itself lives in CaptionOverlay (bottom-left) on this
+                    breakpoint — showing it here too duplicated the exact same
+                    heading in two corners of the screen at once. Eyebrow only. */}
+                <motion.div variants={itemVariants} className="mb-4">
                   <span className="font-mono text-[10px] uppercase tracking-widest text-white/50">
-                    Stage {String(header.stageIndex).padStart(2, "0")} / {header.totalStages - 1}
+                    Stage {String(header.stageIndex).padStart(2, "0")} / {header.totalStages}
                   </span>
-                  <h4 className="font-cond font-black text-xl uppercase tracking-wide text-white mt-1 mb-4">
-                    {header.title}
-                  </h4>
                 </motion.div>
 
                 {Illustration && (
@@ -171,7 +173,7 @@ function CompactPanel({ header, insights }: { header: StageHeader; insights?: St
     <div className="lg:hidden absolute inset-x-0 bottom-16 z-20 pointer-events-none px-4">
       <div className="max-w-sm mx-auto max-h-[28vh] overflow-hidden bg-brand-navy-mid/90 border border-brand-orange/30 px-4 py-2.5 backdrop-blur-md">
         <span className="font-mono text-[9px] uppercase tracking-widest text-white/50">
-          Stage {String(header.stageIndex).padStart(2, "0")} / {header.totalStages - 1}
+          Stage {String(header.stageIndex).padStart(2, "0")} / {header.totalStages}
         </span>
         <h4 className="font-cond font-black text-sm uppercase tracking-wide text-white mt-0 mb-1">
           {header.title}

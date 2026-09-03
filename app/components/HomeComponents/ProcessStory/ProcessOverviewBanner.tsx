@@ -54,8 +54,11 @@ export default function ProcessOverviewBanner({ process }: ProcessOverviewBanner
             Hand Lay-Up <span className="text-brand-orange">Process</span>
           </h2>
           <div className="h-1 bg-brand-navy w-16 mx-auto mt-4" />
+          {/* No longer claims a specific step count ("seven-step") — this
+              grid is a high-level look at the methodology, not a competing
+              numbered sequence next to the 5-stage walkthrough below. */}
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed mt-4 max-w-lg mx-auto font-sans">
-            Every FRP component we build follows the same seven-step, hand-built discipline — from bare mold to finished part.
+            Every FRP component we build follows the same hand-built discipline — from bare mold to finished part.
           </p>
         </motion.div>
 
@@ -66,14 +69,14 @@ export default function ProcessOverviewBanner({ process }: ProcessOverviewBanner
           variants={staggerContainer}
           className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-6 mb-16"
         >
-          {OVERVIEW_STEPS.map((step, i) => {
+          {OVERVIEW_STEPS.map((step) => {
             const Illustration = HERO_ILLUSTRATION_REGISTRY[step.heroIllustrationId];
             return (
               <motion.div key={step.title} variants={fadeUp} className="flex flex-col items-center text-center">
+                {/* No ordinal badge (was "01".."07") — those numbers read as
+                    a second, competing step count immediately before the
+                    interactive section's own 5-stage numbering. */}
                 <div className="relative w-full aspect-square bg-white border border-gray-100 mb-3 flex items-center justify-center p-3">
-                  <span className="absolute top-1.5 left-1.5 font-mono text-[10px] font-bold text-brand-orange">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
                   {Illustration && <Illustration className="w-full h-full" />}
                 </div>
                 <h4 className="font-cond font-black text-[11px] sm:text-xs uppercase tracking-wide text-brand-navy mb-1">
