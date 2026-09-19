@@ -57,18 +57,36 @@ export default function ContactPage() {
     setSubmitState("idle");
 
     const form = event.currentTarget;
+    const formData = new FormData(form);
 
     try {
-      // Simulated API Call
-      await new Promise((res) => setTimeout(res, 1200));
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          phone: formData.get("phone"),
+          message: formData.get("message"),
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Something went wrong. Please try again.");
+      }
+
       setSubmitState("success");
       setSubmitMessage(
-        "Enquiry received! Our design engineers will contact you shortly.",
+        data.message || "Enquiry received! Our design engineers will contact you shortly.",
       );
       form.reset();
     } catch (error) {
       setSubmitState("error");
-      setSubmitMessage("Something went wrong. Please try again.");
+      setSubmitMessage(
+        error instanceof Error ? error.message : "Something went wrong. Please try again.",
+      );
     } finally {
       setIsSubmitting(false);
     }
