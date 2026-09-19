@@ -10,6 +10,15 @@ import type { ProcessStage } from "./types";
 interface ProcessEngineeringSceneProps {
   stages: ProcessStage[];
   activeStageIndex: number;
+  // Additive overrides — all default to the module constants below, so the
+  // scroll-driven ProcessStorySection call site (which passes none of these)
+  // stays byte-for-byte unaffected. Exist so a second, differently-framed
+  // mount (e.g. the Hero) can retune camera/annotations without touching the
+  // shared constants this file's other mount still relies on.
+  showAnnotations?: boolean;
+  cameraZoom?: number;
+  cameraBasePosition?: THREE.Vector3;
+  cameraTarget?: THREE.Vector3;
 }
 
 // Fully procedural "engineering illustration" scene, built from primitives,
@@ -29,7 +38,14 @@ interface ProcessEngineeringSceneProps {
 // after it — earlier layers (gel coat, fiberglass) must stay built-up/settled
 // while later stages add on top, not animate back out once the story moves
 // past them.
-export default function ProcessEngineeringScene({ stages, activeStageIndex }: ProcessEngineeringSceneProps) {
+export default function ProcessEngineeringScene({
+  stages,
+  activeStageIndex,
+  showAnnotations = true,
+  cameraZoom = CAMERA_ZOOM,
+  cameraBasePosition = CAMERA_BASE_POSITION,
+  cameraTarget = CAMERA_TARGET,
+}: ProcessEngineeringSceneProps) {
   const activeStage = stages[activeStageIndex];
   const stageId = activeStage.id;
   const showMold =
@@ -59,7 +75,7 @@ export default function ProcessEngineeringScene({ stages, activeStageIndex }: Pr
         dpr={[1, 1.5]}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         orthographic
-        camera={{ zoom: CAMERA_ZOOM, position: CAMERA_BASE_POSITION.toArray(), near: 0.01, far: 20 }}
+        camera={{ zoom: cameraZoom, position: cameraBasePosition.toArray(), near: 0.01, far: 20 }}
       >
         <TransitionController isActive={reachedGelCoat} progressRef={gelCoatProgressRef} />
         <TransitionController isActive={reachedFiberglass} progressRef={fiberglassProgressRef} />
@@ -70,6 +86,8 @@ export default function ProcessEngineeringScene({ stages, activeStageIndex }: Pr
           fiberglassProgressRef={fiberglassProgressRef}
           structuralProgressRef={structuralProgressRef}
           revealProgressRef={revealProgressRef}
+          basePosition={cameraBasePosition}
+          target={cameraTarget}
         />
         <Lights />
         <BlueprintGrid revealProgressRef={revealProgressRef} />
@@ -80,6 +98,7 @@ export default function ProcessEngineeringScene({ stages, activeStageIndex }: Pr
             fiberglassProgressRef={fiberglassProgressRef}
             structuralProgressRef={structuralProgressRef}
             revealProgressRef={revealProgressRef}
+            showAnnotations={showAnnotations}
           />
         ) : null}
       </Canvas>
@@ -124,17 +143,21 @@ function CameraRig({
   fiberglassProgressRef,
   structuralProgressRef,
   revealProgressRef,
+  basePosition = CAMERA_BASE_POSITION,
+  target = CAMERA_TARGET,
 }: {
   gelCoatProgressRef: React.RefObject<number>;
   fiberglassProgressRef: React.RefObject<number>;
   structuralProgressRef: React.RefObject<number>;
   revealProgressRef: React.RefObject<number>;
+  basePosition?: THREE.Vector3;
+  target?: THREE.Vector3;
 }) {
   const { camera } = useThree();
   useEffect(() => {
-    camera.position.copy(CAMERA_BASE_POSITION);
-    camera.lookAt(CAMERA_TARGET);
-  }, [camera]);
+    camera.position.copy(basePosition);
+    camera.lookAt(target);
+  }, [camera, basePosition, target]);
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
@@ -147,9 +170,9 @@ function CameraRig({
       THREE.MathUtils.degToRad(CAMERA_STRUCTURAL_ORBIT_DEG) * structuralProgressRef.current +
       THREE.MathUtils.degToRad(CAMERA_REVEAL_ORBIT_DEG) * revealProgressRef.current;
     const totalAngle = ambientAngle + stageAngle;
-    const offset = CAMERA_BASE_POSITION.clone().sub(CAMERA_TARGET).applyAxisAngle(new THREE.Vector3(0, 1, 0), totalAngle);
-    camera.position.copy(CAMERA_TARGET).add(offset);
-    camera.lookAt(CAMERA_TARGET);
+    const offset = basePosition.clone().sub(target).applyAxisAngle(new THREE.Vector3(0, 1, 0), totalAngle);
+    camera.position.copy(target).add(offset);
+    camera.lookAt(target);
   });
 
   return null;
@@ -863,12 +886,14 @@ function MoldScene({
   fiberglassProgressRef,
   structuralProgressRef,
   revealProgressRef,
+  showAnnotations,
 }: {
   stageId: string;
   gelCoatProgressRef: React.RefObject<number>;
   fiberglassProgressRef: React.RefObject<number>;
   structuralProgressRef: React.RefObject<number>;
   revealProgressRef: React.RefObject<number>;
+  showAnnotations: boolean;
 }) {
   const coatMeshRef = useRef<THREE.Mesh>(null);
   const edgeGroupRef = useRef<THREE.Group>(null);
@@ -1041,35 +1066,35 @@ function MoldScene({
         </mesh>
       ))}
 
-      {stageId === "mold-prep" && (
+      {showAnnotations && stageId === "mold-prep" && (
         <Html position={[0.95, BASE_TOP_Y + 0.5, -0.4]} center={false} zIndexRange={[1, 0]} occlude={false}>
           <div className="pointer-events-none whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.18em] text-white/45">
             Tooling · Precision Mold
           </div>
         </Html>
       )}
-      {stageId === "gel-coat" && (
+      {showAnnotations && stageId === "gel-coat" && (
         <Html position={[0.95, FLOOR_TOP_Y + 0.4, -0.4]} center={false} zIndexRange={[1, 0]} occlude={false}>
           <div className="pointer-events-none whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.18em] text-brand-orange/80">
             Gel Coat · 0.5mm
           </div>
         </Html>
       )}
-      {stageId === "fiberglass-layup" && (
+      {showAnnotations && stageId === "fiberglass-layup" && (
         <Html position={[0.95, FLOOR_TOP_Y + 0.55, -0.4]} center={false} zIndexRange={[1, 0]} occlude={false}>
           <div className="pointer-events-none whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.18em] text-white/60">
             Fiberglass · Reinforcement
           </div>
         </Html>
       )}
-      {stageId === "structural-cure" && (
+      {showAnnotations && stageId === "structural-cure" && (
         <Html position={[0.95, FLOOR_TOP_Y + 0.68, -0.4]} center={false} zIndexRange={[1, 0]} occlude={false}>
           <div className="pointer-events-none whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.18em] text-white/60">
             Structural Roving · Bidirectional
           </div>
         </Html>
       )}
-      {stageId === "reveal" && (
+      {showAnnotations && stageId === "reveal" && (
         <Html position={[0.95, FLOOR_TOP_Y + 0.78, -0.4]} center={false} zIndexRange={[1, 0]} occlude={false}>
           <div className="pointer-events-none whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.18em] text-white/60">
             Finished Part · Demolded
