@@ -27,7 +27,7 @@ const ProcessModelViewer = dynamic(() => import("./ProcessStory/ProcessEngineeri
 // orthographic framing has to safely contain every stage's geometry, not
 // just the ones it happened to fit. Paired with the larger, non-square
 // container below so the whole model is visible with margin at every stage.
-const HERO_CAMERA_ZOOM = 210;
+const HERO_CAMERA_ZOOM = 185;
 const HERO_CAMERA_BASE_POSITION = new THREE.Vector3(2.5, 2.05, 3.1);
 const HERO_CAMERA_TARGET = new THREE.Vector3(-0.25, -0.12, -0.1);
 
@@ -185,7 +185,7 @@ function HeroPinned() {
                 Hand Lay-Up <span className="text-brand-orange">Method</span>
               </h3>
 
-              <div className="relative w-full max-w-sm sm:max-w-md aspect-[4/3] overflow-hidden">
+              <div className="relative w-full max-w-sm sm:max-w-md aspect-square overflow-hidden">
                 {canvasFailed ? (
                   <ProcessIllustration stages={handLayupProcess.stages} activeStageIndex={activeStageIndex} />
                 ) : (
@@ -194,6 +194,7 @@ function HeroPinned() {
                       stages={handLayupProcess.stages}
                       activeStageIndex={activeStageIndex}
                       showAnnotations={false}
+                      transparentBackground
                       cameraZoom={HERO_CAMERA_ZOOM}
                       cameraBasePosition={HERO_CAMERA_BASE_POSITION}
                       cameraTarget={HERO_CAMERA_TARGET}

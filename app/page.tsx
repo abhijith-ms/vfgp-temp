@@ -2,8 +2,6 @@
 
 import HeroSction from "./components/HomeComponents/HeroSction";
 import FeatureBar from "./components/HomeComponents/FeatureBar";
-import ProcessOverviewBanner from "./components/HomeComponents/ProcessStory/ProcessOverviewBanner";
-import { handLayupProcess } from "./components/HomeComponents/ProcessStory/processes/handLayup";
 import { FRPTankSVG, FRPDuctSVG, FRPProfileSVG, FRPGratingPanelSVG } from "./components/BackgroundDrawings";
 import Image from "next/image";
 import {
@@ -239,9 +237,6 @@ export default function Home() {
     <main className="overflow-x-hidden bg-white">
       {/* ── HERO SECTION ─────────────────────────────────────────────── */}
       <HeroSction />
-
-      {/* ── PROCESS OVERVIEW BANNER (methodology at a glance + benefits summary) ──── */}
-      <ProcessOverviewBanner process={handLayupProcess} />
 
       {/* ── FEATURE BAR ──────────────────────────────────────────────── */}
       <div className="hidden md:block">

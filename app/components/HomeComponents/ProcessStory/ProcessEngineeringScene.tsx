@@ -19,6 +19,15 @@ interface ProcessEngineeringSceneProps {
   cameraZoom?: number;
   cameraBasePosition?: THREE.Vector3;
   cameraTarget?: THREE.Vector3;
+  // "Bare model" mode for a mount (the Hero) that wants just the object
+  // itself sitting on the page's own background, not the full "engineering
+  // illustration" backdrop this scene otherwise draws. When true: (1) skips
+  // this component's own backdrop div so the WebGL canvas's real alpha
+  // channel shows the mounting page's own background straight through, and
+  // (2) skips the decorative BlueprintGrid ground-plane. Defaults to false
+  // so the scroll-driven ProcessStorySection call site (which passes none of
+  // these overrides) stays byte-for-byte unaffected.
+  transparentBackground?: boolean;
 }
 
 // Fully procedural "engineering illustration" scene, built from primitives,
@@ -45,6 +54,7 @@ export default function ProcessEngineeringScene({
   cameraZoom = CAMERA_ZOOM,
   cameraBasePosition = CAMERA_BASE_POSITION,
   cameraTarget = CAMERA_TARGET,
+  transparentBackground = false,
 }: ProcessEngineeringSceneProps) {
   const activeStage = stages[activeStageIndex];
   const stageId = activeStage.id;
@@ -67,9 +77,11 @@ export default function ProcessEngineeringScene({
   return (
     <div
       className="absolute inset-0"
-      style={{
-        background: "radial-gradient(circle at 50% 38%, #16294f 0%, #0a1628 62%, #05090f 100%)",
-      }}
+      style={
+        transparentBackground
+          ? undefined
+          : { background: "radial-gradient(circle at 50% 38%, #16294f 0%, #0a1628 62%, #05090f 100%)" }
+      }
     >
       <Canvas
         dpr={[1, 1.5]}
@@ -90,7 +102,10 @@ export default function ProcessEngineeringScene({
           target={cameraTarget}
         />
         <Lights />
-        <BlueprintGrid revealProgressRef={revealProgressRef} />
+        {/* Decorative ground-plane grid — part of the full-bleed
+            ProcessStorySection's "engineering illustration" backdrop, not
+            wanted on a mount that wants just the bare model (transparentBackground). */}
+        {!transparentBackground && <BlueprintGrid revealProgressRef={revealProgressRef} />}
         {showMold ? (
           <MoldScene
             stageId={stageId}
