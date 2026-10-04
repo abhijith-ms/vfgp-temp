@@ -168,11 +168,11 @@ function HeroPinned() {
       <section
         ref={wrapperRef}
         className="relative w-full bg-[#0a1628]"
-        style={{ height: `${handLayupProcess.stages.length * 100}vh` }}
+        style={{ height: `${handLayupProcess.stages.length * 100}svh` }}
       >
-        {/* h-[100dvh], not h-screen — see ProcessStorySection.tsx for why
-            (mobile browser toolbar clipping). */}
-        <div ref={pinRef} className="relative w-full h-[100dvh] overflow-hidden flex items-center">
+        {/* A stable viewport keeps toolbar expansion from resizing the pin
+            mid-swipe. Mobile padding also clears the sticky navigation. */}
+        <div ref={pinRef} className="hero-process-pin relative w-full h-[100svh] overflow-hidden flex items-center">
           <HeroBackgroundChrome />
 
           <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -180,12 +180,12 @@ function HeroPinned() {
               <HeroLeftColumn />
             </div>
 
-            <div className="lg:col-span-5 flex flex-col justify-center items-center relative">
+            <div className="hero-process-content lg:col-span-5 flex flex-col justify-center items-center relative">
               <h3 className="font-cond font-bold text-white/70 text-xs sm:text-sm uppercase tracking-[0.25em] mb-4">
                 Hand Lay-Up <span className="text-brand-orange">Method</span>
               </h3>
 
-              <div className="relative w-full max-w-sm sm:max-w-md aspect-square overflow-hidden">
+              <div className="hero-process-canvas relative w-full max-w-sm sm:max-w-md aspect-square overflow-hidden">
                 {canvasFailed ? (
                   <ProcessIllustration stages={handLayupProcess.stages} activeStageIndex={activeStageIndex} />
                 ) : (
@@ -203,11 +203,11 @@ function HeroPinned() {
                 )}
               </div>
 
-              <div className="w-full max-w-sm sm:max-w-md">
+              <div className="hero-process-caption w-full max-w-sm sm:max-w-md">
                 <HeroStageCaption stages={handLayupProcess.stages} activeStageIndex={activeStageIndex} />
               </div>
 
-              <div className="mt-6 flex flex-col items-center gap-2">
+              <div className="hero-process-hint mt-6 flex flex-col items-center gap-2">
                 <span className="text-white/50 text-[10px] uppercase font-mono tracking-widest">Keep scrolling</span>
                 <ChevronDown className="w-4 h-4 text-brand-orange animate-bounce" />
               </div>

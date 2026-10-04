@@ -100,6 +100,7 @@ export default function ProcessEngineeringScene({
           revealProgressRef={revealProgressRef}
           basePosition={cameraBasePosition}
           target={cameraTarget}
+          zoom={cameraZoom}
         />
         <Lights />
         {/* Decorative ground-plane grid — part of the full-bleed
@@ -160,6 +161,7 @@ function CameraRig({
   revealProgressRef,
   basePosition = CAMERA_BASE_POSITION,
   target = CAMERA_TARGET,
+  zoom = CAMERA_ZOOM,
 }: {
   gelCoatProgressRef: React.RefObject<number>;
   fiberglassProgressRef: React.RefObject<number>;
@@ -167,8 +169,19 @@ function CameraRig({
   revealProgressRef: React.RefObject<number>;
   basePosition?: THREE.Vector3;
   target?: THREE.Vector3;
+  zoom?: number;
 }) {
-  const { camera } = useThree();
+  const { camera, size } = useThree();
+  useEffect(() => {
+    if (camera instanceof THREE.OrthographicCamera) {
+      // Zoom is authored for the hero's 448px desktop canvas. Preserve that
+      // framing as either dimension shrinks (phones and landscape layouts).
+      // R3F owns this mutable Three.js camera; update its projection in place.
+      // eslint-disable-next-line react-hooks/immutability
+      camera.zoom = zoom * Math.min(1, size.width / 448, size.height / 448);
+      camera.updateProjectionMatrix();
+    }
+  }, [camera, size.width, size.height, zoom]);
   useEffect(() => {
     camera.position.copy(basePosition);
     camera.lookAt(target);
